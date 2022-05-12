@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../features';
+import { useToast } from '../hooks';
 
 const initLoginState = {
   email: '',
@@ -14,6 +15,8 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
+  const { showToast } = useToast();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === 'remember-me') {
@@ -25,7 +28,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser(userData));
+    dispatch(loginUser({ ...userData, showToast }));
   };
 
   return (

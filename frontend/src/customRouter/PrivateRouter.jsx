@@ -4,7 +4,11 @@ const PrivateRouter = (props) => {
   const firstLogin = localStorage.getItem('firstLogin');
 
   let location = useLocation();
-  return firstLogin ? <Route {...props} /> : <Navigate to="/" />;
+  return firstLogin ? (
+    <Route {...props} />
+  ) : (
+    <Navigate to="/" state={{ from: location }} replace />
+  );
 };
 
 export default PrivateRouter;
