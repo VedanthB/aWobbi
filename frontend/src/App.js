@@ -5,7 +5,7 @@ import { Home, Register } from './pages';
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="h-full">
       <Routes>
         <Route path="/" element={<Home />} />
 
