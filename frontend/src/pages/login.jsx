@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../features';
 
 const initLoginState = {
   email: '',
   password: '',
-  'remember-me': false,
+  // 'remember-me': false,
 };
 
 const Login = () => {
   const [userData, setUserData] = useState(initLoginState);
+
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,6 +25,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(loginUser(userData));
   };
 
   return (
@@ -38,7 +43,7 @@ const Login = () => {
           <p className="mt-2 text-center text-sm text-gray-600">
             Or
             <Link
-              href="/"
+              to="/"
               className="font-medium text-indigo-600 ml-3 hover:text-indigo-500"
             >
               Create an account
@@ -49,14 +54,14 @@ const Login = () => {
           <input type="hidden" name="remember" value="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
-              <label for="email-address" className="sr-only">
+              <label htmlFor="email-address" className="sr-only">
                 Email address
               </label>
               <input
                 id="email-address"
                 name="email"
                 type="email"
-                autocomplete="email"
+                autoComplete="email"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
@@ -64,14 +69,14 @@ const Login = () => {
               />
             </div>
             <div>
-              <label for="password" className="sr-only">
+              <label htmlFor="password" className="sr-only">
                 Password
               </label>
               <input
                 id="password"
                 name="password"
                 type="password"
-                autocomplete="current-password"
+                autoComplete="current-password"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
@@ -90,7 +95,7 @@ const Login = () => {
                 onChange={handleChange}
               />
               <label
-                for="remember-me"
+                htmlFor="remember-me"
                 className="ml-2 block text-sm text-gray-900"
               >
                 Remember me
@@ -99,7 +104,7 @@ const Login = () => {
 
             <div className="text-sm">
               <Link
-                href="/"
+                to="/"
                 className="font-medium text-indigo-600 hover:text-indigo-500"
               >
                 Forgot your password?
@@ -121,9 +126,9 @@ const Login = () => {
                   aria-hidden="true"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   />
                 </svg>
               </span>
