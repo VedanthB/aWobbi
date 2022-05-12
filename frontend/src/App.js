@@ -1,13 +1,22 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { PageRenderer } from './customRouter';
+import { Home, Register } from './pages';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <h1 className="text-3xl bg-gray-500 p-6 font-bold underline">
-        Hello world!
-      </h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+
+        <Route path="/register" element={<Register />} />
+        <Route path="/:page" element={<PageRenderer />} />
+
+        {/* <PrivateRouter path="/:page" element={PageRenderer} />
+          <PrivateRouter path="/:page/:id" element={PageRenderer} /> */}
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;
