@@ -1,11 +1,15 @@
-import { Route, Navigate, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Navigate, useLocation } from 'react-router-dom';
 
-const PrivateRouter = (props) => {
+const PrivateRouter = ({ children }) => {
   const firstLogin = localStorage.getItem('firstLogin');
 
   let location = useLocation();
+
+  const { auth } = useSelector((state) => state);
+
   return firstLogin ? (
-    <Route {...props} />
+    children
   ) : (
     <Navigate to="/" state={{ from: location }} replace />
   );
