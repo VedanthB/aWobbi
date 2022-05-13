@@ -4,7 +4,7 @@ import { setAlertLoading } from '../slices/alertSlice';
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
-  async ({ email, password, showToast }, thunkAPI) => {
+  async ({ email, password, showToast, navigateTo }, thunkAPI) => {
     try {
       thunkAPI.dispatch(setAlertLoading({ loading: true }));
 
@@ -15,6 +15,8 @@ export const loginUser = createAsyncThunk(
       showToast(res.data.msg, 'success');
 
       localStorage.setItem('firstLogin', true);
+
+      navigateTo();
 
       return res.data;
     } catch (e) {
@@ -47,6 +49,42 @@ export const refreshToken = createAsyncThunk(
 
         return thunkAPI.rejectWithValue(e.response.data.msg);
       }
+    }
+  }
+);
+
+export const registerUser = createAsyncThunk(
+  'auth/registerUser',
+  async (
+    { fullName, email, password, userName, gender, showToast, navigateTo },
+    thunkAPI
+  ) => {
+    try {
+      thunkAPI.dispatch(setAlertLoading({ loading: true }));
+
+      const res = await postDataAPI('register', {
+        fullName,
+        email,
+        password,
+        userName,
+        gender,
+      });
+
+      thunkAPI.dispatch(setAlertLoading({ loading: false }));
+
+      showToast(res.data.msg, 'success');
+
+      localStorage.setItem('firstLogin', true);
+
+      navigateTo();
+
+      return res.data;
+    } catch (e) {
+      thunkAPI.dispatch(setAlertLoading({ loading: false }));
+
+      showToast(e.response.data.msg, 'error');
+
+      return thunkAPI.rejectWithValue(e.response.data.msg);
     }
   }
 );

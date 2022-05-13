@@ -1,5 +1,5 @@
 import { GLOBAL_TYPES } from './actions/globalTypes';
-import { loginUser, refreshToken } from './actions/authActions';
+import { loginUser, refreshToken, registerUser } from './actions/authActions';
 import {
   setAlertLoading,
   setAlertError,
@@ -13,4 +13,5 @@ export {
   setAlertError,
   setAlertSuccess,
   refreshToken,
+  registerUser,
 };

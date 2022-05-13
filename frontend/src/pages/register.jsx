@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../features';
+import { registerUser } from '../features';
 import { useToast } from '../hooks';
 
 const initLoginState = {
@@ -20,6 +20,14 @@ const Register = () => {
 
   const { showToast } = useToast();
 
+  let location = useLocation();
+
+  let navigate = useNavigate();
+
+  let from = location.state?.from?.pathname || '/';
+
+  let navigateTo = () => navigate(from, { replace: true });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === 'remember-me') {
@@ -33,7 +41,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser({ ...userData, showToast }));
+    dispatch(registerUser({ ...userData, showToast, navigateTo }));
   };
 
   return (
@@ -51,7 +59,7 @@ const Register = () => {
           <p className="mt-2 text-center text-sm text-gray-600">
             Or
             <Link
-              to="/"
+              to="/login"
               className="font-medium text-indigo-600 ml-3 hover:text-indigo-500"
             >
               Sign In
