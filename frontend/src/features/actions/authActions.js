@@ -10,6 +10,8 @@ export const loginUser = createAsyncThunk(
 
       const res = await postDataAPI('login', { email, password });
 
+      thunkAPI.dispatch(setAlertLoading({ loading: false }));
+
       showToast(res.data.msg, 'success');
 
       localStorage.setItem('firstLogin', true);
