@@ -2,8 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   loading: false,
-  errorMessage: null,
-  successMessage: null,
 };
 
 const alertSlice = createSlice({
