@@ -4,7 +4,7 @@ const auth = require('../middleware/auth');
 
 router.get('/search', auth, userCtrl.searchUser);
 
-// router.get('/user/:id', auth, userCtrl.getUser);
+router.get('/user/:id', auth, userCtrl.getUser);
 // router.patch('/user', auth, userCtrl.updateUser);
 
 // router.patch('/user/:id/follow', auth, userCtrl.follow);
