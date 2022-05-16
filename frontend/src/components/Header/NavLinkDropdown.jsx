@@ -1,14 +1,33 @@
 import React, { Fragment } from 'react';
-
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { HiChevronDown } from 'react-icons/hi';
 import { BsFillMoonStarsFill } from 'react-icons/bs';
 import { BiLogOutCircle } from 'react-icons/bi';
 
 import { Menu, Transition } from '@headlessui/react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useToast } from '../../hooks';
+import { logoutUser } from '../../features/actions/authActions';
 
 const NavLinkDropdown = () => {
   const { auth } = useSelector((state) => state);
+
+  const { showToast } = useToast();
+
+  const dispatch = useDispatch();
+
+  let location = useLocation();
+
+  let navigate = useNavigate();
+
+  let from = location.state?.from?.pathname || '/';
+
+  let navigateTo = () => navigate(from, { replace: true });
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch(logoutUser({ showToast, navigateTo }));
+  };
 
   return (
     <div className="">
@@ -39,7 +58,8 @@ const NavLinkDropdown = () => {
             <div className="px-1 py-1 ">
               <Menu.Item>
                 {({ active }) => (
-                  <button
+                  <Link
+                    to={`/profile/${auth.user._id}`}
                     className={`${
                       active ? 'bg-indigo-400 text-white' : 'text-gray-900'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
@@ -50,7 +70,7 @@ const NavLinkDropdown = () => {
                       className="h-4 w-4 rounded-full mr-3"
                     />
                     Profile
-                  </button>
+                  </Link>
                 )}
               </Menu.Item>
               <Menu.Item>
@@ -70,6 +90,7 @@ const NavLinkDropdown = () => {
               <Menu.Item>
                 {({ active }) => (
                   <button
+                    onClick={handleLogout}
                     className={`${
                       active ? 'bg-indigo-400 text-white' : 'text-gray-900'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}

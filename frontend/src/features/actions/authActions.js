@@ -88,3 +88,26 @@ export const registerUser = createAsyncThunk(
     }
   }
 );
+
+export const logoutUser = createAsyncThunk(
+  'auth/logoutUser',
+  async ({ showToast, navigateTo }, thunkAPI) => {
+    try {
+      thunkAPI.dispatch(setAlertLoading({ loading: true }));
+
+      localStorage.removeItem('firstLogin');
+
+      await postDataAPI('logout');
+
+      thunkAPI.dispatch(setAlertLoading({ loading: false }));
+
+      navigateTo();
+    } catch (e) {
+      thunkAPI.dispatch(setAlertLoading({ loading: false }));
+
+      showToast(e.response.data.msg, 'error');
+
+      return thunkAPI.rejectWithValue(e.response.data.msg);
+    }
+  }
+);
