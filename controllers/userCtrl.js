@@ -62,18 +62,70 @@ const userCtrl = {
       return res.status(500).json({ msg: error.message });
     }
   },
-  //   follow: async (req, res) => {
-  //     try {
-  //     } catch (error) {
-  //       return res.status(500).json({ msg: error.message });
-  //     }
-  //   },
-  //   unfollow: async (req, res) => {
-  //     try {
-  //     } catch (error) {
-  //       return res.status(500).json({ msg: error.message });
-  //     }
-  //   },
+  follow: async (req, res) => {
+    try {
+      const user = await Users.find({
+        _id: req.params.id,
+        followers: req.user._id, // to check if the user is already following the user
+      });
+
+      if (user.length > 0)
+        return res
+          .status(500)
+          .json({ msg: 'You have already followed this user.' });
+
+      // find the user to follow and update the user's followers with your id
+      const newUser = await Users.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $push: { followers: req.user._id },
+        },
+        {
+          new: true,
+        }
+      );
+
+      // update in the user's following the id of the user just followed
+      await Users.findOneAndUpdate(
+        { _id: req.user._id },
+        {
+          $push: { following: req.params.id },
+        },
+        {
+          new: true,
+        }
+      );
+
+      return res.json({ newUser });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
+  unfollow: async (req, res) => {
+    try {
+      // find the user to un follow and remove the user id from followers
+      const newUser = await Users.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $pull: { followers: req.user._id },
+        },
+        { new: true }
+      ).populate('followers following', '-password');
+
+      // remove the user id of the user just un followed in user's following
+      await Users.findOneAndUpdate(
+        { _id: req.user._id },
+        {
+          $pull: { following: req.params.id },
+        },
+        { new: true }
+      );
+
+      res.json({ newUser });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
   //   suggestedUsers: async (req, res) => {
   //     try {
   //     } catch (error) {
