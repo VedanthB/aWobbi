@@ -41,7 +41,7 @@ const Search = () => {
           type="text"
           value={search}
           onChange={(e) => handleSearch(e)}
-          className="shadow-md px-8 py-2 w-96 rounded focus:outline-indigo-400 focus:outline focus:outline-offset-2"
+          className="shadow-md px-8 py-2 w-96 rounded focus:outline-purple-400 focus:outline focus:outline-offset-2"
           placeholder="Search User"
         />
         <FaSearch className="relative right-[378px] text-gray-500" />
@@ -56,12 +56,12 @@ const Search = () => {
         )}
 
         {loading && (
-          <SiReactos className="relative right-10 text-indigo-500 animate-spin" />
+          <SiReactos className="relative right-10 text-purple-500 animate-spin" />
         )}
       </div>
 
       {users && search.length > 0 && (
-        <div className="absolute shadow w-96 mt-2 p-6 bg-indigo-100 rounded-md overflow-x-scroll h-[200px]">
+        <div className="absolute shadow w-96 mt-2 p-6 bg-purple-100 rounded-md overflow-x-scroll h-[200px]">
           {users &&
             users.map((user) => <SearchUserCard user={user} key={user} />)}
         </div>

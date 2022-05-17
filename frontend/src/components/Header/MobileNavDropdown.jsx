@@ -7,7 +7,7 @@ import { BiLogOutCircle } from 'react-icons/bi';
 import { Menu, Transition } from '@headlessui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useToast } from '../../hooks';
-import { logoutUser } from '../../features/actions/authActions';
+import { logoutUser } from '../../features';
 
 const MobileNavDropdown = () => {
   const { auth } = useSelector((state) => state);
@@ -58,7 +58,7 @@ const MobileNavDropdown = () => {
               <Menu.Item>
                 {({ active }) => (
                   <Link
-                    to={`/profile/${auth.user._id}`}
+                    to={`/user/${auth.user._id}`}
                     className={`${
                       active ? 'bg-indigo-400 text-white' : 'text-gray-900'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}

@@ -8,6 +8,8 @@ import {
 
 import validateForm from './validateForm';
 
+import { checkImage, uploadImage } from './imageUpload';
+
 export {
   getDataAPI,
   postDataAPI,
@@ -15,4 +17,6 @@ export {
   patchDataAPI,
   deleteDataAPI,
   validateForm,
+  checkImage,
+  uploadImage,
 };

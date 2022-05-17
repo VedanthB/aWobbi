@@ -10,6 +10,8 @@ import {
   setAlertError,
   setAlertSuccess,
 } from './slices/alertSlice';
+import { setLoadingProfile } from './slices/profileSlice';
+import { getUser } from './actions/profileActions';
 
 export {
   GLOBAL_TYPES,
@@ -19,4 +21,7 @@ export {
   setAlertSuccess,
   refreshToken,
   registerUser,
+  setLoadingProfile,
+  logoutUser,
+  getUser,
 };
