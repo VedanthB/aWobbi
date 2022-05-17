@@ -16,7 +16,7 @@ const profileSlice = createSlice({
       state.loading = payload.loading;
     },
     setId: (state, { payload }) => {
-      state.id.push(payload.id);
+      state.ids.push(payload.id);
     },
   },
   extraReducers: {

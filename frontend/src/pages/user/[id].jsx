@@ -12,11 +12,13 @@ const Profile = () => {
   const { showToast } = useToast();
   const { id } = useParams();
 
-  // useEffect(() => {
-  //   if (profile.ids.every((item) => item !== id)) {
-  //     dispatch(getUser({ id, auth, showToast }));
-  //   }
-  // }, [id, auth, dispatch, profile.ids]);
+  useEffect(() => {
+    if (profile.ids.every((item) => item !== id)) {
+      dispatch(getUser({ id, auth, showToast }));
+    }
+  }, [id, auth, dispatch, profile.ids]);
+
+  console.log(profile.ids.every((item) => item !== id));
 
   return (
     <div className="min-h-screen w-full">

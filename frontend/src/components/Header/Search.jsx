@@ -61,9 +61,11 @@ const Search = () => {
       </div>
 
       {users && search.length > 0 && (
-        <div className="absolute shadow w-96 mt-2 p-6 bg-purple-100 rounded-md overflow-x-scroll h-[200px]">
+        <div className="absolute shadow w-96 mt-2 p-6 bg-purple-100 rounded-md overflow-x-scroll h-[200px] z-50">
           {users &&
-            users.map((user) => <SearchUserCard user={user} key={user} />)}
+            users.map((user) => (
+              <SearchUserCard user={user} key={user.userName} />
+            ))}
         </div>
       )}
     </div>

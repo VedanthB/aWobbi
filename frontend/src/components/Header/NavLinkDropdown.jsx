@@ -33,7 +33,7 @@ const NavLinkDropdown = () => {
     <div className="">
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="inline-flex w-full justify-center items-center rounded-md px-4 py-2  text-sm font-medium text-black  focus:outline-indigo-400 focus:outline focus:outline-offset-2">
+          <Menu.Button className="inline-flex w-full justify-center items-center rounded-md px-4 py-2  text-sm font-medium text-black  focus:outline-purple-400 focus:outline focus:outline-offset-2">
             <img
               src={auth.user.avatar}
               alt={auth.user.userName}
@@ -54,14 +54,14 @@ const NavLinkDropdown = () => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
             <div className="px-1 py-1 ">
               <Menu.Item>
                 {({ active }) => (
                   <Link
                     to={`/user/${auth.user._id}`}
                     className={`${
-                      active ? 'bg-indigo-400 text-white' : 'text-gray-900'
+                      active ? 'bg-purple-400 text-white' : 'text-gray-900'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     <img
@@ -77,7 +77,7 @@ const NavLinkDropdown = () => {
                 {({ active }) => (
                   <button
                     className={`${
-                      active ? 'bg-indigo-400 text-white' : 'text-gray-900'
+                      active ? 'bg-purple-400 text-white' : 'text-gray-900'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     <BsFillMoonStarsFill className="h-4 w-4 rounded-full mr-3" />
@@ -92,7 +92,7 @@ const NavLinkDropdown = () => {
                   <button
                     onClick={handleLogout}
                     className={`${
-                      active ? 'bg-indigo-400 text-white' : 'text-gray-900'
+                      active ? 'bg-purple-400 text-white' : 'text-gray-900'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     <BiLogOutCircle className="h-4 w-4 rounded-full mr-3" />

@@ -15,16 +15,20 @@ import { setId, setLoadingProfile } from '../slices/profileSlice';
 export const getUser = createAsyncThunk(
   'profile/getUser',
   async ({ id, auth, showToast }, thunkAPI) => {
-    try {
-      thunkAPI.dispatch(setId({ id: id }));
+    thunkAPI.dispatch(setId({ id: id }));
 
+    try {
       thunkAPI.dispatch(setLoadingProfile({ loading: true }));
 
-      const res = await getDataAPI(`/user/${id}`, auth.token);
+      const res = getDataAPI(`/user/${id}`, auth.token);
+
+      const users = await res;
+
+      console.log(users);
 
       thunkAPI.dispatch(setLoadingProfile({ loading: false }));
 
-      return res.data;
+      return users.data;
     } catch (e) {
       thunkAPI.dispatch(setLoadingProfile({ loading: false }));
 
@@ -92,43 +96,3 @@ export const updateUserProfileInfo = createAsyncThunk(
     }
   }
 );
-
-// export const updateProfileUser =
-//   ({ userData, avatar, auth }) =>
-//   async (dispatch) => {
-
-//     try {
-//       let media;
-//       dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } });
-
-//       if (avatar) media = await imageUpload([avatar]);
-
-//       const res = await patchDataAPI(
-//         'user',
-//         {
-//           ...userData,
-//           avatar: avatar ? media[0].url : auth.user.avatar,
-//         },
-//         auth.token
-//       );
-
-//       dispatch({
-//         type: GLOBALTYPES.AUTH,
-//         payload: {
-//           ...auth,
-//           user: {
-//             ...auth.user,
-//             ...userData,
-//             avatar: avatar ? media[0].url : auth.user.avatar,
-//           },
-//         },
-//       });
-
-//       dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.msg } });
-//     } catch (err) {
-//       dispatch({
-//         type: GLOBALTYPES.ALERT,
-//         payload: { error: err.response.data.msg },
-//       });
-//     }
-//   };
