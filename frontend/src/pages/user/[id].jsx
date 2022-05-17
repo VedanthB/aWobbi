@@ -22,7 +22,7 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen w-full">
-      <UserInfo />
+      <UserInfo id={id} auth={auth} profile={profile} />
       <UserPosts />
     </div>
   );

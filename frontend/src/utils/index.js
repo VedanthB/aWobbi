@@ -8,6 +8,8 @@ import {
 
 import validateForm from './validateForm';
 
+import { EditData, DeleteData } from './editData';
+
 import { checkImage, uploadImage } from './imageUpload';
 
 export {
@@ -19,4 +21,6 @@ export {
   validateForm,
   checkImage,
   uploadImage,
+  EditData,
+  DeleteData,
 };
