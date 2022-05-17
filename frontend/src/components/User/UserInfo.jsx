@@ -23,12 +23,12 @@ const UserInfo = () => {
       const newData = profile.users.filter((user) => user._id === id);
       setUserData(newData);
     }
-  }, [id, auth, profile.users]);
+  }, [id, auth, profile.users, auth.user]);
 
-  console.log(onEdit);
+  // console.log(userData);
 
   return (
-    <div className="w-full max-w-4xl px-5 py-3 mx-auto">
+    <div className="w-full max-w-4xl px-5 py-3 mx-auto mt-8">
       {userData.map((user) => (
         <div className="flex justify-around flex-wrap" key={user._id}>
           <Avatar
@@ -39,7 +39,7 @@ const UserInfo = () => {
 
           <div className="min-w-[250px] max-w-[550px] w-full flex-1 opacity-70 my-0 mx-4">
             <div className="flex items-center flex-wrap">
-              <h2 className="flex-[3_1_0%] text-4xl font-normal translate-y-[4px]">
+              <h2 className="flex-[3_1_0%] text-4xl font-normal translate-y-[4px] mb-4">
                 {' '}
                 {user.userName}{' '}
               </h2>
@@ -53,7 +53,7 @@ const UserInfo = () => {
               )}
             </div>
 
-            <div className="cursor-pointer text-indigo-500">
+            <div className="cursor-pointer text-indigo-500 mb-4">
               <span
                 className="mr-4 hover:underline"
                 onClick={() => setShowFollowers(true)}
@@ -68,16 +68,21 @@ const UserInfo = () => {
               </span>
             </div>
 
-            <h6>
+            <h6 className="mb-4 ">
               {user.fullName}
-              <span className="text-red-500">{user.mobile}</span>
+              <span className="text-red-500 ml-3">{user.mobile}</span>
             </h6>
-            <p className="m-0">{user.address}</p>
-            <h6 className="m-0">{user.email}</h6>
-            <a href={user.website} target="_blank" rel="noreferrer">
+            <p className="mb-4">{user.address}</p>
+            <h6 className="mb-4">{user.email}</h6>
+            <a
+              href={user.website}
+              className="text-blue-500 hover:underline"
+              target="_blank"
+              rel="noreferrer"
+            >
               {user.website}
             </a>
-            <p>{user.story}</p>
+            <p className="mt-4">{user.story}</p>
           </div>
 
           {onEdit && <EditProfileModal onEdit={onEdit} setOnEdit={setOnEdit} />}

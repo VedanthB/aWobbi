@@ -11,7 +11,9 @@ import {
   setAlertSuccess,
 } from './slices/alertSlice';
 import { setLoadingProfile } from './slices/profileSlice';
-import { getUser } from './actions/profileActions';
+import { setAuth } from './slices/authSlice';
+
+import { getUser, updateUserProfileInfo } from './actions/profileActions';
 
 export {
   GLOBAL_TYPES,
@@ -24,4 +26,6 @@ export {
   setLoadingProfile,
   logoutUser,
   getUser,
+  setAuth,
+  updateUserProfileInfo,
 };

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getUser } from '../actions/profileActions';
+import { getUser, updateUserProfileInfo } from '../actions/profileActions';
 
 const initialState = {
   loading: false,
@@ -17,17 +17,18 @@ const profileSlice = createSlice({
     },
     setId: (state, { payload }) => {
       state.id.push(payload.id);
-      console.log(payload.id);
     },
   },
   extraReducers: {
     [getUser.fulfilled]: (state, { payload }) => {
       state.users.push(payload.user);
-      console.log(payload);
     },
     [getUser.rejected]: (state, { payload }) => {
       state.loading = false;
-      console.log(payload);
+    },
+    [updateUserProfileInfo.fulfilled]: (state, { payload }) => {},
+    [updateUserProfileInfo.rejected]: (state, { payload }) => {
+      state.loading = false;
     },
   },
 });

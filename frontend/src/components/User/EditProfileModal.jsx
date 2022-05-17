@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { checkImage } from '../../utils';
 import { useToast } from '../../hooks';
 import Input from '../Input';
+import { updateUserProfileInfo } from '../../features';
 
 const initState = {
   fullName: '',
@@ -47,7 +48,7 @@ const EditProfileModal = ({ onEdit, setOnEdit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(updateProfileUser({ userData, avatar, auth }));
+    dispatch(updateUserProfileInfo({ userData, avatar, auth, showToast }));
   };
 
   return (

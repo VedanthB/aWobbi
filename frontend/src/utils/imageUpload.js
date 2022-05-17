@@ -25,10 +25,10 @@ export const uploadImage = async (images) => {
       formData.append('file', item);
     }
 
-    formData.append('upload_preset', 'divkjcao');
+    formData.append('upload_preset', 'aWobbi');
     formData.append('cloud_name', 'supertramp69420');
     const res = await fetch(
-      ' https://api.cloudinary.com/v1_1/supertramp69420/image/upload',
+      'https://api.cloudinary.com/v1_1/supertramp69420/image/upload',
       {
         method: 'POST',
         body: formData,
