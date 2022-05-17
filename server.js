@@ -6,6 +6,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 const app = express();
+
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
@@ -23,6 +24,7 @@ mongoose.connect(URI, (err) => {
 
 // Routes
 app.use('/api', require('./routes/authRouter'));
+app.use('/api', require('./routes/userRouter'));
 
 const port = process.env.PORT || 5000;
 

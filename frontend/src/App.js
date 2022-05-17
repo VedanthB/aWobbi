@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Alert } from './components';
+import { Alert, Header } from './components';
 import { PageRenderer, PrivateRouter } from './customRouter';
 import { Home, Login, Register } from './pages';
 
@@ -33,6 +33,8 @@ const App = () => {
       />
 
       <Alert />
+
+      {auth.token && <Header />}
 
       <Routes>
         <Route path="/" element={auth.token ? <Home /> : <Login />} />
