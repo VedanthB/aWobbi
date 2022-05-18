@@ -100,6 +100,29 @@ const postCtrl = {
       return res.status(500).json({ msg: error.message });
     }
   },
+  getPost: async (req, res) => {
+    try {
+      const post = await Posts.findById(req.params.id).populate(
+        'user likes',
+        'avatar username fullname followers'
+      );
+      //   .populate({
+      //     path: "comments",
+      //     populate: {
+      //       path: "user likes",
+      //       select: "-password",
+      //     },
+      //   });
+      if (!post)
+        return res.status(500).json({ msg: 'This post does not exist.' });
+
+      res.json({
+        post,
+      });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
 };
 
 module.exports = postCtrl;
