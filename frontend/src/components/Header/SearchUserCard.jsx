@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const SearchUserCard = ({ user }) => {
   return (
     <Link
-      to={`/profile/${user._id}`}
+      to={`/user/${user._id}`}
       className="flex items-center bg-white p-2 mb-3 w-full rounded cursor-pointer hover:shadow-md"
     >
       <img

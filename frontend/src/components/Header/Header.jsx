@@ -8,8 +8,8 @@ import Search from './Search';
 
 const Header = () => {
   return (
-    <div className="shadow-sm">
-      <nav className="justify-between px-8 py-4 mx-auto items-center  hidden md:flex">
+    <div className="shadow-sm ">
+      <nav className="justify-between px-8 py-4 max-w-screen-lg  mx-auto items-center  hidden md:flex">
         <Logo />
 
         <Search />
