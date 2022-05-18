@@ -5,32 +5,37 @@ import { BsMessenger } from 'react-icons/bs';
 import { MdNotificationsActive } from 'react-icons/md';
 import NavLinkDropdown from './NavLinkDropdown';
 
-let activeStyle = {
-  color: '#6366F1',
-  transition: 'all 0.2s ease-in',
-};
-
 const NavLinks = () => {
   return (
     <ul className="flex gap-6 justify-center items-center">
       <li>
-        <NavLink
-          to="/"
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
-          <AiFillHome className="w-6 h-6" />
+        <NavLink to="/">
+          {({ isActive }) => (
+            <AiFillHome
+              className={
+                isActive
+                  ? 'w-6 h-6 text-purple-500'
+                  : 'w-6 h-6 dark:text-gray-100'
+              }
+            />
+          )}
         </NavLink>
       </li>
       <li>
-        <NavLink
-          to="/chat"
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
-          <BsMessenger className="w-6 h-6" />
+        <NavLink to="/chat">
+          {({ isActive }) => (
+            <BsMessenger
+              className={
+                isActive
+                  ? 'w-6 h-6 text-purple-500'
+                  : 'w-6 h-6 dark:text-gray-100'
+              }
+            />
+          )}
         </NavLink>
       </li>
       <li>
-        <MdNotificationsActive className="w-6 h-6" />
+        <MdNotificationsActive className="w-6 h-6 dark:text-gray-100" />
       </li>
       <li>
         <NavLinkDropdown />

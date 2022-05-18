@@ -8,7 +8,7 @@ import Search from './Search';
 
 const Header = () => {
   return (
-    <div className="shadow-sm ">
+    <div className="shadow-sm bg-white dark:bg-slate-800 transition-colors ease-in delay-300">
       <nav className="justify-between px-8 py-4 max-w-screen-lg  mx-auto items-center  hidden md:flex">
         <Logo />
 

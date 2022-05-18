@@ -41,7 +41,7 @@ const Search = () => {
           type="text"
           value={search}
           onChange={(e) => handleSearch(e)}
-          className="shadow-md px-8 py-2 w-96 rounded focus:outline-purple-400 focus:outline focus:outline-offset-2"
+          className="shadow-md px-8 py-2 w-96 rounded dark:bg-slate-600 dark:text-gray-100 focus:outline-purple-400 focus:outline focus:outline-offset-2"
           placeholder="Search User"
         />
         <FaSearch className="relative right-[378px] text-gray-500" />
@@ -61,7 +61,7 @@ const Search = () => {
       </div>
 
       {users && search.length > 0 && (
-        <div className="absolute shadow w-96 mt-2 p-6 bg-purple-100 rounded-md overflow-x-scroll h-[200px] z-50">
+        <div className="absolute shadow w-96 mt-2 p-6 bg-purple-100 dark:bg-slate-600 rounded-md overflow-x-scroll h-[200px] z-50  transition-all ease-in delay-300">
           {users &&
             users.map((user) => (
               <SearchUserCard user={user} key={user.userName} />
