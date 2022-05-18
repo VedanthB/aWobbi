@@ -19,7 +19,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className="h-full">
+    <div className="h-full min-h-screen dark:bg-slate-900  transition-colors ease-in delay-300">
       <ToastContainer
         theme="light"
         position="bottom-left"
