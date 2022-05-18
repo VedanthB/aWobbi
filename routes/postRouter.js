@@ -10,6 +10,7 @@ router
 router
   .route('/post/:id')
   .patch(auth, postCtrl.updatePost)
-  .get(auth, postCtrl.getPost);
+  .get(auth, postCtrl.getPost)
+  .delete(auth, postCtrl.deletePost);
 
 module.exports = router;
