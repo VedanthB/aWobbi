@@ -56,3 +56,45 @@ export const getPosts = createAsyncThunk(
     }
   }
 );
+
+export const updatePost = createAsyncThunk(
+  'posts/updatePost',
+  async ({ content, images, auth, postModal, showToast }, thunkAPI) => {
+    let media = [];
+    const imgNewUrl = images.filter((img) => !img.url);
+    const imgOldUrl = images.filter((img) => img.url);
+
+    if (
+      postModal.content === content &&
+      imgNewUrl.length === 0 &&
+      imgOldUrl.length === postModal.images.length
+    )
+      return;
+
+    try {
+      thunkAPI.dispatch(setAlertLoading({ loading: true }));
+
+      if (imgNewUrl.length > 0) media = await uploadImage(imgNewUrl);
+
+      const res = await patchDataAPI(
+        `post/${postModal._id}`,
+        {
+          content,
+          images: [...imgOldUrl, ...media],
+        },
+        auth.token
+      );
+
+      thunkAPI.dispatch(setAlertLoading({ loading: false }));
+
+      showToast(res.data.msg, 'success');
+
+      return { ...res.data.newPost };
+    } catch (error) {
+      thunkAPI.dispatch(setPostsLoading({ loading: false }));
+
+      showToast(error.response.data.msg, 'error');
+      return thunkAPI.rejectWithValue(error.response.data.msg);
+    }
+  }
+);
