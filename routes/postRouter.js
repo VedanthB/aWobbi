@@ -20,4 +20,6 @@ router.get('/user_posts/:id', auth, postCtrl.getUserPosts);
 
 router.get('/posts_discover', auth, postCtrl.getPostsDiscover);
 
+router.patch('/savePost/:id', auth, postCtrl.savePost);
+
 module.exports = router;
