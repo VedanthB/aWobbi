@@ -14,6 +14,7 @@ router
   .delete(auth, postCtrl.deletePost);
 
 router.patch('/post/:id/like', auth, postCtrl.likePost);
+
 router.patch('/post/:id/unlike', auth, postCtrl.unlikePost);
 
 router.get('/user_posts/:id', auth, postCtrl.getUserPosts);
@@ -23,5 +24,7 @@ router.get('/posts_discover', auth, postCtrl.getPostsDiscover);
 router.patch('/savePost/:id', auth, postCtrl.savePost);
 
 router.patch('/unSavePost/:id', auth, postCtrl.unSavePost);
+
+router.get('/getSavePosts', auth, postCtrl.getSavePosts);
 
 module.exports = router;

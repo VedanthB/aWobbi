@@ -267,6 +267,25 @@ const postCtrl = {
       return res.status(500).json({ msg: err.message });
     }
   },
+  getSavePosts: async (req, res) => {
+    try {
+      const features = new APIfeatures(
+        Posts.find({
+          _id: { $in: req.user.saved },
+        }),
+        req.query
+      ).paginating();
+
+      const savePosts = await features.query.sort('-createdAt');
+
+      res.json({
+        savePosts,
+        result: savePosts.length,
+      });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
 };
 
 module.exports = postCtrl;
