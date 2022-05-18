@@ -249,6 +249,24 @@ const postCtrl = {
       return res.status(500).json({ msg: error.message });
     }
   },
+  unSavePost: async (req, res) => {
+    try {
+      const save = await Users.findOneAndUpdate(
+        { _id: req.user._id },
+        {
+          $pull: { saved: req.params.id },
+        },
+        { new: true }
+      );
+
+      if (!save)
+        return res.status(400).json({ msg: 'This user does not exist.' });
+
+      res.json({ msg: 'unSaved Post!' });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
 };
 
 module.exports = postCtrl;
