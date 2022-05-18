@@ -142,6 +142,33 @@ const postCtrl = {
       return res.status(500).json({ msg: error.message });
     }
   },
+  likePost: async (req, res) => {
+    try {
+      const post = await Posts.find({
+        _id: req.params.id,
+        likes: req.user._id,
+      });
+
+      if (post.length > 0)
+        res.status(400).json({ msg: 'You have already liked this post.' });
+
+      //   find post to like and add your user id in the liked arr of that post
+      const like = await Posts.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $push: { likes: req.user._id },
+        },
+        { new: true }
+      );
+
+      if (!like)
+        return res.status(400).json({ msg: 'This post does not exist.' });
+
+      res.json({ msg: 'Liked Post!' });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
 };
 
 module.exports = postCtrl;
