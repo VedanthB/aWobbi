@@ -36,3 +36,23 @@ export const createPost = createAsyncThunk(
     }
   }
 );
+
+export const getPosts = createAsyncThunk(
+  'posts/getPosts',
+  async ({ token, showToast }, thunkAPI) => {
+    try {
+      thunkAPI.dispatch(setPostsLoading({ loading: true }));
+
+      const res = await getDataAPI('posts', token);
+
+      thunkAPI.dispatch(setPostsLoading({ loading: false }));
+
+      return { ...res.data, page: 2 };
+    } catch (error) {
+      thunkAPI.dispatch(setPostsLoading({ loading: false }));
+
+      showToast(error.response.data.msg, 'error');
+      return thunkAPI.rejectWithValue(error.response.data.msg);
+    }
+  }
+);
