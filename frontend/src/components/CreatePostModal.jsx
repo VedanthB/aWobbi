@@ -88,19 +88,20 @@ const CreatePostModal = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (images.length === 0)
-      return showToast('Please add your photo.', 'error');
+    // if (images.length === 0)
+    //   return showToast('Please add your photo.', 'error');
 
-    // if (status.onEdit) {
-    //   dispatch(updatePost({ content, images, auth, status }));
-    // } else {
-    //   dispatch(createPost({ content, images, auth, socket }));
-    // }
+    // // if (status.onEdit) {
+    // //   dispatch(updatePost({ content, images, auth, status }));
+    // // } else {
+    // //   dispatch(createPost({ content, images, auth, socket }));
+    // // }
 
-    setContent('');
-    setImages([]);
-    if (tracks) tracks.stop();
-    dispatch(setPostModal({ isModalOpen: false }));
+    // setContent('');
+    // setImages([]);
+    // if (tracks) tracks.stop();
+    // dispatch(setPostModal({ isModalOpen: false }));
+    console.log(content, images);
   };
 
   useEffect(() => {
@@ -157,7 +158,10 @@ const CreatePostModal = () => {
                   </button>
                 </Dialog.Title>
                 <div className="mt-2">
-                  <form className="w-full max-w-[450px] bg-white my-8 mx-auto rounded-sm">
+                  <form
+                    onSubmit={handleSubmit}
+                    className="w-full max-w-[450px] bg-white my-8 mx-auto rounded-sm"
+                  >
                     <div>
                       <textarea
                         className="w-full max-h-[150px] border-none outline-none resize-none"
@@ -263,7 +267,7 @@ const CreatePostModal = () => {
                     </div>
 
                     <button
-                      type="span"
+                      type="submit"
                       className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                     >
                       Upload
