@@ -169,6 +169,24 @@ const postCtrl = {
       return res.status(500).json({ msg: error.message });
     }
   },
+  unlikePost: async (req, res) => {
+    try {
+      const like = await Posts.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $pull: { likes: req.user._id },
+        },
+        { new: true }
+      );
+
+      if (!like)
+        return res.status(400).json({ msg: 'This post does not exist.' });
+
+      res.json({ msg: 'UnLiked Post!' });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
 };
 
 module.exports = postCtrl;
