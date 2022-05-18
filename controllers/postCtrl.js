@@ -204,6 +204,26 @@ const postCtrl = {
       return res.status(500).json({ msg: error.message });
     }
   },
+  getPostsDiscover: async (req, res) => {
+    try {
+      const newArr = [...req.user.following, req.user._id];
+
+      const num = req.query.num || 9;
+
+      const posts = await Posts.aggregate([
+        { $match: { user: { $nin: newArr } } },
+        { $sample: { size: Number(num) } },
+      ]);
+
+      return res.json({
+        msg: 'Success!',
+        result: posts.length,
+        posts,
+      });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
 };
 
 module.exports = postCtrl;
