@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Alert, Header } from './components';
+import { Alert, CreatePostModal, Header } from './components';
 import { PageRenderer, PrivateRouter } from './customRouter';
 import { Home, Login, Register } from './pages';
 
@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { refreshToken } from './features';
 
 const App = () => {
-  const { auth } = useSelector((state) => state);
+  const { auth, postModal } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -35,6 +35,7 @@ const App = () => {
       <Alert />
 
       {auth.token && <Header />}
+      {postModal.isModalOpen && <CreatePostModal />}
 
       <Routes>
         <Route path="/" element={auth.token ? <Home /> : <Login />} />

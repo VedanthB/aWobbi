@@ -9,6 +9,8 @@ import FollowButton from './FollowButton';
 import EditProfileModal from './User/EditProfileModal';
 import Input from './Input';
 import CreatePost from './Home/CreatePost';
+import CreatePostModal from './CreatePostModal';
+import Icons from './Icons';
 
 export {
   NotFound,
@@ -22,4 +24,6 @@ export {
   EditProfileModal,
   Input,
   CreatePost,
+  CreatePostModal,
+  Icons,
 };
