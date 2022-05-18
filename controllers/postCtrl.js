@@ -69,7 +69,7 @@ const postCtrl = {
 
       return res.json({
         msg: 'Get Post Success!',
-        postLengths: posts.length,
+        postsLength: posts.length,
         posts,
       });
     } catch (error) {
@@ -217,7 +217,7 @@ const postCtrl = {
 
       return res.json({
         msg: 'Success!',
-        result: posts.length,
+        postsLength: posts.length,
         posts,
       });
     } catch (error) {
@@ -280,7 +280,7 @@ const postCtrl = {
 
       res.json({
         savePosts,
-        result: savePosts.length,
+        postsLength: savePosts.length,
       });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
