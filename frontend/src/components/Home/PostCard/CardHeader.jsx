@@ -30,7 +30,7 @@ const CardHeader = ({ post }) => {
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex w-full justify-center items-center rounded-md px-4 py-2  text-sm font-medium text-black  focus:outline-purple-400 focus:outline focus:outline-offset-2">
-            <BiDotsVerticalRounded />
+            <BiDotsVerticalRounded className="text-3xl" />
           </Menu.Button>
         </div>
         <Transition
