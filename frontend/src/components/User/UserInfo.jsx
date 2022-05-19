@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+
 import Avatar from '../Avatar';
 import Button from '../Button';
 import FollowButton from '../FollowButton';
 import EditProfileModal from './EditProfileModal';
 
-const UserInfo = () => {
-  const { profile, auth } = useSelector((state) => state);
-  const { id } = useParams();
-
+const UserInfo = ({ id, auth, profile }) => {
   const [userData, setUserData] = useState([]);
   const [onEdit, setOnEdit] = useState(false);
 
@@ -25,7 +21,11 @@ const UserInfo = () => {
     }
   }, [id, auth, profile.users, auth.user]);
 
-  // console.log(userData);
+  console.log(
+    userData,
+    profile,
+    profile.users.filter((user) => user._id === id)
+  );
 
   return (
     <div className="w-full max-w-4xl px-5 py-3 mx-auto mt-8">
@@ -40,8 +40,7 @@ const UserInfo = () => {
           <div className="min-w-[250px] max-w-[550px] w-full flex-1 opacity-70 my-0 mx-4">
             <div className="flex items-center flex-wrap">
               <h2 className="flex-[3_1_0%] text-4xl font-normal translate-y-[4px] mb-4">
-                {' '}
-                {user.userName}{' '}
+                {user.userName}
               </h2>
 
               {user._id === auth.user._id ? (

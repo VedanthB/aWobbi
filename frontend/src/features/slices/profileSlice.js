@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getUser, updateUserProfileInfo } from '../actions/profileActions';
+import { EditData } from '../../utils';
+import {
+  followUser,
+  getUser,
+  unFollowUser,
+  updateUserProfileInfo,
+} from '../actions/profileActions';
 
 const initialState = {
   loading: false,
@@ -18,6 +24,12 @@ const profileSlice = createSlice({
     setId: (state, { payload }) => {
       state.ids.push(payload.id);
     },
+    setFollowUser: (state, { payload }) => {
+      state.users = EditData(state.users, payload._id, payload);
+    },
+    setUnFollowUser: (state, { payload }) => {
+      state.users = EditData(state.users, payload._id, payload);
+    },
   },
   extraReducers: {
     [getUser.fulfilled]: (state, { payload }) => {
@@ -30,9 +42,18 @@ const profileSlice = createSlice({
     [updateUserProfileInfo.rejected]: (state, { payload }) => {
       state.loading = false;
     },
+    [followUser.fulfilled]: (state, { payload }) => {},
+    [followUser.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
+    [unFollowUser.fulfilled]: (state, { payload }) => {},
+    [unFollowUser.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
   },
 });
 
 const { reducer, actions } = profileSlice;
-export const { setLoadingProfile, setId } = actions;
+export const { setLoadingProfile, setId, setFollowUser, setUnFollowUser } =
+  actions;
 export default reducer;

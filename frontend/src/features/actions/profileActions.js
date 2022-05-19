@@ -7,10 +7,15 @@
 // UPDATE_POST: "UPDATE_PROFILE_POST",
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getDataAPI, patchDataAPI, uploadImage } from '../../utils';
+import { DeleteData, getDataAPI, patchDataAPI, uploadImage } from '../../utils';
 import { setAlertLoading } from '../slices/alertSlice';
 import { setAuth } from '../slices/authSlice';
-import { setId, setLoadingProfile } from '../slices/profileSlice';
+import {
+  setFollowUser,
+  setId,
+  setLoadingProfile,
+  setUnFollowUser,
+} from '../slices/profileSlice';
 
 export const getUser = createAsyncThunk(
   'profile/getUser',
@@ -20,7 +25,7 @@ export const getUser = createAsyncThunk(
     try {
       thunkAPI.dispatch(setLoadingProfile({ loading: true }));
 
-      const res = getDataAPI(`/user/${id}`, auth.token);
+      const res = getDataAPI(`user/${id}`, auth.token);
 
       const users = await res;
 
@@ -88,6 +93,106 @@ export const updateUserProfileInfo = createAsyncThunk(
     } catch (e) {
       thunkAPI.dispatch(setAlertLoading({ loading: false }));
 
+      showToast(e.response.data.msg, 'error');
+
+      console.log(e.response.data.msg);
+
+      return thunkAPI.rejectWithValue(e.response.data.msg);
+    }
+  }
+);
+
+export const followUser = createAsyncThunk(
+  'profile/followUser',
+  async ({ users, user, auth, showToast }, thunkAPI) => {
+    let newUser;
+
+    if (users.every((item) => item._id !== user._id)) {
+      // if user is not there in profile.users
+      newUser = { ...user, followers: [...user.followers, auth.user] };
+    } else {
+      // if user is  there in profile.users
+      users.forEach((item) => {
+        if (item._id === user._id) {
+          newUser = { ...item, followers: [...item.followers, auth.user] };
+        }
+      });
+    }
+
+    setFollowUser({ newUser });
+
+    thunkAPI.dispatch(
+      setAuth({
+        ...auth,
+        user: { ...auth.user, following: [...auth.user.following, newUser] },
+      })
+    );
+    try {
+      const res = await patchDataAPI(
+        `user/${user._id}/follow`,
+        null,
+        auth.token
+      );
+
+      showToast('Followed User', 'success');
+
+      return res;
+    } catch (e) {
+      showToast(e.response.data.msg, 'error');
+
+      console.log(e.response.data.msg);
+
+      return thunkAPI.rejectWithValue(e.response.data.msg);
+    }
+  }
+);
+
+export const unFollowUser = createAsyncThunk(
+  'profile/unFollowUser',
+  async ({ users, user, auth, showToast }, thunkAPI) => {
+    let newUser;
+
+    if (users.every((item) => item._id !== user._id)) {
+      // if user is not there in profile.users
+      newUser = {
+        ...user,
+        followers: DeleteData(user.followers, auth.user._id),
+      };
+    } else {
+      // if user is  there in profile.users
+      users.forEach((item) => {
+        if (item._id === user._id) {
+          newUser = {
+            ...item,
+            followers: DeleteData(item.followers, auth.user._id),
+          };
+        }
+      });
+    }
+
+    setUnFollowUser({ newUser });
+
+    thunkAPI.dispatch(
+      setAuth({
+        ...auth,
+        user: {
+          ...auth.user,
+          following: DeleteData(auth.user.following, newUser._id),
+        },
+      })
+    );
+
+    try {
+      const res = await patchDataAPI(
+        `user/${user._id}/unfollow`,
+        null,
+        auth.token
+      );
+
+      showToast('UnFollowed User', 'success');
+
+      return res;
+    } catch (e) {
       showToast(e.response.data.msg, 'error');
 
       console.log(e.response.data.msg);

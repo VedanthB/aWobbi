@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { followUser, unFollowUser } from '../features';
+import { useToast } from '../hooks';
+
 import Button from './Button';
 
 const FollowButton = ({ user }) => {
@@ -9,6 +12,8 @@ const FollowButton = ({ user }) => {
   const dispatch = useDispatch();
 
   const [load, setLoad] = useState(false);
+
+  const { showToast } = useToast();
 
   useEffect(() => {
     //check if we are already following the user
@@ -23,7 +28,7 @@ const FollowButton = ({ user }) => {
 
     setFollowed(true);
     setLoad(true);
-    // await dispatch(follow({ users: profile.users, user, auth }));
+    await dispatch(followUser({ users: profile.users, user, auth, showToast }));
     setLoad(false);
   };
 
@@ -32,7 +37,9 @@ const FollowButton = ({ user }) => {
 
     setFollowed(false);
     setLoad(true);
-    // await dispatch(unfollow({ users: profile.users, user, auth }));
+    await dispatch(
+      unFollowUser({ users: profile.users, user, auth, showToast })
+    );
     setLoad(false);
   };
 

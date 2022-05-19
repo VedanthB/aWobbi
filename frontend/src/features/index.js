@@ -10,10 +10,19 @@ import {
   setAlertError,
   setAlertSuccess,
 } from './slices/alertSlice';
-import { setLoadingProfile } from './slices/profileSlice';
+import {
+  setLoadingProfile,
+  setFollowUser,
+  setUnFollowUser,
+} from './slices/profileSlice';
 import { setAuth } from './slices/authSlice';
 
-import { getUser, updateUserProfileInfo } from './actions/profileActions';
+import {
+  getUser,
+  updateUserProfileInfo,
+  followUser,
+  unFollowUser,
+} from './actions/profileActions';
 
 export {
   GLOBAL_TYPES,
@@ -28,4 +37,8 @@ export {
   getUser,
   setAuth,
   updateUserProfileInfo,
+  setFollowUser,
+  setUnFollowUser,
+  followUser,
+  unFollowUser,
 };
