@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
+  deleteDataAPI,
   getDataAPI,
   patchDataAPI,
   postDataAPI,
@@ -100,3 +101,49 @@ export const updatePost = createAsyncThunk(
     }
   }
 );
+
+export const deletePost = createAsyncThunk(
+  'posts/deletePost',
+  async ({ post, auth, showToast }, thunkAPI) => {
+    try {
+      thunkAPI.dispatch(setAlertLoading({ loading: true }));
+
+      const res = await deleteDataAPI(`post/${post._id}`, auth.token);
+
+      thunkAPI.dispatch(setAlertLoading({ loading: false }));
+
+      showToast(res.data.msg, 'success');
+
+      return post;
+    } catch (error) {
+      thunkAPI.dispatch(setPostsLoading({ loading: false }));
+
+      showToast(error.response.data.msg, 'error');
+      return thunkAPI.rejectWithValue(error.response.data.msg);
+    }
+  }
+);
+
+// export const deletePost =
+//   ({ post, auth, socket }) =>
+//   async (dispatch) => {
+//     dispatch({ type: POST_TYPES.DELETE_POST, payload: post });
+
+//     try {
+//       const res = await deleteDataAPI(`post/${post._id}`, auth.token);
+
+//       // Notify
+//       const msg = {
+//         id: post._id,
+//         text: 'added a new post.',
+//         recipients: res.data.newPost.user.followers,
+//         url: `/post/${post._id}`,
+//       };
+//       dispatch(removeNotify({ msg, auth, socket }));
+//     } catch (err) {
+//       dispatch({
+//         type: GLOBALTYPES.ALERT,
+//         payload: { error: err.response.data.msg },
+//       });
+//     }
+//   };

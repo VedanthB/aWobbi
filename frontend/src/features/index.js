@@ -27,7 +27,12 @@ import { setPostModal, setEditPostModal } from './slices/postModalSlice';
 
 import { setPosts } from './slices/postSlice';
 
-import { createPost, getPosts, updatePost } from './actions/postActions';
+import {
+  createPost,
+  getPosts,
+  updatePost,
+  deletePost,
+} from './actions/postActions';
 
 export {
   GLOBAL_TYPES,
@@ -52,4 +57,5 @@ export {
   getPosts,
   updatePost,
   setEditPostModal,
+  deletePost,
 };

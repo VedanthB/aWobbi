@@ -1,14 +1,20 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { Menu, Transition } from '@headlessui/react';
 import Avatar from '../../Avatar';
 import moment from 'moment';
 import { setEditPostModal } from '../../../features/slices/postModalSlice';
+import { useToast } from '../../../hooks';
+import { deletePost } from '../../../features';
 
 const CardHeader = ({ post }) => {
   const dispatch = useDispatch();
+
+  const { showToast } = useToast();
+
+  const { auth } = useSelector((state) => state);
 
   return (
     <div className="flex justify-between items-center cursor-pointer py-4 px-6">
@@ -71,6 +77,15 @@ const CardHeader = ({ post }) => {
               <Menu.Item>
                 {({ active }) => (
                   <button
+                    onClick={() =>
+                      dispatch(
+                        deletePost({
+                          post,
+                          auth,
+                          showToast,
+                        })
+                      )
+                    }
                     className={`${
                       active ? 'bg-violet-500 text-white' : 'text-gray-900'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}

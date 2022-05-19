@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { EditData } from '../../utils';
-import { createPost, getPosts, updatePost } from '../actions/postActions';
+import { DeleteData, EditData } from '../../utils';
+import {
+  createPost,
+  deletePost,
+  getPosts,
+  updatePost,
+} from '../actions/postActions';
 
 const initialState = {
   loading: false,
@@ -43,6 +48,12 @@ const postSlice = createSlice({
       state.posts = EditData(state.posts, payload._id, payload);
     },
     [updatePost.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
+    [deletePost.fulfilled]: (state, { payload }) => {
+      state.posts = DeleteData(state.posts, payload._id);
+    },
+    [deletePost.rejected]: (state, { payload }) => {
       state.loading = false;
     },
   },
