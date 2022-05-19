@@ -5,6 +5,7 @@ import {
   deletePost,
   getPosts,
   likePost,
+  savePost,
   unlikePost,
   updatePost,
 } from '../actions/postActions';
@@ -68,6 +69,12 @@ const postSlice = createSlice({
       state.posts = EditData(state.posts, payload._id, payload);
     },
     [unlikePost.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
+    [savePost.fulfilled]: (state, { payload }) => {
+      // state.posts = EditData(state.posts, payload._id, payload);
+    },
+    [savePost.rejected]: (state, { payload }) => {
       state.loading = false;
     },
   },

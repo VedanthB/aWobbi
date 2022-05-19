@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import LikeButton from '../../LikeButton';
 import { BsBookmark } from 'react-icons/bs';
-import { likePost, unlikePost } from '../../../features';
+import { likePost, savePost, unlikePost } from '../../../features';
 import { useToast } from '../../../hooks';
 
 const CardFooter = ({ post }) => {
@@ -46,19 +46,20 @@ const CardFooter = ({ post }) => {
   };
 
   // Saved
-  // useEffect(() => {
-  //   if (auth.user.saved.find((id) => id === post._id)) {
-  //     setSaved(true);
-  //   } else {
-  //     setSaved(false);
-  //   }
-  // }, [auth.user.saved, post._id]);
+  useEffect(() => {
+    // check if the post is already saved
+    if (auth.user.saved.find((id) => id === post._id)) {
+      setSaved(true);
+    } else {
+      setSaved(false);
+    }
+  }, [auth.user.saved, post._id]);
 
   const handleSavePost = async () => {
-    // if (saveLoad) return;
-    // setSaveLoad(true);
-    // await dispatch(savePost({ post, auth }));
-    // setSaveLoad(false);
+    if (saveLoad) return;
+    setSaveLoad(true);
+    await dispatch(savePost({ post, auth, showToast }));
+    setSaveLoad(false);
   };
 
   const handleUnSavePost = async () => {

@@ -7,6 +7,7 @@ import {
   uploadImage,
 } from '../../utils';
 import { setAlertLoading } from '../slices/alertSlice';
+import { setAuth } from '../slices/authSlice';
 import { setPostsLoading } from '../slices/postSlice';
 
 export const createPost = createAsyncThunk(
@@ -33,6 +34,8 @@ export const createPost = createAsyncThunk(
 
       return { ...res.data.newPost, user: auth.user };
     } catch (error) {
+      thunkAPI.dispatch(setAlertLoading({ loading: false }));
+
       showToast(error.response.data.msg, 'error');
 
       return thunkAPI.rejectWithValue(error.response.data.msg);
@@ -94,7 +97,7 @@ export const updatePost = createAsyncThunk(
 
       return { ...res.data.newPost };
     } catch (error) {
-      thunkAPI.dispatch(setPostsLoading({ loading: false }));
+      thunkAPI.dispatch(setAlertLoading({ loading: false }));
 
       showToast(error.response.data.msg, 'error');
       return thunkAPI.rejectWithValue(error.response.data.msg);
@@ -116,7 +119,7 @@ export const deletePost = createAsyncThunk(
 
       return post;
     } catch (error) {
-      thunkAPI.dispatch(setPostsLoading({ loading: false }));
+      thunkAPI.dispatch(setAlertLoading({ loading: false }));
 
       showToast(error.response.data.msg, 'error');
       return thunkAPI.rejectWithValue(error.response.data.msg);
@@ -167,10 +170,54 @@ export const unlikePost = createAsyncThunk(
 
       return { newPost };
     } catch (error) {
-      thunkAPI.dispatch(setPostsLoading({ loading: false }));
+      thunkAPI.dispatch(setAlertLoading({ loading: false }));
 
       showToast(error.response.data.msg, 'error');
       return thunkAPI.rejectWithValue(error.response.data.msg);
     }
   }
 );
+
+export const savePost = createAsyncThunk(
+  'posts/savePost',
+  async ({ post, auth, showToast }, thunkAPI) => {
+    const newUser = { ...auth.user, saved: [...auth.user.saved, post._id] };
+
+    try {
+      thunkAPI.dispatch(setAlertLoading({ loading: true }));
+
+      await patchDataAPI(`savePost/${post._id}`, null, auth.token);
+
+      thunkAPI.dispatch(setAuth({ ...auth, user: newUser }));
+
+      showToast('Post Saved', 'success');
+
+      thunkAPI.dispatch(setAlertLoading({ loading: false }));
+    } catch (error) {
+      thunkAPI.dispatch(setAlertLoading({ loading: false }));
+
+      showToast(error.response.data.msg, 'error');
+
+      return thunkAPI.rejectWithValue(error.response.data.msg);
+    }
+  }
+);
+
+// export const unSavePost =
+//   ({ post, auth }) =>
+//   async (dispatch) => {
+//     const newUser = {
+//       ...auth.user,
+//       saved: auth.user.saved.filter((id) => id !== post._id),
+//     };
+//     dispatch({ type: GLOBALTYPES.AUTH, payload: { ...auth, user: newUser } });
+
+//     try {
+//       await patchDataAPI(`unSavePost/${post._id}`, null, auth.token);
+//     } catch (err) {
+//       dispatch({
+//         type: GLOBALTYPES.ALERT,
+//         payload: { error: err.response.data.msg },
+//       });
+//     }
+//   };
