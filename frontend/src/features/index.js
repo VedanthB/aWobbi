@@ -32,6 +32,7 @@ import {
   getPosts,
   updatePost,
   deletePost,
+  likePost,
 } from './actions/postActions';
 
 export {
@@ -58,4 +59,5 @@ export {
   updatePost,
   setEditPostModal,
   deletePost,
+  likePost,
 };

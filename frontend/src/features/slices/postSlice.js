@@ -4,6 +4,7 @@ import {
   createPost,
   deletePost,
   getPosts,
+  likePost,
   updatePost,
 } from '../actions/postActions';
 
@@ -54,6 +55,12 @@ const postSlice = createSlice({
       state.posts = DeleteData(state.posts, payload._id);
     },
     [deletePost.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
+    [likePost.fulfilled]: (state, { payload }) => {
+      state.posts = EditData(state.posts, payload._id, payload);
+    },
+    [likePost.rejected]: (state, { payload }) => {
       state.loading = false;
     },
   },

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import LikeButton from '../../LikeButton';
 import { BsBookmark } from 'react-icons/bs';
+import { likePost } from '../../../features';
+import { useToast } from '../../../hooks';
 
 const CardFooter = ({ post }) => {
   const [isLike, setIsLike] = useState(false);
@@ -15,8 +17,11 @@ const CardFooter = ({ post }) => {
   const [saved, setSaved] = useState(false);
   const [saveLoad, setSaveLoad] = useState(false);
 
+  const { showToast } = useToast();
+
   // Likes
   useEffect(() => {
+    // check if the user has already liked the post
     if (post.likes.find((like) => like._id === auth.user._id)) {
       setIsLike(true);
     } else {
@@ -27,9 +32,9 @@ const CardFooter = ({ post }) => {
   const handleLike = async () => {
     if (loadLike) return;
 
-    //   setLoadLike(true);
-    //   await dispatch(likePost({ post, auth, socket }));
-    //   setLoadLike(false);
+    setLoadLike(true);
+    await dispatch(likePost({ post, auth, showToast }));
+    setLoadLike(false);
   };
 
   const handleUnLike = async () => {
@@ -67,7 +72,11 @@ const CardFooter = ({ post }) => {
   return (
     <div className="mt-4">
       <div className="flex items-center cursor-pointer py-0 px-6">
-        <LikeButton />
+        <LikeButton
+          isLike={isLike}
+          handleLike={handleLike}
+          handleUnLike={handleUnLike}
+        />
 
         {saved ? (
           <BsBookmark
