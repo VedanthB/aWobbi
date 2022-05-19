@@ -25,11 +25,14 @@ import {
 
 import { setPostModal } from './slices/postModalSlice';
 
+import { setPosts } from './slices/postSlice';
+
 import { createPost, getPosts, updatePost } from './actions/postActions';
 
 export {
   GLOBAL_TYPES,
   loginUser,
+  setPosts,
   setAlertLoading,
   setAlertError,
   setAlertSuccess,

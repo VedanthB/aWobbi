@@ -58,7 +58,7 @@ const postCtrl = {
 
       const posts = await features.query
         .sort('-createdAt')
-        .populate('user likes', 'avatar username fullname followers');
+        .populate('user likes', 'avatar userName fullName followers');
       // .populate({
       //   path: 'comments',
       //   populate: {
