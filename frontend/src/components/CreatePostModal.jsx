@@ -105,9 +105,9 @@ const CreatePostModal = () => {
   };
 
   useEffect(() => {
-    if (postModal.isModalOpen.onEdit) {
-      setContent(postModal.isModalOpen.content);
-      setImages(postModal.isModalOpen.images);
+    if (postModal.onEdit) {
+      setContent(postModal.editPost.content);
+      setImages(postModal.editPost.images);
     }
   }, [postModal.isModalOpen]);
 

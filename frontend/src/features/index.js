@@ -23,7 +23,7 @@ import {
   unFollowUser,
 } from './actions/profileActions';
 
-import { setPostModal } from './slices/postModalSlice';
+import { setPostModal, setEditPostModal } from './slices/postModalSlice';
 
 import { setPosts } from './slices/postSlice';
 
@@ -51,4 +51,5 @@ export {
   createPost,
   getPosts,
   updatePost,
+  setEditPostModal,
 };

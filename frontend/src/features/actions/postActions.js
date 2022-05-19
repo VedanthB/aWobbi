@@ -67,9 +67,9 @@ export const updatePost = createAsyncThunk(
     const imgOldUrl = images.filter((img) => img.url);
 
     if (
-      postModal.content === content &&
+      postModal.editPost.content === content &&
       imgNewUrl.length === 0 &&
-      imgOldUrl.length === postModal.images.length
+      imgOldUrl.length === postModal.editPost.images.length
     )
       return;
 
@@ -79,7 +79,7 @@ export const updatePost = createAsyncThunk(
       if (imgNewUrl.length > 0) media = await uploadImage(imgNewUrl);
 
       const res = await patchDataAPI(
-        `post/${postModal._id}`,
+        `post/${postModal.editPost._id}`,
         {
           content,
           images: [...imgOldUrl, ...media],

@@ -1,11 +1,15 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import Avatar from '../../Avatar';
-import moment from 'moment';
+import { useDispatch } from 'react-redux';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { Menu, Transition } from '@headlessui/react';
+import Avatar from '../../Avatar';
+import moment from 'moment';
+import { setEditPostModal } from '../../../features/slices/postModalSlice';
 
 const CardHeader = ({ post }) => {
+  const dispatch = useDispatch();
+
   return (
     <div className="flex justify-between items-center cursor-pointer py-4 px-6">
       <div className="flex flex-wrap">
@@ -47,6 +51,15 @@ const CardHeader = ({ post }) => {
               <Menu.Item>
                 {({ active }) => (
                   <button
+                    onClick={() =>
+                      dispatch(
+                        setEditPostModal({
+                          editPost: { ...post },
+                          onEdit: true,
+                          isModalOpen: true,
+                        })
+                      )
+                    }
                     className={`${
                       active ? 'bg-violet-500 text-white' : 'text-gray-900'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
