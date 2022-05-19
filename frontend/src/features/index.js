@@ -22,7 +22,10 @@ import {
   followUser,
   unFollowUser,
 } from './actions/profileActions';
+
 import { setPostModal } from './slices/postModalSlice';
+
+import { createPost, getPosts, updatePost } from './actions/postActions';
 
 export {
   GLOBAL_TYPES,
@@ -42,4 +45,7 @@ export {
   followUser,
   unFollowUser,
   setPostModal,
+  createPost,
+  getPosts,
+  updatePost,
 };

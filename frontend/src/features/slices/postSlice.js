@@ -20,6 +20,7 @@ const postSlice = createSlice({
 
   extraReducers: {
     [createPost.fulfilled]: (state, { payload }) => {
+      console.log(payload);
       state.posts = [payload, ...state.posts];
     },
     [createPost.rejected]: (state, { payload }) => {

@@ -24,6 +24,8 @@ export const createPost = createAsyncThunk(
         auth.token
       );
 
+      console.log(res);
+
       thunkAPI.dispatch(setAlertLoading({ loading: false }));
 
       showToast('Created Post', 'success');
