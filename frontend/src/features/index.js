@@ -33,6 +33,7 @@ import {
   updatePost,
   deletePost,
   likePost,
+  unlikePost,
 } from './actions/postActions';
 
 export {
@@ -60,4 +61,5 @@ export {
   setEditPostModal,
   deletePost,
   likePost,
+  unlikePost,
 };

@@ -148,86 +148,29 @@ export const likePost = createAsyncThunk(
   }
 );
 
-// export const likePost =
-//   ({ post, auth, socket }) =>
-//   async (dispatch) => {
-//     const newPost = { ...post, likes: [...post.likes, auth.user] };
-//     dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
+export const unlikePost = createAsyncThunk(
+  'posts/unlikePost',
+  async ({ post, auth, showToast }, thunkAPI) => {
+    const newPost = {
+      ...post,
+      likes: post.likes.filter((like) => like._id !== auth.user._id),
+    };
 
-//     socket.emit('likePost', newPost);
+    try {
+      thunkAPI.dispatch(setAlertLoading({ loading: true }));
 
-//     try {
-//       await patchDataAPI(`post/${post._id}/like`, null, auth.token);
+      await patchDataAPI(`post/${post._id}/unlike`, null, auth.token);
 
-//       // Notify
-//       const msg = {
-//         id: auth.user._id,
-//         text: 'like your post.',
-//         recipients: [post.user._id],
-//         url: `/post/${post._id}`,
-//         content: post.content,
-//         image: post.images[0].url,
-//       };
+      thunkAPI.dispatch(setAlertLoading({ loading: false }));
 
-//       dispatch(createNotify({ msg, auth, socket }));
-//     } catch (err) {
-//       dispatch({
-//         type: GLOBALTYPES.ALERT,
-//         payload: { error: err.response.data.msg },
-//       });
-//     }
-//   };
+      showToast('UnLiked Post', 'success');
 
-// export const unLikePost =
-//   ({ post, auth, socket }) =>
-//   async (dispatch) => {
-//     const newPost = {
-//       ...post,
-//       likes: post.likes.filter((like) => like._id !== auth.user._id),
-//     };
-//     dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
+      return { newPost };
+    } catch (error) {
+      thunkAPI.dispatch(setPostsLoading({ loading: false }));
 
-//     socket.emit("unLikePost", newPost);
-
-//     try {
-//       await patchDataAPI(`post/${post._id}/unlike`, null, auth.token);
-
-//       // Notify
-//       const msg = {
-//         id: auth.user._id,
-//         text: "like your post.",
-//         recipients: [post.user._id],
-//         url: `/post/${post._id}`,
-//       };
-//       dispatch(removeNotify({ msg, auth, socket }));
-//     } catch (err) {
-//       dispatch({
-//         type: GLOBALTYPES.ALERT,
-//         payload: { error: err.response.data.msg },
-//       });
-//     }
-//   };
-
-// export const deletePost =
-//   ({ post, auth, socket }) =>
-//   async (dispatch) => {
-//     dispatch({ type: POST_TYPES.DELETE_POST, payload: post });
-
-//     try {
-//       const res = await deleteDataAPI(`post/${post._id}`, auth.token);
-
-//       // Notify
-//       const msg = {
-//         id: post._id,
-//         text: 'added a new post.',
-//         recipients: res.data.newPost.user.followers,
-//         url: `/post/${post._id}`,
-//       };
-//       dispatch(removeNotify({ msg, auth, socket }));
-//     } catch (err) {
-//       dispatch({
-//         type: GLOBALTYPES.ALERT,
-//         payload: { error: err.response.data.msg },
-//       });
-//     }
-//   };
+      showToast(error.response.data.msg, 'error');
+      return thunkAPI.rejectWithValue(error.response.data.msg);
+    }
+  }
+);
