@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import LikeButton from '../../LikeButton';
 import { BsBookmark } from 'react-icons/bs';
-import { likePost, savePost, unlikePost } from '../../../features';
+import { likePost, savePost, unlikePost, unSavePost } from '../../../features';
 import { useToast } from '../../../hooks';
 
 const CardFooter = ({ post }) => {
@@ -11,7 +11,7 @@ const CardFooter = ({ post }) => {
 
   const [isShare, setIsShare] = useState(false);
 
-  const { auth, theme, socket } = useSelector((state) => state);
+  const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const [saved, setSaved] = useState(false);
@@ -65,9 +65,9 @@ const CardFooter = ({ post }) => {
   const handleUnSavePost = async () => {
     if (saveLoad) return;
 
-    // setSaveLoad(true);
-    // await dispatch(unSavePost({ post, auth }));
-    // setSaveLoad(false);
+    setSaveLoad(true);
+    await dispatch(unSavePost({ post, auth, showToast }));
+    setSaveLoad(false);
   };
 
   return (

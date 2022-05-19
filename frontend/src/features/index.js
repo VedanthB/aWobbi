@@ -35,6 +35,7 @@ import {
   likePost,
   unlikePost,
   savePost,
+  unSavePost,
 } from './actions/postActions';
 
 export {
@@ -64,4 +65,5 @@ export {
   likePost,
   unlikePost,
   savePost,
+  unSavePost,
 };
