@@ -16,13 +16,13 @@ import {
   setUnFollowUser,
 } from './slices/profileSlice';
 import { setAuth } from './slices/authSlice';
-
 import {
   getUser,
   updateUserProfileInfo,
   followUser,
   unFollowUser,
 } from './actions/profileActions';
+import { setPostModal } from './slices/postModalSlice';
 
 export {
   GLOBAL_TYPES,
@@ -41,4 +41,5 @@ export {
   setUnFollowUser,
   followUser,
   unFollowUser,
+  setPostModal,
 };

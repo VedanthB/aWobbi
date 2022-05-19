@@ -21,7 +21,7 @@ const Profile = () => {
   console.log(profile.ids.every((item) => item !== id));
 
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h-screen w-full bg-white dark:bg-slate-900  transition-colors ease-in delay-300 relative top-24">
       <UserInfo id={id} auth={auth} profile={profile} />
       <UserPosts />
     </div>

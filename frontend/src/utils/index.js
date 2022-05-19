@@ -12,6 +12,8 @@ import { EditData, DeleteData } from './editData';
 
 import { checkImage, uploadImage } from './imageUpload';
 
+import { imageShow, videoShow } from './mediaShow';
+
 export {
   getDataAPI,
   postDataAPI,
@@ -23,4 +25,6 @@ export {
   uploadImage,
   EditData,
   DeleteData,
+  imageShow,
+  videoShow,
 };

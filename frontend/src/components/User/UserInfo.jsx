@@ -28,7 +28,7 @@ const UserInfo = ({ id, auth, profile }) => {
   );
 
   return (
-    <div className="w-full max-w-4xl px-5 py-3 mx-auto mt-8">
+    <div className="w-full max-w-4xl px-5 py-3 mx-auto pt-8">
       {userData.map((user) => (
         <div className="flex justify-around flex-wrap" key={user._id}>
           <Avatar
@@ -39,7 +39,7 @@ const UserInfo = ({ id, auth, profile }) => {
 
           <div className="min-w-[250px] max-w-[550px] w-full flex-1 opacity-70 my-0 mx-4">
             <div className="flex items-center flex-wrap">
-              <h2 className="flex-[3_1_0%] text-4xl font-normal translate-y-[4px] mb-4">
+              <h2 className="flex-[3_1_0%] text-4xl font-normal translate-y-[4px] mb-4 text-gray-900 dark:text-gray-100 ">
                 {user.userName}
               </h2>
 
@@ -52,7 +52,7 @@ const UserInfo = ({ id, auth, profile }) => {
               )}
             </div>
 
-            <div className="cursor-pointer text-indigo-500 mb-4">
+            <div className="cursor-pointer text-purple-500 mb-4">
               <span
                 className="mr-4 hover:underline"
                 onClick={() => setShowFollowers(true)}
@@ -67,12 +67,16 @@ const UserInfo = ({ id, auth, profile }) => {
               </span>
             </div>
 
-            <h6 className="mb-4 ">
+            <h6 className="mb-4  text-gray-900 dark:text-gray-100">
               {user.fullName}
               <span className="text-red-500 ml-3">{user.mobile}</span>
             </h6>
-            <p className="mb-4">{user.address}</p>
-            <h6 className="mb-4">{user.email}</h6>
+            <p className="mb-4  text-gray-900 dark:text-gray-100">
+              {user.address}
+            </p>
+            <h6 className="mb-4  text-gray-900 dark:text-gray-100">
+              {user.email}
+            </h6>
             <a
               href={user.website}
               className="text-blue-500 hover:underline"
@@ -81,7 +85,9 @@ const UserInfo = ({ id, auth, profile }) => {
             >
               {user.website}
             </a>
-            <p className="mt-4">{user.story}</p>
+            <p className="mt-4  text-gray-900 dark:text-gray-100">
+              {user.story}
+            </p>
           </div>
 
           {onEdit && <EditProfileModal onEdit={onEdit} setOnEdit={setOnEdit} />}
