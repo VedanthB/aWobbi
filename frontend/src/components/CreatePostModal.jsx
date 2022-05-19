@@ -92,7 +92,7 @@ const CreatePostModal = () => {
       return showToast('Please add your photo.', 'error');
 
     if (postModal.onEdit) {
-      dispatch(updatePost({ content, images, auth, postModal }));
+      dispatch(updatePost({ content, images, auth, postModal, showToast }));
     } else {
       dispatch(createPost({ content, images, auth, showToast }));
     }

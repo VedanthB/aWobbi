@@ -11,6 +11,7 @@ import Input from './Input';
 import CreatePost from './Home/CreatePost';
 import CreatePostModal from './CreatePostModal';
 import Icons from './Icons';
+import HomePosts from './Home/HomePosts';
 
 export {
   NotFound,
@@ -26,4 +27,5 @@ export {
   CreatePost,
   CreatePostModal,
   Icons,
+  HomePosts,
 };
