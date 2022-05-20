@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { DeleteData, EditData } from '../../utils';
 import {
+  createComment,
   createPost,
   deletePost,
   getPosts,
@@ -82,6 +83,12 @@ const postSlice = createSlice({
       // state.posts = EditData(state.posts, payload._id, payload);
     },
     [unSavePost.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
+    [createComment.fulfilled]: (state, { payload }) => {
+      state.posts = EditData(state.posts, payload._id, payload);
+    },
+    [createComment.rejected]: (state, { payload }) => {
       state.loading = false;
     },
   },

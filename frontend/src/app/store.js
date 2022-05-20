@@ -13,6 +13,7 @@ const reducer = {
   postModal: postModalReducer,
   posts: postsReducer,
 };
+
 export const store = configureStore({
   reducer: reducer,
 });

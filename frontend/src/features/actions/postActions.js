@@ -230,3 +230,32 @@ export const unSavePost = createAsyncThunk(
     }
   }
 );
+
+export const createComment = createAsyncThunk(
+  'posts/createComment',
+  async ({ post, newComment, auth, showToast }, thunkAPI) => {
+    const newPost = { ...post, comments: [...post.comments, newComment] };
+
+    try {
+      const data = {
+        ...newComment,
+        postId: post._id,
+        postUserId: post.user._id,
+      };
+
+      const res = await postDataAPI('comment', data, auth.token);
+
+      const newData = { ...res.data.newComment, user: auth.user };
+
+      const newPost = { ...post, comments: [...post.comments, newData] };
+
+      showToast('Commented Posted', 'success');
+
+      return { newPost };
+    } catch (error) {
+      showToast(error.response.data.msg, 'error');
+
+      return thunkAPI.rejectWithValue(error.response.data.msg);
+    }
+  }
+);

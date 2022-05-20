@@ -59,14 +59,14 @@ const postCtrl = {
 
       const posts = await features.query
         .sort('-createdAt')
-        .populate('user likes', 'avatar userName fullName followers');
-      // .populate({
-      //   path: 'comments',
-      //   populate: {
-      //     path: 'user likes',
-      //     select: '-password',
-      //   },
-      // });
+        .populate('user likes', 'avatar userName fullName followers')
+        .populate({
+          path: 'comments',
+          populate: {
+            path: 'user likes',
+            select: '-password',
+          },
+        });
 
       return res.json({
         msg: 'Get Post Success!',

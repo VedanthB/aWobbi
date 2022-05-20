@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { createComment } from '../../features';
+import { useToast } from '../../hooks';
 
 import Icons from '../Icons';
 
@@ -10,27 +12,29 @@ const InputComment = ({ children, post, onReply, setOnReply }) => {
 
   const dispatch = useDispatch();
 
+  const { showToast } = useToast();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // if (!content.trim()) {
-    //   if (setOnReply) return setOnReply(false);
-    //   return;
-    // }
+    if (!content.trim()) {
+      if (setOnReply) return setOnReply(false);
+      return;
+    }
 
-    // setContent('');
+    setContent('');
 
-    // const newComment = {
-    //   content,
-    //   likes: [],
-    //   user: auth.user,
-    //   createdAt: new Date().toISOString(),
-    //   reply: onReply && onReply.commentId,
-    //   tag: onReply && onReply.user,
-    // };
+    const newComment = {
+      content,
+      likes: [],
+      user: auth.user,
+      createdAt: new Date().toISOString(),
+      reply: onReply && onReply.commentId,
+      tag: onReply && onReply.user,
+    };
 
-    // dispatch(createComment({ post, newComment, auth, socket }));
+    dispatch(createComment({ post, newComment, auth, showToast }));
 
-    // if (setOnReply) return setOnReply(false);
+    if (setOnReply) return setOnReply(false);
   };
 
   return (
