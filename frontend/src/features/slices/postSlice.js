@@ -5,10 +5,12 @@ import {
   createPost,
   deletePost,
   getPosts,
+  likeComment,
   likePost,
   savePost,
   unlikePost,
   unSavePost,
+  updateComment,
   updatePost,
 } from '../actions/postActions';
 
@@ -89,6 +91,18 @@ const postSlice = createSlice({
       state.posts = EditData(state.posts, payload._id, payload);
     },
     [createComment.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
+    [updateComment.fulfilled]: (state, { payload }) => {
+      state.posts = EditData(state.posts, payload._id, payload);
+    },
+    [updateComment.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
+    [likeComment.fulfilled]: (state, { payload }) => {
+      state.posts = EditData(state.posts, payload._id, payload);
+    },
+    [likeComment.rejected]: (state, { payload }) => {
       state.loading = false;
     },
   },

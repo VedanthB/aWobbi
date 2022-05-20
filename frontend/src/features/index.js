@@ -37,6 +37,8 @@ import {
   savePost,
   unSavePost,
   createComment,
+  updateComment,
+  likeComment,
 } from './actions/postActions';
 
 export {
@@ -68,4 +70,6 @@ export {
   savePost,
   unSavePost,
   createComment,
+  updateComment,
+  likeComment,
 };

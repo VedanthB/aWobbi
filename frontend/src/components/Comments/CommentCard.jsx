@@ -9,6 +9,8 @@ import CommentMenu from './CommentMenu';
 import Avatar from '../Avatar';
 import LikeButton from '../LikeButton';
 import InputComment from '../Home/InputComment';
+import { likeComment, updateComment } from '../../features';
+import { useToast } from '../../hooks';
 
 // import InputComment from '../InputComment';
 
@@ -25,6 +27,8 @@ const CommentCard = ({ children, comment, post, commentId }) => {
 
   const [onReply, setOnReply] = useState(false);
 
+  const { showToast } = useToast();
+
   useEffect(() => {
     setContent(comment.content);
     setIsLike(false);
@@ -35,20 +39,20 @@ const CommentCard = ({ children, comment, post, commentId }) => {
   }, [comment, auth.user._id]);
 
   const handleUpdate = () => {
-    // if (comment.content !== content) {
-    //   dispatch(updateComment({ comment, post, content, auth }));
-    //   setOnEdit(false);
-    // } else {
-    //   setOnEdit(false);
-    // }
+    if (comment.content !== content) {
+      dispatch(updateComment({ comment, post, content, auth, showToast }));
+      setOnEdit(false);
+    } else {
+      setOnEdit(false);
+    }
   };
 
   const handleLike = async () => {
-    // if (loadLike) return;
-    // setIsLike(true);
-    // setLoadLike(true);
-    // await dispatch(likeComment({ comment, post, auth }));
-    // setLoadLike(false);
+    if (loadLike) return;
+    setIsLike(true);
+    setLoadLike(true);
+    await dispatch(likeComment({ comment, post, auth, showToast }));
+    setLoadLike(false);
   };
 
   const handleUnLike = async () => {
@@ -143,7 +147,7 @@ const CommentCard = ({ children, comment, post, commentId }) => {
         </div>
 
         <div className="flex items-center mx-2" style={{ cursor: 'pointer' }}>
-          {/* <CommentMenu post={post} comment={comment} setOnEdit={setOnEdit} /> */}
+          <CommentMenu post={post} comment={comment} setOnEdit={setOnEdit} />
 
           <LikeButton
             isLike={isLike}

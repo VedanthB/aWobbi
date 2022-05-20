@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   deleteDataAPI,
+  EditData,
   getDataAPI,
   patchDataAPI,
   postDataAPI,
@@ -253,6 +254,53 @@ export const createComment = createAsyncThunk(
 
       return { newPost };
     } catch (error) {
+      showToast(error.response.data.msg, 'error');
+
+      return thunkAPI.rejectWithValue(error.response.data.msg);
+    }
+  }
+);
+
+export const updateComment = createAsyncThunk(
+  'posts/updateComment',
+  async ({ comment, post, content, auth, showToast }, thunkAPI) => {
+    const newComments = EditData(post.comments, comment._id, {
+      ...comment,
+      content,
+    });
+
+    const newPost = { ...post, comments: newComments };
+
+    try {
+      patchDataAPI(`comment/${comment._id}`, { content }, auth.token);
+
+      showToast('Commented Updated', 'success');
+
+      return { newPost };
+    } catch (error) {
+      showToast(error.response.data.msg, 'error');
+
+      return thunkAPI.rejectWithValue(error.response.data.msg);
+    }
+  }
+);
+
+export const likeComment = createAsyncThunk(
+  'posts/likeComment',
+  async ({ comment, post, auth, showToast }, thunkAPI) => {
+    try {
+      const newComment = { ...comment, likes: [...comment.likes, auth.user] };
+
+      const newComments = EditData(post.comments, comment._id, newComment);
+
+      const newPost = { ...post, comments: newComments };
+
+      await patchDataAPI(`comment/${comment._id}/like`, null, auth.token);
+
+      showToast('liked comment', 'success');
+      return { newPost };
+    } catch (error) {
+      showToast(error.response.data.msg, 'error');
       showToast(error.response.data.msg, 'error');
 
       return thunkAPI.rejectWithValue(error.response.data.msg);
