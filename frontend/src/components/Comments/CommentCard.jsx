@@ -9,7 +9,7 @@ import CommentMenu from './CommentMenu';
 import Avatar from '../Avatar';
 import LikeButton from '../LikeButton';
 import InputComment from '../Home/InputComment';
-import { likeComment, updateComment } from '../../features';
+import { likeComment, unLikeComment, updateComment } from '../../features';
 import { useToast } from '../../hooks';
 
 // import InputComment from '../InputComment';
@@ -56,11 +56,11 @@ const CommentCard = ({ children, comment, post, commentId }) => {
   };
 
   const handleUnLike = async () => {
-    // if (loadLike) return;
-    // setIsLike(false);
-    // setLoadLike(true);
-    // await dispatch(unLikeComment({ comment, post, auth }));
-    // setLoadLike(false);
+    if (loadLike) return;
+    setIsLike(false);
+    setLoadLike(true);
+    await dispatch(unLikeComment({ comment, post, auth, showToast }));
+    setLoadLike(false);
   };
 
   const handleReply = () => {

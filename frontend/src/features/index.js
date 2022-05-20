@@ -39,6 +39,7 @@ import {
   createComment,
   updateComment,
   likeComment,
+  unLikeComment,
 } from './actions/postActions';
 
 export {
@@ -72,4 +73,5 @@ export {
   createComment,
   updateComment,
   likeComment,
+  unLikeComment,
 };

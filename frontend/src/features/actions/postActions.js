@@ -5,6 +5,7 @@ import {
   getDataAPI,
   patchDataAPI,
   postDataAPI,
+  DeleteData,
   uploadImage,
 } from '../../utils';
 import { setAlertLoading } from '../slices/alertSlice';
@@ -301,6 +302,31 @@ export const likeComment = createAsyncThunk(
       return { newPost };
     } catch (error) {
       showToast(error.response.data.msg, 'error');
+
+      return thunkAPI.rejectWithValue(error.response.data.msg);
+    }
+  }
+);
+
+export const unLikeComment = createAsyncThunk(
+  'posts/unLikeComment',
+  async ({ comment, post, auth, showToast }, thunkAPI) => {
+    try {
+      const newComment = {
+        ...comment,
+        likes: DeleteData(comment.likes, auth.user._id),
+      };
+
+      const newComments = EditData(post.comments, comment._id, newComment);
+
+      const newPost = { ...post, comments: newComments };
+
+      await patchDataAPI(`comment/${comment._id}/unlike`, null, auth.token);
+
+      showToast('UnLiked comment', 'success');
+
+      return { newPost };
+    } catch (error) {
       showToast(error.response.data.msg, 'error');
 
       return thunkAPI.rejectWithValue(error.response.data.msg);

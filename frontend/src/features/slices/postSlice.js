@@ -8,6 +8,7 @@ import {
   likeComment,
   likePost,
   savePost,
+  unLikeComment,
   unlikePost,
   unSavePost,
   updateComment,
@@ -103,6 +104,12 @@ const postSlice = createSlice({
       state.posts = EditData(state.posts, payload._id, payload);
     },
     [likeComment.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
+    [unLikeComment.fulfilled]: (state, { payload }) => {
+      state.posts = EditData(state.posts, payload._id, payload);
+    },
+    [unLikeComment.rejected]: (state, { payload }) => {
       state.loading = false;
     },
   },
