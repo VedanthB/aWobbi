@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-underscore-dangle */
-const Comments = require('../models/commentModel');
 const Posts = require('../models/postModel');
+const Comments = require('../models/commentModel');
 
 const commentCtrl = {
   createComment: async (req, res) => {
@@ -83,7 +83,21 @@ const commentCtrl = {
       return res.status(500).json({ msg: error.message });
     }
   },
-  //   inLikeComment: async (req, res) => {},
+  unLikeComment: async (req, res) => {
+    try {
+      await Comments.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $pull: { likes: req.user._id },
+        },
+        { new: true }
+      );
+
+      res.json({ msg: 'UnLiked Comment!' });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
   //   deleteComment: async (req, res) => {},
 };
 

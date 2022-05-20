@@ -3,6 +3,7 @@
 /* eslint-disable consistent-return */
 const Posts = require('../models/postModel');
 const Users = require('../models/userModel');
+const Comments = require('../models/commentModel');
 
 class APIfeatures {
   constructor(query, queryString) {
@@ -102,17 +103,16 @@ const postCtrl = {
   },
   getPost: async (req, res) => {
     try {
-      const post = await Posts.findById(req.params.id).populate(
-        'user likes',
-        'avatar username fullname followers'
-      );
-      //   .populate({
-      //     path: "comments",
-      //     populate: {
-      //       path: "user likes",
-      //       select: "-password",
-      //     },
-      //   });
+      const post = await Posts.findById(req.params.id)
+        .populate('user likes', 'avatar username fullname followers')
+        .populate({
+          path: 'comments',
+          populate: {
+            path: 'user likes',
+            select: '-password',
+          },
+        });
+
       if (!post)
         return res.status(500).json({ msg: 'This post does not exist.' });
 
@@ -129,7 +129,7 @@ const postCtrl = {
         _id: req.params.id,
         user: req.user._id,
       });
-      //   await Comments.deleteMany({ _id: { $in: post.comments } });
+      await Comments.deleteMany({ _id: { $in: post.comments } });
 
       res.json({
         msg: 'Deleted Post!',
