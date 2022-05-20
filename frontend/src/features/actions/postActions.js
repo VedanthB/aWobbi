@@ -333,3 +333,34 @@ export const unLikeComment = createAsyncThunk(
     }
   }
 );
+
+export const deleteComment = createAsyncThunk(
+  'posts/unLikeComment',
+  async ({ comment, post, auth, showToast }, thunkAPI) => {
+    try {
+      const deleteArr = [
+        ...post.comments.filter((cm) => cm.reply === comment._id),
+        comment,
+      ];
+
+      const newPost = {
+        ...post,
+        comments: post.comments.filter(
+          (cm) => !deleteArr.find((da) => cm._id === da._id)
+        ),
+      };
+
+      deleteArr.forEach((item) => {
+        deleteDataAPI(`comment/${item._id}`, auth.token);
+      });
+
+      showToast('Deleted comment', 'success');
+
+      return { newPost };
+    } catch (error) {
+      showToast(error.response.data.msg, 'error');
+
+      return thunkAPI.rejectWithValue(error.response.data.msg);
+    }
+  }
+);

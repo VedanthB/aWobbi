@@ -3,6 +3,7 @@ import { DeleteData, EditData } from '../../utils';
 import {
   createComment,
   createPost,
+  deleteComment,
   deletePost,
   getPosts,
   likeComment,
@@ -110,6 +111,12 @@ const postSlice = createSlice({
       state.posts = EditData(state.posts, payload._id, payload);
     },
     [unLikeComment.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
+    [deleteComment.fulfilled]: (state, { payload }) => {
+      state.posts = EditData(state.posts, payload._id, payload);
+    },
+    [deleteComment.rejected]: (state, { payload }) => {
       state.loading = false;
     },
   },
