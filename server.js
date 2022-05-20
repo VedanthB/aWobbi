@@ -26,6 +26,7 @@ mongoose.connect(URI, (err) => {
 app.use('/api', require('./routes/authRouter'));
 app.use('/api', require('./routes/userRouter'));
 app.use('/api', require('./routes/postRouter'));
+app.use('/api', require('./routes/commentRouter'));
 
 const port = process.env.PORT || 5000;
 
