@@ -28,6 +28,7 @@ app.use('/api', require('./routes/userRouter'));
 app.use('/api', require('./routes/postRouter'));
 app.use('/api', require('./routes/commentRouter'));
 app.use('/api', require('./routes/messageRouter'));
+app.use('/api', require('./routes/notifyRouter'));
 
 const port = process.env.PORT || 5000;
 
