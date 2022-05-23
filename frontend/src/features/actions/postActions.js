@@ -143,7 +143,7 @@ export const likePost = createAsyncThunk(
 
       showToast('Liked Post', 'success');
 
-      return { newPost };
+      return { ...newPost };
     } catch (error) {
       thunkAPI.dispatch(setPostsLoading({ loading: false }));
 
@@ -170,7 +170,7 @@ export const unlikePost = createAsyncThunk(
 
       showToast('UnLiked Post', 'success');
 
-      return { newPost };
+      return { ...newPost };
     } catch (error) {
       thunkAPI.dispatch(setAlertLoading({ loading: false }));
 
@@ -185,12 +185,12 @@ export const savePost = createAsyncThunk(
   async ({ post, auth, showToast }, thunkAPI) => {
     const newUser = { ...auth.user, saved: [...auth.user.saved, post._id] };
 
+    thunkAPI.dispatch(setAuth({ ...auth, user: newUser }));
+
     try {
       thunkAPI.dispatch(setAlertLoading({ loading: true }));
 
       await patchDataAPI(`savePost/${post._id}`, null, auth.token);
-
-      thunkAPI.dispatch(setAuth({ ...auth, user: newUser }));
 
       showToast('Post Saved', 'success');
 
@@ -253,7 +253,7 @@ export const createComment = createAsyncThunk(
 
       showToast('Commented Posted', 'success');
 
-      return { newPost };
+      return { ...newPost };
     } catch (error) {
       showToast(error.response.data.msg, 'error');
 
@@ -277,7 +277,7 @@ export const updateComment = createAsyncThunk(
 
       showToast('Commented Updated', 'success');
 
-      return { newPost };
+      return { ...newPost };
     } catch (error) {
       showToast(error.response.data.msg, 'error');
 
@@ -299,7 +299,7 @@ export const likeComment = createAsyncThunk(
       await patchDataAPI(`comment/${comment._id}/like`, null, auth.token);
 
       showToast('liked comment', 'success');
-      return { newPost };
+      return { ...newPost };
     } catch (error) {
       showToast(error.response.data.msg, 'error');
 
@@ -325,7 +325,7 @@ export const unLikeComment = createAsyncThunk(
 
       showToast('UnLiked comment', 'success');
 
-      return { newPost };
+      return { ...newPost };
     } catch (error) {
       showToast(error.response.data.msg, 'error');
 
@@ -356,7 +356,7 @@ export const deleteComment = createAsyncThunk(
 
       showToast('Deleted comment', 'success');
 
-      return { newPost };
+      return { ...newPost };
     } catch (error) {
       showToast(error.response.data.msg, 'error');
 

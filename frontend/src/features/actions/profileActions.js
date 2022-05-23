@@ -119,7 +119,7 @@ export const followUser = createAsyncThunk(
       });
     }
 
-    setFollowUser({ newUser });
+    thunkAPI.dispatch(setFollowUser({ ...newUser }));
 
     thunkAPI.dispatch(
       setAuth({
@@ -170,7 +170,7 @@ export const unFollowUser = createAsyncThunk(
       });
     }
 
-    setUnFollowUser({ newUser });
+    thunkAPI.dispatch(setUnFollowUser({ ...newUser }));
 
     thunkAPI.dispatch(
       setAuth({

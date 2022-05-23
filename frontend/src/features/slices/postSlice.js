@@ -54,7 +54,9 @@ const postSlice = createSlice({
       state.loading = false;
     },
     [updatePost.fulfilled]: (state, { payload }) => {
-      state.posts = EditData(state.posts, payload._id, payload);
+      const index = state.posts.findIndex((el) => el._id === payload._id);
+
+      state.posts[index] = payload;
     },
     [updatePost.rejected]: (state, { payload }) => {
       state.loading = false;
@@ -66,13 +68,17 @@ const postSlice = createSlice({
       state.loading = false;
     },
     [likePost.fulfilled]: (state, { payload }) => {
-      state.posts = EditData(state.posts, payload._id, payload);
+      const index = state.posts.findIndex((el) => el._id === payload._id);
+
+      state.posts[index] = payload;
     },
     [likePost.rejected]: (state, { payload }) => {
       state.loading = false;
     },
     [unlikePost.fulfilled]: (state, { payload }) => {
-      state.posts = EditData(state.posts, payload._id, payload);
+      const index = state.posts.findIndex((el) => el._id === payload._id);
+
+      state.posts[index] = payload;
     },
     [unlikePost.rejected]: (state, { payload }) => {
       state.loading = false;
@@ -90,19 +96,25 @@ const postSlice = createSlice({
       state.loading = false;
     },
     [createComment.fulfilled]: (state, { payload }) => {
-      state.posts = EditData(state.posts, payload._id, payload);
+      const index = state.posts.findIndex((el) => el._id === payload._id);
+
+      state.posts[index] = payload;
     },
     [createComment.rejected]: (state, { payload }) => {
       state.loading = false;
     },
     [updateComment.fulfilled]: (state, { payload }) => {
-      state.posts = EditData(state.posts, payload._id, payload);
+      const index = state.posts.findIndex((el) => el._id === payload._id);
+
+      state.posts[index] = payload;
     },
     [updateComment.rejected]: (state, { payload }) => {
       state.loading = false;
     },
     [likeComment.fulfilled]: (state, { payload }) => {
-      state.posts = EditData(state.posts, payload._id, payload);
+      const index = state.posts.findIndex((el) => el._id === payload._id);
+
+      state.posts[index] = payload;
     },
     [likeComment.rejected]: (state, { payload }) => {
       state.loading = false;
@@ -114,7 +126,9 @@ const postSlice = createSlice({
       state.loading = false;
     },
     [deleteComment.fulfilled]: (state, { payload }) => {
-      state.posts = EditData(state.posts, payload._id, payload);
+      const index = state.posts.findIndex((el) => el._id === payload._id);
+
+      state.posts[index] = payload;
     },
     [deleteComment.rejected]: (state, { payload }) => {
       state.loading = false;
