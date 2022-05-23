@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import io from 'socket.io-client';
+
 import { Route, Routes } from 'react-router-dom';
 import { Alert, CreatePostModal, Header } from './components';
 import { PageRenderer, PrivateRouter } from './customRouter';
@@ -10,6 +12,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPosts, refreshToken } from './features';
 import { useToast } from './hooks';
 
+// socket
+
 const App = () => {
   const { auth, postModal } = useSelector((state) => state);
 
@@ -19,6 +23,8 @@ const App = () => {
 
   useEffect(() => {
     dispatch(refreshToken());
+
+    const socket = io();
   }, [dispatch]);
 
   useEffect(() => {
