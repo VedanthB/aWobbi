@@ -164,6 +164,8 @@ export const unlikePost = createAsyncThunk(
       likes: post.likes.filter((like) => like._id !== auth.user._id),
     };
 
+    socket.emit('unLikePost', newPost);
+
     try {
       thunkAPI.dispatch(setAlertLoading({ loading: true }));
 

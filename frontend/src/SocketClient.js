@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import io from 'socket.io-client';
@@ -11,7 +12,6 @@ const SocketClient = () => {
 
   useEffect(() => {
     socket.emit('joinUser', auth.user._id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket]);
 
   // Likes
