@@ -2,8 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { AiFillHome } from 'react-icons/ai';
 import { BsMessenger } from 'react-icons/bs';
-import { MdNotificationsActive } from 'react-icons/md';
 import NavLinkDropdown from './NavLinkDropdown';
+import NotifyModal from './NotifyModal';
 
 const NavLinks = () => {
   return (
@@ -35,7 +35,7 @@ const NavLinks = () => {
         </NavLink>
       </li>
       <li>
-        <MdNotificationsActive className="w-6 h-6 dark:text-gray-100" />
+        <NotifyModal />
       </li>
       <li>
         <NavLinkDropdown />
