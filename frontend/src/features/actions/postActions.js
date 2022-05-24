@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { socket } from '../../app/store';
 import {
   deleteDataAPI,
   EditData,
@@ -133,6 +134,8 @@ export const likePost = createAsyncThunk(
   'posts/likePost',
   async ({ post, auth, showToast }, thunkAPI) => {
     const newPost = { ...post, likes: [...post.likes, auth.user] };
+
+    socket.emit('likePost', newPost);
 
     try {
       thunkAPI.dispatch(setAlertLoading({ loading: true }));

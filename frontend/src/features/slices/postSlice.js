@@ -35,6 +35,11 @@ const postSlice = createSlice({
       state.postsLength = payload.postsLength;
       state.page = payload.page;
     },
+    setUpdatePost: (state, { payload }) => {
+      const index = state.posts.findIndex((el) => el._id === payload._id);
+
+      state.posts[index] = payload;
+    },
   },
 
   extraReducers: {
@@ -137,5 +142,5 @@ const postSlice = createSlice({
 });
 
 const { reducer, actions } = postSlice;
-export const { setPostsLoading, setPosts } = actions;
+export const { setPostsLoading, setPosts, setUpdatePost } = actions;
 export default reducer;

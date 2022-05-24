@@ -30,7 +30,7 @@ import {
 
 import { setPostModal, setEditPostModal } from './slices/postModalSlice';
 
-import { setPosts } from './slices/postSlice';
+import { setPosts, setUpdatePost } from './slices/postSlice';
 
 import { setSocket } from './slices/socketSlice';
 
@@ -84,4 +84,5 @@ export {
   unLikeComment,
   setSocket,
   deleteComment,
+  setUpdatePost,
 };
