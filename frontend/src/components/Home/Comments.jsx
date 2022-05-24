@@ -26,7 +26,7 @@ const Comments = ({ post }) => {
           key={index}
           comment={comment}
           post={post}
-          replyComments={replyComments.filter(
+          replyComments={replyComments?.filter(
             (item) => item.reply === comment._id
           )}
         />

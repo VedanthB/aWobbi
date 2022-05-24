@@ -29,19 +29,23 @@ const CardFooter = ({ post }) => {
     }
   }, [post.likes, auth.user._id]);
 
-  const handleLike = async () => {
+  const handleLike = () => {
     if (loadLike) return;
 
     setLoadLike(true);
-    await dispatch(likePost({ post, auth, showToast }));
+
+    dispatch(likePost({ post, auth, showToast }));
+
     setLoadLike(false);
   };
 
-  const handleUnLike = async () => {
+  const handleUnLike = () => {
     if (loadLike) return;
 
     setLoadLike(true);
-    await dispatch(unlikePost({ post, auth, showToast }));
+
+    dispatch(unlikePost({ post, auth, showToast }));
+
     setLoadLike(false);
   };
 
@@ -55,18 +59,18 @@ const CardFooter = ({ post }) => {
     }
   }, [auth.user.saved, post._id]);
 
-  const handleSavePost = async () => {
+  const handleSavePost = () => {
     if (saveLoad) return;
     setSaveLoad(true);
-    await dispatch(savePost({ post, auth, showToast }));
+    dispatch(savePost({ post, auth, showToast }));
     setSaveLoad(false);
   };
 
-  const handleUnSavePost = async () => {
+  const handleUnSavePost = () => {
     if (saveLoad) return;
 
     setSaveLoad(true);
-    await dispatch(unSavePost({ post, auth, showToast }));
+    dispatch(unSavePost({ post, auth, showToast }));
     setSaveLoad(false);
   };
 

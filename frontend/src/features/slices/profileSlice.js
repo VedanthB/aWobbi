@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { EditData } from '../../utils';
+
 import {
   followUser,
   getUser,
@@ -25,10 +25,14 @@ const profileSlice = createSlice({
       state.ids.push(payload.id);
     },
     setFollowUser: (state, { payload }) => {
-      state.users = EditData(state.users, payload._id, payload);
+      const index = state.users.findIndex((el) => el._id === payload._id);
+
+      state.users[index] = payload;
     },
     setUnFollowUser: (state, { payload }) => {
-      state.users = EditData(state.users, payload._id, payload);
+      const index = state.users.findIndex((el) => el._id === payload._id);
+
+      state.users[index] = payload;
     },
   },
   extraReducers: {

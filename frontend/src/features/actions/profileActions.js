@@ -7,6 +7,7 @@
 // UPDATE_POST: "UPDATE_PROFILE_POST",
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { socket } from '../../app/store';
 import { DeleteData, getDataAPI, patchDataAPI, uploadImage } from '../../utils';
 import { setAlertLoading } from '../slices/alertSlice';
 import { setAuth } from '../slices/authSlice';
@@ -16,6 +17,7 @@ import {
   setLoadingProfile,
   setUnFollowUser,
 } from '../slices/profileSlice';
+import { createNotify } from './notifyActions';
 
 export const getUser = createAsyncThunk(
   'profile/getUser',
@@ -119,7 +121,7 @@ export const followUser = createAsyncThunk(
       });
     }
 
-    setFollowUser({ newUser });
+    thunkAPI.dispatch(setFollowUser({ ...newUser }));
 
     thunkAPI.dispatch(
       setAuth({
@@ -133,6 +135,18 @@ export const followUser = createAsyncThunk(
         null,
         auth.token
       );
+
+      socket.emit('follow', res.data.newUser);
+
+      // Notify
+      const msg = {
+        id: auth.user._id,
+        text: 'has started to follow you.',
+        recipients: [newUser._id],
+        url: `/profile/${auth.user._id}`,
+      };
+
+      thunkAPI.dispatch(createNotify({ msg, auth, socket, showToast }));
 
       showToast('Followed User', 'success');
 
@@ -170,7 +184,7 @@ export const unFollowUser = createAsyncThunk(
       });
     }
 
-    setUnFollowUser({ newUser });
+    thunkAPI.dispatch(setUnFollowUser({ ...newUser }));
 
     thunkAPI.dispatch(
       setAuth({
@@ -188,6 +202,8 @@ export const unFollowUser = createAsyncThunk(
         null,
         auth.token
       );
+
+      socket.emit('unFollow', res.data.newUser);
 
       showToast('UnFollowed User', 'success');
 

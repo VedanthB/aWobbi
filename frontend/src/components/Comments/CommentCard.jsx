@@ -9,11 +9,13 @@ import CommentMenu from './CommentMenu';
 import Avatar from '../Avatar';
 import LikeButton from '../LikeButton';
 import InputComment from '../Home/InputComment';
+import { likeComment, unLikeComment, updateComment } from '../../features';
+import { useToast } from '../../hooks';
 
 // import InputComment from '../InputComment';
 
 const CommentCard = ({ children, comment, post, commentId }) => {
-  const { auth, theme } = useSelector((state) => state);
+  const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const [content, setContent] = useState('');
@@ -25,38 +27,40 @@ const CommentCard = ({ children, comment, post, commentId }) => {
 
   const [onReply, setOnReply] = useState(false);
 
-  //   useEffect(() => {
-  //     setContent(comment.content);
-  //     setIsLike(false);
-  //     setOnReply(false);
-  //     if (comment.likes.find((like) => like._id === auth.user._id)) {
-  //       setIsLike(true);
-  //     }
-  //   }, [comment, auth.user._id]);
+  const { showToast } = useToast();
+
+  useEffect(() => {
+    setContent(comment.content);
+    setIsLike(false);
+    setOnReply(false);
+    if (comment.likes.find((like) => like._id === auth.user._id)) {
+      setIsLike(true);
+    }
+  }, [comment, auth.user._id]);
 
   const handleUpdate = () => {
-    // if (comment.content !== content) {
-    //   dispatch(updateComment({ comment, post, content, auth }));
-    //   setOnEdit(false);
-    // } else {
-    //   setOnEdit(false);
-    // }
+    if (comment.content !== content) {
+      dispatch(updateComment({ comment, post, content, auth, showToast }));
+      setOnEdit(false);
+    } else {
+      setOnEdit(false);
+    }
   };
 
   const handleLike = async () => {
-    // if (loadLike) return;
-    // setIsLike(true);
-    // setLoadLike(true);
-    // await dispatch(likeComment({ comment, post, auth }));
-    // setLoadLike(false);
+    if (loadLike) return;
+    setIsLike(true);
+    setLoadLike(true);
+    await dispatch(likeComment({ comment, post, auth, showToast }));
+    setLoadLike(false);
   };
 
   const handleUnLike = async () => {
-    // if (loadLike) return;
-    // setIsLike(false);
-    // setLoadLike(true);
-    // await dispatch(unLikeComment({ comment, post, auth }));
-    // setLoadLike(false);
+    if (loadLike) return;
+    setIsLike(false);
+    setLoadLike(true);
+    await dispatch(unLikeComment({ comment, post, auth, showToast }));
+    setLoadLike(false);
   };
 
   const handleReply = () => {
@@ -71,8 +75,11 @@ const CommentCard = ({ children, comment, post, commentId }) => {
 
   return (
     <div className="mt-2" style={styleCard}>
-      <Link to={`/profile/${comment.user._id}`} className="flex text-gray-900">
-        <Avatar src={comment.user.avatar} size="" />
+      <Link
+        to={`/user/${comment.user._id}`}
+        className="flex text-gray-900 mb-2"
+      >
+        <Avatar src={comment.user.avatar} className="border-[50%] w-6 h-6" />
         <h6 className="mx-1">{comment.user.userName}</h6>
       </Link>
 
@@ -111,7 +118,7 @@ const CommentCard = ({ children, comment, post, commentId }) => {
           )}
 
           <div style={{ cursor: 'pointer' }}>
-            <small className="text-gray-300 mr-3">
+            <small className="text-gray-500 mr-3">
               {moment(comment.createdAt).fromNow()}
             </small>
 
@@ -141,6 +148,7 @@ const CommentCard = ({ children, comment, post, commentId }) => {
 
         <div className="flex items-center mx-2" style={{ cursor: 'pointer' }}>
           <CommentMenu post={post} comment={comment} setOnEdit={setOnEdit} />
+
           <LikeButton
             isLike={isLike}
             handleLike={handleLike}

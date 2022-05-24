@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import io from 'socket.io-client';
+
 import { Route, Routes } from 'react-router-dom';
 import { Alert, CreatePostModal, Header } from './components';
 import { PageRenderer, PrivateRouter } from './customRouter';
@@ -7,8 +9,11 @@ import { Home, Login, Register } from './pages';
 import { ToastContainer } from 'react-toastify';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getPosts, refreshToken } from './features';
+import { getNotifies, getPosts, refreshToken, setSocket } from './features';
 import { useToast } from './hooks';
+import SocketClient from './SocketClient';
+
+// socket
 
 const App = () => {
   const { auth, postModal } = useSelector((state) => state);
@@ -19,11 +24,14 @@ const App = () => {
 
   useEffect(() => {
     dispatch(refreshToken());
+
+    const socket = io();
   }, [dispatch]);
 
   useEffect(() => {
     if (auth.token) {
       dispatch(getPosts({ token: auth.token, showToast }));
+      dispatch(getNotifies({ token: auth.token, showToast }));
     }
   }, [dispatch, auth.token]);
 
@@ -44,7 +52,10 @@ const App = () => {
       <Alert />
 
       {auth.token && <Header />}
+
       {postModal.isModalOpen && <CreatePostModal />}
+
+      {auth.token && <SocketClient />}
 
       <Routes>
         <Route path="/" element={auth.token ? <Home /> : <Login />} />

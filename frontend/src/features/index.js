@@ -1,21 +1,26 @@
 import { GLOBAL_TYPES } from './actions/globalTypes';
+
 import {
   loginUser,
   refreshToken,
   registerUser,
   logoutUser,
 } from './actions/authActions';
+
 import {
   setAlertLoading,
   setAlertError,
   setAlertSuccess,
 } from './slices/alertSlice';
+
 import {
   setLoadingProfile,
   setFollowUser,
   setUnFollowUser,
 } from './slices/profileSlice';
+
 import { setAuth } from './slices/authSlice';
+
 import {
   getUser,
   updateUserProfileInfo,
@@ -25,7 +30,17 @@ import {
 
 import { setPostModal, setEditPostModal } from './slices/postModalSlice';
 
-import { setPosts } from './slices/postSlice';
+import { setPosts, setUpdatePost } from './slices/postSlice';
+
+import { setSocket } from './slices/socketSlice';
+
+import {
+  createNotify,
+  removeNotify,
+  getNotifies,
+  isReadNotify,
+  deleteAllNotifies,
+} from './actions/notifyActions';
 
 import {
   createPost,
@@ -36,7 +51,14 @@ import {
   unlikePost,
   savePost,
   unSavePost,
+  createComment,
+  updateComment,
+  likeComment,
+  unLikeComment,
+  deleteComment,
 } from './actions/postActions';
+
+import { setCreateNotify, setRemoveNotify } from './slices/notifySlice';
 
 export {
   GLOBAL_TYPES,
@@ -66,4 +88,18 @@ export {
   unlikePost,
   savePost,
   unSavePost,
+  createComment,
+  updateComment,
+  likeComment,
+  unLikeComment,
+  setSocket,
+  deleteComment,
+  setUpdatePost,
+  createNotify,
+  removeNotify,
+  getNotifies,
+  setCreateNotify,
+  setRemoveNotify,
+  isReadNotify,
+  deleteAllNotifies,
 };

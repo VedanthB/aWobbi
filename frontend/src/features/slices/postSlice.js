@@ -1,13 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { DeleteData, EditData } from '../../utils';
 import {
+  createComment,
   createPost,
+  deleteComment,
   deletePost,
   getPosts,
+  likeComment,
   likePost,
   savePost,
+  unLikeComment,
   unlikePost,
   unSavePost,
+  updateComment,
   updatePost,
 } from '../actions/postActions';
 
@@ -30,6 +35,11 @@ const postSlice = createSlice({
       state.postsLength = payload.postsLength;
       state.page = payload.page;
     },
+    setUpdatePost: (state, { payload }) => {
+      const index = state.posts.findIndex((el) => el._id === payload._id);
+
+      state.posts[index] = payload;
+    },
   },
 
   extraReducers: {
@@ -49,7 +59,9 @@ const postSlice = createSlice({
       state.loading = false;
     },
     [updatePost.fulfilled]: (state, { payload }) => {
-      state.posts = EditData(state.posts, payload._id, payload);
+      const index = state.posts.findIndex((el) => el._id === payload._id);
+
+      state.posts[index] = payload;
     },
     [updatePost.rejected]: (state, { payload }) => {
       state.loading = false;
@@ -61,13 +73,17 @@ const postSlice = createSlice({
       state.loading = false;
     },
     [likePost.fulfilled]: (state, { payload }) => {
-      state.posts = EditData(state.posts, payload._id, payload);
+      const index = state.posts.findIndex((el) => el._id === payload._id);
+
+      state.posts[index] = payload;
     },
     [likePost.rejected]: (state, { payload }) => {
       state.loading = false;
     },
     [unlikePost.fulfilled]: (state, { payload }) => {
-      state.posts = EditData(state.posts, payload._id, payload);
+      const index = state.posts.findIndex((el) => el._id === payload._id);
+
+      state.posts[index] = payload;
     },
     [unlikePost.rejected]: (state, { payload }) => {
       state.loading = false;
@@ -84,9 +100,47 @@ const postSlice = createSlice({
     [unSavePost.rejected]: (state, { payload }) => {
       state.loading = false;
     },
+    [createComment.fulfilled]: (state, { payload }) => {
+      const index = state.posts.findIndex((el) => el._id === payload._id);
+
+      state.posts[index] = payload;
+    },
+    [createComment.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
+    [updateComment.fulfilled]: (state, { payload }) => {
+      const index = state.posts.findIndex((el) => el._id === payload._id);
+
+      state.posts[index] = payload;
+    },
+    [updateComment.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
+    [likeComment.fulfilled]: (state, { payload }) => {
+      const index = state.posts.findIndex((el) => el._id === payload._id);
+
+      state.posts[index] = payload;
+    },
+    [likeComment.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
+    [unLikeComment.fulfilled]: (state, { payload }) => {
+      state.posts = EditData(state.posts, payload._id, payload);
+    },
+    [unLikeComment.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
+    [deleteComment.fulfilled]: (state, { payload }) => {
+      const index = state.posts.findIndex((el) => el._id === payload._id);
+
+      state.posts[index] = payload;
+    },
+    [deleteComment.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
   },
 });
 
 const { reducer, actions } = postSlice;
-export const { setPostsLoading, setPosts } = actions;
+export const { setPostsLoading, setPosts, setUpdatePost } = actions;
 export default reducer;
