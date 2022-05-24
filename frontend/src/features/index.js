@@ -38,6 +38,8 @@ import {
   createNotify,
   removeNotify,
   getNotifies,
+  isReadNotify,
+  deleteAllNotifies,
 } from './actions/notifyActions';
 
 import {
@@ -56,7 +58,7 @@ import {
   deleteComment,
 } from './actions/postActions';
 
-import { setCreateNotify } from './slices/notifySlice';
+import { setCreateNotify, setRemoveNotify } from './slices/notifySlice';
 
 export {
   GLOBAL_TYPES,
@@ -97,4 +99,7 @@ export {
   removeNotify,
   getNotifies,
   setCreateNotify,
+  setRemoveNotify,
+  isReadNotify,
+  deleteAllNotifies,
 };

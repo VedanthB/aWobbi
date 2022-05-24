@@ -1,5 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { deleteDataAPI, getDataAPI, postDataAPI } from '../../utils';
+import {
+  deleteDataAPI,
+  getDataAPI,
+  patchDataAPI,
+  postDataAPI,
+} from '../../utils';
 
 export const createNotify = createAsyncThunk(
   'notify/createNotify',
@@ -44,6 +49,36 @@ export const getNotifies = createAsyncThunk(
       const res = await getDataAPI('notifies', token);
 
       return res.data.notifies;
+    } catch (e) {
+      showToast(e.response.data.msg, 'error');
+
+      return thunkAPI.rejectWithValue(e.response.data.msg);
+    }
+  }
+);
+
+export const isReadNotify = createAsyncThunk(
+  'notify/isReadNotify',
+  async ({ msg, auth, showToast }, thunkAPI) => {
+    try {
+      await patchDataAPI(`isReadNotify/${msg._id}`, null, auth.token);
+    } catch (e) {
+      showToast(e.response.data.msg, 'error');
+
+      return thunkAPI.rejectWithValue(e.response.data.msg);
+    }
+  }
+);
+
+export const deleteAllNotifies = createAsyncThunk(
+  'notify/deleteAllNotifies',
+  async ({ token, showToast }, thunkAPI) => {
+    // dispatch({ type: NOTIFY_TYPES.DELETE_ALL_NOTIFIES, payload: [] });
+
+    try {
+      await deleteDataAPI('deleteAllNotify', token);
+
+      return { data: [] };
     } catch (e) {
       showToast(e.response.data.msg, 'error');
 

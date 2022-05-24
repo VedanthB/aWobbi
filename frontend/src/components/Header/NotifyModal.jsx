@@ -7,13 +7,17 @@ import { Link } from 'react-router-dom';
 
 import moment from 'moment';
 import Avatar from '../Avatar';
+import { deleteAllNotifies, isReadNotify } from '../../features';
+import { useToast } from '../../hooks';
 
 const NotifyModal = () => {
   const { auth, notify } = useSelector((state) => state);
   const dispatch = useDispatch();
 
+  const showToast = useToast();
+
   const handleIsRead = (msg) => {
-    // dispatch(isReadNotify({ msg, auth }));
+    dispatch(isReadNotify({ msg, auth }));
   };
 
   const handleSound = () => {
@@ -22,12 +26,15 @@ const NotifyModal = () => {
 
   const handleDeleteAll = () => {
     const newArr = notify.data.filter((item) => item.isRead === false);
-    // if (newArr.length === 0) return dispatch(deleteAllNotifies(auth.token));
+    if (newArr.length === 0)
+      return dispatch(deleteAllNotifies({ token: auth.token, showToast }));
 
     if (
-      window.confirm`You have ${newArr.length} unread notices. Are you sure you want to delete all?`()
+      window.confirm(
+        `You have ${newArr.length} unread notices. Are you sure you want to delete all?`
+      )
     ) {
-      // return dispatch(deleteAllNotifies(auth.token));
+      return dispatch(deleteAllNotifies({ token: auth.token, showToast }));
     }
   };
 
@@ -68,7 +75,9 @@ const NotifyModal = () => {
 
               <hr className="mb-3" />
 
-              {/* {notify.data.length === 0 && <h4> No Notification </h4>} */}
+              {notify.data.length === 0 && (
+                <h4 className="text-center"> No Notifications </h4>
+              )}
 
               <div
                 style={{ maxHeight: 'calc(100vh - 200px)', overflow: 'auto' }}

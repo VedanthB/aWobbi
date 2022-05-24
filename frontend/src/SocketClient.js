@@ -3,7 +3,12 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import io from 'socket.io-client';
 import { socket } from './app/store';
-import { setAuth, setCreateNotify, setUpdatePost } from './features';
+import {
+  setAuth,
+  setCreateNotify,
+  setRemoveNotify,
+  setUpdatePost,
+} from './features';
 
 const SocketClient = () => {
   const { auth } = useSelector((state) => state);
@@ -69,13 +74,6 @@ const SocketClient = () => {
   useEffect(() => {
     socket.on('createNotifyToClient', (msg) => {
       dispatch(setCreateNotify(msg));
-      // if (notify.sound) audioRef.current.play();
-      // spawnNotification(
-      //   msg.user.username + " " + msg.text,
-      //   msg.user.avatar,
-      //   msg.url,
-      //   "V-NETWORK"
-      // );
     });
 
     return () => socket.off('createNotifyToClient');
@@ -83,7 +81,7 @@ const SocketClient = () => {
 
   useEffect(() => {
     socket.on('removeNotifyToClient', (msg) => {
-      // dispatch({ type: NOTIFY_TYPES.REMOVE_NOTIFY, payload: msg });
+      dispatch(setRemoveNotify(msg));
     });
 
     return () => socket.off('removeNotifyToClient');

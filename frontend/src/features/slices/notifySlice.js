@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   createNotify,
+  deleteAllNotifies,
   getNotifies,
+  isReadNotify,
   removeNotify,
 } from '../actions/notifyActions';
 
@@ -19,6 +21,12 @@ const notifySlice = createSlice({
       state.data.push(payload);
       console.log(payload);
     },
+    setRemoveNotify: (state, { payload }) => {
+      state.data = state.data.filter(
+        (item) => item.id !== payload.id || item.url !== payload.url
+      );
+      console.log(payload);
+    },
   },
   extraReducers: {
     [createNotify.fulfilled]: (state, { payload }) => {},
@@ -29,9 +37,15 @@ const notifySlice = createSlice({
       state.data = [...payload];
     },
     [getNotifies.rejected]: (state, { payload }) => {},
+    [isReadNotify.fulfilled]: (state, { payload }) => {},
+    [isReadNotify.rejected]: (state, { payload }) => {},
+    [deleteAllNotifies.fulfilled]: (state, { payload }) => {
+      state.data = payload.data;
+    },
+    [deleteAllNotifies.rejected]: (state, { payload }) => {},
   },
 });
 
 const { reducer, actions } = notifySlice;
-export const { setCreateNotify } = actions;
+export const { setCreateNotify, setRemoveNotify } = actions;
 export default reducer;
