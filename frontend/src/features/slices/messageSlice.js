@@ -46,6 +46,11 @@ const messageSlice = createSlice({
       state.resultUsers = payload.result;
       state.firstLoad = true;
     },
+    setAddUser: (state, { payload }) => {
+      if (state.users.every((item) => item._id !== payload._id)) {
+        state.users = [payload, ...state.users];
+      }
+    },
   },
   extraReducers: {
     [addMessage.fulfilled]: (state, { payload }) => {},
@@ -77,5 +82,5 @@ const messageSlice = createSlice({
 });
 
 const { reducer, actions } = messageSlice;
-export const { setAddMessage, setGetConversations } = actions;
+export const { setAddMessage, setGetConversations, setAddUser } = actions;
 export default reducer;

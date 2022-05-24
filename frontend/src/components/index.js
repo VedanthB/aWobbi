@@ -12,6 +12,8 @@ import CreatePost from './Home/CreatePost';
 import CreatePostModal from './CreatePostModal';
 import Icons from './Icons';
 import HomePosts from './Home/HomePosts';
+import LeftSide from './Chat/LeftSide';
+import RightSideBar from './Home/RightSideBar';
 
 export {
   NotFound,
@@ -28,4 +30,6 @@ export {
   CreatePostModal,
   Icons,
   HomePosts,
+  LeftSide,
+  RightSideBar,
 };

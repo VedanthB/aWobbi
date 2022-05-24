@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   followUser,
+  getSuggestions,
   getUser,
   unFollowUser,
   updateUserProfileInfo,
@@ -12,6 +13,8 @@ const initialState = {
   ids: [],
   users: [],
   posts: [],
+  suggestionLoading: false,
+  suggestionsUsers: [],
 };
 
 const profileSlice = createSlice({
@@ -34,6 +37,9 @@ const profileSlice = createSlice({
 
       state.users[index] = payload;
     },
+    setSuggestionLoading: (state, { payload }) => {
+      state.suggestionLoading = payload;
+    },
   },
   extraReducers: {
     [getUser.fulfilled]: (state, { payload }) => {
@@ -54,10 +60,21 @@ const profileSlice = createSlice({
     [unFollowUser.rejected]: (state, { payload }) => {
       state.loading = false;
     },
+    [getSuggestions.fulfilled]: (state, { payload }) => {
+      state.suggestionsUsers = payload.users;
+    },
+    [getSuggestions.rejected]: (state, { payload }) => {
+      state.suggestionLoading = false;
+    },
   },
 });
 
 const { reducer, actions } = profileSlice;
-export const { setLoadingProfile, setId, setFollowUser, setUnFollowUser } =
-  actions;
+export const {
+  setLoadingProfile,
+  setId,
+  setFollowUser,
+  setUnFollowUser,
+  setSuggestionLoading,
+} = actions;
 export default reducer;

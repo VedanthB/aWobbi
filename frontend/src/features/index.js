@@ -26,6 +26,7 @@ import {
   updateUserProfileInfo,
   followUser,
   unFollowUser,
+  getSuggestions,
 } from './actions/profileActions';
 
 import { setPostModal, setEditPostModal } from './slices/postModalSlice';
@@ -69,7 +70,7 @@ import {
   deleteConversation,
 } from './actions/messageAction';
 
-import { setAddMessage } from './slices/messageSlice';
+import { setAddMessage, setAddUser } from './slices/messageSlice';
 
 export {
   GLOBAL_TYPES,
@@ -120,4 +121,6 @@ export {
   deleteMessages,
   setAddMessage,
   deleteConversation,
+  setAddUser,
+  getSuggestions,
 };

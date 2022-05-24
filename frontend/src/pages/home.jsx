@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { CreatePost, HomePosts } from '../components';
+import { CreatePost, HomePosts, RightSideBar } from '../components';
 
 const Home = () => {
   const { posts } = useSelector((state) => state);
@@ -17,6 +17,10 @@ const Home = () => {
         ) : (
           <HomePosts />
         )}
+      </div>
+
+      <div className="flex-[0_0_33.333333%] max0w-[33.333333%]">
+        <RightSideBar />
       </div>
     </div>
   );

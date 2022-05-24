@@ -10,7 +10,6 @@ import { setAddMessage, setGetConversations } from '../slices/messageSlice';
 export const addMessage = createAsyncThunk(
   'message/addMessage',
   async ({ msg, auth, socket, showToast }, thunkAPI) => {
-    //   dispatch({ type: MESS_TYPES.ADD_MESSAGE, payload: msg });
     thunkAPI.dispatch(setAddMessage(msg));
     const { _id, avatar, fullName, userName } = auth.user;
 
@@ -38,6 +37,8 @@ export const getConversations = createAsyncThunk(
         auth.token
       );
 
+      console.log(res);
+
       let newArr = [];
 
       res.data.conversations.forEach((item) => {
@@ -53,15 +54,13 @@ export const getConversations = createAsyncThunk(
         });
       });
 
-      //   dispatch({
-      //     type: MESS_TYPES.GET_CONVERSATIONS,
-      //     payload: { newArr, result: res.data.result },
-      //   });
-      thunkAPI.dispatch(setGetConversations(res.data.result));
+      thunkAPI.dispatch(
+        setGetConversations({ newArr, result: res.data.result })
+      );
     } catch (e) {
-      showToast(e.response.data.msg, 'error');
+      showToast(e.res.data.msg, 'error');
 
-      return thunkAPI.rejectWithValue(e.response.data.msg);
+      return thunkAPI.rejectWithValue(e.res.data.msg);
     }
   }
 );

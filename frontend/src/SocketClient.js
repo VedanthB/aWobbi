@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import io from 'socket.io-client';
 import { socket } from './app/store';
 import {
+  setAddMessage,
+  setAddUser,
   setAuth,
   setCreateNotify,
   setRemoveNotify,
@@ -85,6 +87,32 @@ const SocketClient = () => {
     });
 
     return () => socket.off('removeNotifyToClient');
+  }, [socket, dispatch]);
+
+  // Message
+  useEffect(() => {
+    socket.on('addMessageToClient', (msg) => {
+      // dispatch({ type: MESS_TYPES.ADD_MESSAGE, payload: msg });
+      dispatch(setAddMessage(msg));
+      dispatch(
+        setAddUser({
+          ...msg.user,
+          text: msg.text,
+          media: msg.media,
+        })
+      );
+
+      // dispatch({
+      //   type: MESS_TYPES.ADD_USER,
+      //   payload: {
+      //     ...msg.user,
+      //     text: msg.text,
+      //     media: msg.media,
+      //   },
+      // });
+    });
+
+    return () => socket.off('addMessageToClient');
   }, [socket, dispatch]);
 
   return <></>;

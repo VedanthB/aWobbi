@@ -15,6 +15,7 @@ import {
   setFollowUser,
   setId,
   setLoadingProfile,
+  setSuggestionLoading,
   setUnFollowUser,
 } from '../slices/profileSlice';
 import { createNotify } from './notifyActions';
@@ -208,6 +209,26 @@ export const unFollowUser = createAsyncThunk(
       showToast('UnFollowed User', 'success');
 
       return res;
+    } catch (e) {
+      showToast(e.response.data.msg, 'error');
+
+      console.log(e.response.data.msg);
+
+      return thunkAPI.rejectWithValue(e.response.data.msg);
+    }
+  }
+);
+
+export const getSuggestions = createAsyncThunk(
+  'profile/getSuggestions',
+  async ({ token, showToast }, thunkAPI) => {
+    // dispatch({ type: SUGGES_TYPES.LOADING, payload: true });
+    thunkAPI.dispatch(setSuggestionLoading(true));
+    try {
+      const res = await getDataAPI('suggestionsUser', token);
+
+      thunkAPI.dispatch(setSuggestionLoading(false));
+      return res.data;
     } catch (e) {
       showToast(e.response.data.msg, 'error');
 
