@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-underscore-dangle */
 let users = [];
 
@@ -60,6 +61,17 @@ const SocketServer = (socket) => {
         socket.to(`${client.socketId}`).emit('deleteCommentToClient', newPost);
       });
     }
+  });
+
+  // Follow
+  socket.on('follow', (newUser) => {
+    const user = users.find((i) => i.id === newUser._id);
+    user && socket.to(`${user.socketId}`).emit('followToClient', newUser);
+  });
+
+  socket.on('unFollow', (newUser) => {
+    const user = users.find((i) => i.id === newUser._id);
+    user && socket.to(`${user.socketId}`).emit('unFollowToClient', newUser);
   });
 };
 

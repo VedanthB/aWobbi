@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import io from 'socket.io-client';
 import { socket } from './app/store';
-import { setUpdatePost } from './features';
+import { setAuth, setUpdatePost } from './features';
 
 const SocketClient = () => {
   const { auth } = useSelector((state) => state);
@@ -47,6 +47,23 @@ const SocketClient = () => {
 
     return () => socket.off('deleteCommentToClient');
   }, [socket, dispatch]);
+
+  // Follow
+  useEffect(() => {
+    socket.on('followToClient', (newUser) => {
+      dispatch(setAuth({ ...auth, user: newUser }));
+    });
+
+    return () => socket.off('followToClient');
+  }, [socket, dispatch, auth]);
+
+  useEffect(() => {
+    socket.on('unFollowToClient', (newUser) => {
+      dispatch(setAuth({ ...auth, user: newUser }));
+    });
+
+    return () => socket.off('unFollowToClient');
+  }, [socket, dispatch, auth]);
 
   return <></>;
 };

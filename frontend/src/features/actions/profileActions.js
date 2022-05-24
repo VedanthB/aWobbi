@@ -7,6 +7,7 @@
 // UPDATE_POST: "UPDATE_PROFILE_POST",
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { socket } from '../../app/store';
 import { DeleteData, getDataAPI, patchDataAPI, uploadImage } from '../../utils';
 import { setAlertLoading } from '../slices/alertSlice';
 import { setAuth } from '../slices/authSlice';
@@ -134,6 +135,8 @@ export const followUser = createAsyncThunk(
         auth.token
       );
 
+      socket.emit('follow', res.data.newUser);
+
       showToast('Followed User', 'success');
 
       return res;
@@ -188,6 +191,8 @@ export const unFollowUser = createAsyncThunk(
         null,
         auth.token
       );
+
+      socket.emit('unFollow', res.data.newUser);
 
       showToast('UnFollowed User', 'success');
 
