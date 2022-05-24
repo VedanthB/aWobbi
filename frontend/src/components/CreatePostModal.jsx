@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useRef, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPostModal } from '../features';
+import { createPost, setPostModal, updatePost } from '../features';
 import Icons from './Icons';
 import { imageShow, videoShow } from '../utils';
 import { useToast } from '../hooks';
@@ -88,26 +88,26 @@ const CreatePostModal = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // if (images.length === 0)
-    //   return showToast('Please add your photo.', 'error');
+    if (images.length === 0)
+      return showToast('Please add your photo.', 'error');
 
-    // // if (status.onEdit) {
-    // //   dispatch(updatePost({ content, images, auth, status }));
-    // // } else {
-    // //   dispatch(createPost({ content, images, auth, socket }));
-    // // }
+    if (postModal.onEdit) {
+      dispatch(updatePost({ content, images, auth, postModal, showToast }));
+    } else {
+      dispatch(createPost({ content, images, auth, showToast }));
+    }
 
-    // setContent('');
-    // setImages([]);
-    // if (tracks) tracks.stop();
-    // dispatch(setPostModal({ isModalOpen: false }));
+    setContent('');
+    setImages([]);
+    if (tracks) tracks.stop();
+    dispatch(setPostModal({ isModalOpen: false }));
     console.log(content, images);
   };
 
   useEffect(() => {
-    if (postModal.isModalOpen.onEdit) {
-      setContent(postModal.isModalOpen.content);
-      setImages(postModal.isModalOpen.images);
+    if (postModal.onEdit) {
+      setContent(postModal.editPost.content);
+      setImages(postModal.editPost.images);
     }
   }, [postModal.isModalOpen]);
 
@@ -267,6 +267,7 @@ const CreatePostModal = () => {
                     </div>
 
                     <button
+                      onClick={handleSubmit}
                       type="submit"
                       className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                     >

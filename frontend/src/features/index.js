@@ -22,11 +22,26 @@ import {
   followUser,
   unFollowUser,
 } from './actions/profileActions';
-import { setPostModal } from './slices/postModalSlice';
+
+import { setPostModal, setEditPostModal } from './slices/postModalSlice';
+
+import { setPosts } from './slices/postSlice';
+
+import {
+  createPost,
+  getPosts,
+  updatePost,
+  deletePost,
+  likePost,
+  unlikePost,
+  savePost,
+  unSavePost,
+} from './actions/postActions';
 
 export {
   GLOBAL_TYPES,
   loginUser,
+  setPosts,
   setAlertLoading,
   setAlertError,
   setAlertSuccess,
@@ -42,4 +57,13 @@ export {
   followUser,
   unFollowUser,
   setPostModal,
+  createPost,
+  getPosts,
+  updatePost,
+  setEditPostModal,
+  deletePost,
+  likePost,
+  unlikePost,
+  savePost,
+  unSavePost,
 };

@@ -7,16 +7,25 @@ import { Home, Login, Register } from './pages';
 import { ToastContainer } from 'react-toastify';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { refreshToken } from './features';
+import { getPosts, refreshToken } from './features';
+import { useToast } from './hooks';
 
 const App = () => {
   const { auth, postModal } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
+  const { showToast } = useToast();
+
   useEffect(() => {
     dispatch(refreshToken());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (auth.token) {
+      dispatch(getPosts({ token: auth.token, showToast }));
+    }
+  }, [dispatch, auth.token]);
 
   return (
     <div className="h-full min-h-screen dark:bg-slate-900  transition-colors ease-in delay-300">
