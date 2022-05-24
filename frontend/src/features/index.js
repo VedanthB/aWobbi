@@ -1,21 +1,26 @@
 import { GLOBAL_TYPES } from './actions/globalTypes';
+
 import {
   loginUser,
   refreshToken,
   registerUser,
   logoutUser,
 } from './actions/authActions';
+
 import {
   setAlertLoading,
   setAlertError,
   setAlertSuccess,
 } from './slices/alertSlice';
+
 import {
   setLoadingProfile,
   setFollowUser,
   setUnFollowUser,
 } from './slices/profileSlice';
+
 import { setAuth } from './slices/authSlice';
+
 import {
   getUser,
   updateUserProfileInfo,
@@ -26,6 +31,8 @@ import {
 import { setPostModal, setEditPostModal } from './slices/postModalSlice';
 
 import { setPosts } from './slices/postSlice';
+
+import { setSocket } from './slices/socketSlice';
 
 import {
   createPost,
@@ -75,5 +82,6 @@ export {
   updateComment,
   likeComment,
   unLikeComment,
+  setSocket,
   deleteComment,
 };

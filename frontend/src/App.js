@@ -9,8 +9,9 @@ import { Home, Login, Register } from './pages';
 import { ToastContainer } from 'react-toastify';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getPosts, refreshToken } from './features';
+import { getPosts, refreshToken, setSocket } from './features';
 import { useToast } from './hooks';
+import SocketClient from './SocketClient';
 
 // socket
 
@@ -50,7 +51,10 @@ const App = () => {
       <Alert />
 
       {auth.token && <Header />}
+
       {postModal.isModalOpen && <CreatePostModal />}
+
+      {auth.token && <SocketClient />}
 
       <Routes>
         <Route path="/" element={auth.token ? <Home /> : <Login />} />

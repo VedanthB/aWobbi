@@ -6,6 +6,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const { Server } = require('socket.io');
 const { createServer } = require('http');
+const SocketServer = require('./socketServer');
 
 const app = express();
 
@@ -19,7 +20,8 @@ const httpServer = createServer(app);
 const io = new Server(httpServer);
 
 io.on('connection', (socket) => {
-  console.log(socket.id, 'connected');
+  SocketServer(socket);
+  // console.log(socket.id);
 });
 
 app.get('/', (req, res) => {
