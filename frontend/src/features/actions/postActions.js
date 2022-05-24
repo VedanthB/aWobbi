@@ -256,6 +256,8 @@ export const createComment = createAsyncThunk(
 
       const newPost = { ...post, comments: [...post.comments, newData] };
 
+      socket.emit('createComment', newPost);
+
       showToast('Commented Posted', 'success');
 
       return { ...newPost };
@@ -358,6 +360,8 @@ export const deleteComment = createAsyncThunk(
       deleteArr.forEach((item) => {
         deleteDataAPI(`comment/${item._id}`, auth.token);
       });
+
+      socket.emit('deleteComment', newPost);
 
       showToast('Deleted comment', 'success');
 
