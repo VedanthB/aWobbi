@@ -60,6 +60,17 @@ import {
 
 import { setCreateNotify, setRemoveNotify } from './slices/notifySlice';
 
+import {
+  addMessage,
+  getConversations,
+  getMessages,
+  loadMoreMessages,
+  deleteMessages,
+  deleteConversation,
+} from './actions/messageAction';
+
+import { setAddMessage } from './slices/messageSlice';
+
 export {
   GLOBAL_TYPES,
   loginUser,
@@ -102,4 +113,11 @@ export {
   setRemoveNotify,
   isReadNotify,
   deleteAllNotifies,
+  addMessage,
+  getConversations,
+  getMessages,
+  loadMoreMessages,
+  deleteMessages,
+  setAddMessage,
+  deleteConversation,
 };
