@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import io from 'socket.io-client';
 import { socket } from './app/store';
-import { setAuth, setUpdatePost } from './features';
+import { setAuth, setCreateNotify, setUpdatePost } from './features';
 
 const SocketClient = () => {
   const { auth } = useSelector((state) => state);
@@ -64,6 +64,30 @@ const SocketClient = () => {
 
     return () => socket.off('unFollowToClient');
   }, [socket, dispatch, auth]);
+
+  // Notification
+  useEffect(() => {
+    socket.on('createNotifyToClient', (msg) => {
+      dispatch(setCreateNotify(msg));
+      // if (notify.sound) audioRef.current.play();
+      // spawnNotification(
+      //   msg.user.username + " " + msg.text,
+      //   msg.user.avatar,
+      //   msg.url,
+      //   "V-NETWORK"
+      // );
+    });
+
+    return () => socket.off('createNotifyToClient');
+  }, [socket, dispatch]);
+
+  useEffect(() => {
+    socket.on('removeNotifyToClient', (msg) => {
+      // dispatch({ type: NOTIFY_TYPES.REMOVE_NOTIFY, payload: msg });
+    });
+
+    return () => socket.off('removeNotifyToClient');
+  }, [socket, dispatch]);
 
   return <></>;
 };

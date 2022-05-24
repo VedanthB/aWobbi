@@ -10,6 +10,7 @@ import profileReducer from '../features/slices/profileSlice';
 import postModalReducer from '../features/slices/postModalSlice';
 import postsReducer from '../features/slices/postSlice';
 import socketReducer from '../features/slices/socketSlice';
+import notifyReducer from '../features/slices/notifySlice';
 
 const reducer = {
   auth: authReducer,
@@ -18,6 +19,7 @@ const reducer = {
   profile: profileReducer,
   postModal: postModalReducer,
   posts: postsReducer,
+  notify: notifyReducer,
 };
 
 export const socket = io();

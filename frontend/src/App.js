@@ -9,7 +9,7 @@ import { Home, Login, Register } from './pages';
 import { ToastContainer } from 'react-toastify';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getPosts, refreshToken, setSocket } from './features';
+import { getNotifies, getPosts, refreshToken, setSocket } from './features';
 import { useToast } from './hooks';
 import SocketClient from './SocketClient';
 
@@ -31,6 +31,7 @@ const App = () => {
   useEffect(() => {
     if (auth.token) {
       dispatch(getPosts({ token: auth.token, showToast }));
+      dispatch(getNotifies({ token: auth.token, showToast }));
     }
   }, [dispatch, auth.token]);
 

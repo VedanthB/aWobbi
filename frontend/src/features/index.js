@@ -35,6 +35,12 @@ import { setPosts, setUpdatePost } from './slices/postSlice';
 import { setSocket } from './slices/socketSlice';
 
 import {
+  createNotify,
+  removeNotify,
+  getNotifies,
+} from './actions/notifyActions';
+
+import {
   createPost,
   getPosts,
   updatePost,
@@ -49,6 +55,8 @@ import {
   unLikeComment,
   deleteComment,
 } from './actions/postActions';
+
+import { setCreateNotify } from './slices/notifySlice';
 
 export {
   GLOBAL_TYPES,
@@ -85,4 +93,8 @@ export {
   setSocket,
   deleteComment,
   setUpdatePost,
+  createNotify,
+  removeNotify,
+  getNotifies,
+  setCreateNotify,
 };

@@ -12,6 +12,7 @@ import {
 import { setAlertLoading } from '../slices/alertSlice';
 import { setAuth } from '../slices/authSlice';
 import { setPostsLoading } from '../slices/postSlice';
+import { createNotify, removeNotify } from './notifyActions';
 
 export const createPost = createAsyncThunk(
   'posts/createPost',
@@ -32,6 +33,18 @@ export const createPost = createAsyncThunk(
       console.log(res);
 
       thunkAPI.dispatch(setAlertLoading({ loading: false }));
+
+      //  Notify
+      const msg = {
+        id: res.data.newPost._id,
+        text: 'added a new post.',
+        recipients: res.data.newPost.user.followers,
+        url: `/post/${res.data.newPost._id}`,
+        content,
+        image: media[0].url,
+      };
+
+      thunkAPI.dispatch(createNotify({ msg, auth, socket, showToast }));
 
       showToast('Created Post', 'success');
 
@@ -144,6 +157,18 @@ export const likePost = createAsyncThunk(
 
       thunkAPI.dispatch(setAlertLoading({ loading: false }));
 
+      // Notify
+      const msg = {
+        id: auth.user._id,
+        text: 'like your post.',
+        recipients: [post.user._id],
+        url: `/post/${post._id}`,
+        content: post.content,
+        image: post.images[0].url,
+      };
+
+      thunkAPI.dispatch(createNotify({ msg, auth, socket, showToast }));
+
       showToast('Liked Post', 'success');
 
       return { ...newPost };
@@ -172,6 +197,16 @@ export const unlikePost = createAsyncThunk(
       await patchDataAPI(`post/${post._id}/unlike`, null, auth.token);
 
       thunkAPI.dispatch(setAlertLoading({ loading: false }));
+
+      // Notify
+      const msg = {
+        id: auth.user._id,
+        text: 'un like your post.',
+        recipients: [post.user._id],
+        url: `/post/${post._id}`,
+      };
+
+      thunkAPI.dispatch(removeNotify({ msg, auth, socket }));
 
       showToast('UnLiked Post', 'success');
 
@@ -257,6 +292,20 @@ export const createComment = createAsyncThunk(
       const newPost = { ...post, comments: [...post.comments, newData] };
 
       socket.emit('createComment', newPost);
+
+      //   // Notify
+      const msg = {
+        id: res.data.newComment._id,
+        text: newComment.reply
+          ? 'mentioned you in a comment.'
+          : 'has commented on your post.',
+        recipients: newComment.reply ? [newComment.tag._id] : [post.user._id],
+        url: `/post/${post._id}`,
+        content: post.content,
+        image: post.images[0].url,
+      };
+
+      thunkAPI.dispatch(createNotify({ msg, auth, socket, showToast }));
 
       showToast('Commented Posted', 'success');
 

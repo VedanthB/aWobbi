@@ -17,6 +17,7 @@ import {
   setLoadingProfile,
   setUnFollowUser,
 } from '../slices/profileSlice';
+import { createNotify } from './notifyActions';
 
 export const getUser = createAsyncThunk(
   'profile/getUser',
@@ -136,6 +137,16 @@ export const followUser = createAsyncThunk(
       );
 
       socket.emit('follow', res.data.newUser);
+
+      // Notify
+      const msg = {
+        id: auth.user._id,
+        text: 'has started to follow you.',
+        recipients: [newUser._id],
+        url: `/profile/${auth.user._id}`,
+      };
+
+      thunkAPI.dispatch(createNotify({ msg, auth, socket, showToast }));
 
       showToast('Followed User', 'success');
 
