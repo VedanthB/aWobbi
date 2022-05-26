@@ -5,8 +5,8 @@ const Logo = () => {
   return (
     <Link className="flex justify-between align-center" to="/">
       <img
-        className="mx-auto h-12 w-auto"
-        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+        className="w-32 h-32"
+        src="https://res.cloudinary.com/supertramp69420/image/upload/v1653449504/aWoobi_3_esz9ni.png"
         alt="Workflow"
       />
     </Link>

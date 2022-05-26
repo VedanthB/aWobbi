@@ -22,7 +22,7 @@ const CardHeader = ({ post }) => {
         <Avatar
           src={post.user.avatar}
           alt={post.user.userName}
-          className="border-[50%] w-12 h-12"
+          className="rounded-[50%] w-12 h-12"
         />
 
         <div className="translate-y-[-3px] ml-3">

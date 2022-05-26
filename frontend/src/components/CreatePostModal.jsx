@@ -82,7 +82,8 @@ const CreatePostModal = () => {
   };
 
   const handleStopStream = () => {
-    tracks.stop();
+    // tracks.stop();
+    console.log('i ran');
     setStream(false);
   };
 
@@ -131,7 +132,7 @@ const CreatePostModal = () => {
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4 text-center relative top-24">
+          <div className="flex min-h-full items-center  justify-center p-4 text-center relative top-24">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -141,7 +142,7 @@ const CreatePostModal = () => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all z-50">
                 <Dialog.Title
                   as="h3"
                   className="text-lg flex justify-between items-center font-medium leading-6 text-gray-900"
@@ -238,20 +239,35 @@ const CreatePostModal = () => {
 
                     <div className="flex justify-center my-4 mx-0">
                       {stream ? (
-                        <AiFillCamera
-                          className="cursor-pointer text-3xl"
+                        <lord-icon
+                          src="https://cdn.lordicon.com/vixtkkbk.json"
+                          trigger="click"
+                          stroke="90"
+                          colors="primary:#121331,secondary:#a855f7"
                           onClick={handleCapture}
-                        />
+                          style={{ width: '2.5rem', height: '2.5rem' }}
+                        ></lord-icon>
                       ) : (
                         <>
-                          <AiFillCamera
+                          <lord-icon
+                            src="https://cdn.lordicon.com/vixtkkbk.json"
+                            trigger="click"
+                            stroke="90"
+                            colors="primary:#121331,secondary:#a855f7"
+                            onClick={handleStream}
+                            style={{ width: '2.5rem', height: '2.5rem' }}
+                          ></lord-icon>
+                          {/* <AiFillCamera
                             className="cursor-pointer text-3xl"
                             onClick={handleStream}
-                          />
+                          /> */}
 
                           <div className="overflow-hidden my-0 mx-4 relative">
-                            <BsImages className="cursor-pointer text-3xl" />
-                            <i className="fas fa-image cursor-pointer text-3xl" />
+                            <BsImages
+                              style={{ width: '2rem', height: '2rem' }}
+                              className="cursor-pointer "
+                            />
+
                             <input
                               type="file"
                               name="file"
