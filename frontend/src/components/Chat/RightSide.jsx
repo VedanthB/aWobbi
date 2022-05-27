@@ -160,48 +160,6 @@ const RightSide = () => {
     }
   };
 
-  // Call
-  const caller = ({ video }) => {
-    const { _id, avatar, username, fullname } = user;
-
-    const msg = {
-      sender: auth.user._id,
-      recipient: _id,
-      avatar,
-      username,
-      fullname,
-      video,
-    };
-    // dispatch({ type: GLOBALTYPES.CALL, payload: msg });
-  };
-
-  const callUser = ({ video }) => {
-    const { _id, avatar, username, fullname } = auth.user;
-
-    const msg = {
-      sender: _id,
-      recipient: user._id,
-      avatar,
-      username,
-      fullname,
-      video,
-    };
-
-    // if (peer.open) msg.peerId = peer._id;
-
-    socket.emit('callUser', msg);
-  };
-
-  const handleAudioCall = () => {
-    caller({ video: false });
-    callUser({ video: false });
-  };
-
-  const handleVideoCall = () => {
-    caller({ video: true });
-    callUser({ video: true });
-  };
-
   return (
     <>
       {/* header */}
@@ -209,24 +167,6 @@ const RightSide = () => {
         {user.length !== 0 && (
           <UserCard user={user}>
             <div className="flex gap-3">
-              {/* <lord-icon
-                src="https://cdn.lordicon.com/cnyeuzxc.json"
-                trigger="hover"
-                stroke="90"
-                colors="primary:#121331,secondary:#a855f7"
-                onClick={handleAudioCall}
-                style={{ width: '1.5rem', height: '1.5rem' }}
-              ></lord-icon>
-
-              <lord-icon
-                src="https://cdn.lordicon.com/axyzxviq.json"
-                trigger="hover"
-                stroke="90"
-                colors="primary:#121331,secondary:#a855f7"
-                onClick={handleVideoCall}
-                style={{ width: '1.5rem', height: '1.5rem' }}
-              ></lord-icon> */}
-
               <lord-icon
                 src="https://cdn.lordicon.com/gsqxdxog.json"
                 trigger="hover"

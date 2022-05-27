@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 const Carousel = ({ images, id }) => {
   const [currIndex, setCurrIndex] = useState(0);
 
+  console.log(currIndex, images.length);
+
   return (
     <div id="default-carousel" className="relative" data-carousel="static">
       {/* <!-- Carousel wrapper --> */}
@@ -80,7 +82,7 @@ const Carousel = ({ images, id }) => {
             type="button"
             className="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
             onClick={() =>
-              currIndex === images.length
+              currIndex === images.length - 1
                 ? setCurrIndex(0)
                 : setCurrIndex((i) => i + 1)
             }
