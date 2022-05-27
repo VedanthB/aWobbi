@@ -13,6 +13,8 @@ import postsReducer from '../features/slices/postSlice';
 import notifyReducer from '../features/slices/notifySlice';
 import messageReducer from '../features/slices/messageSlice';
 
+import onlineReducer from '../features/slices/onlineSlice';
+
 const reducer = {
   auth: authReducer,
   alert: alertReducer,
@@ -21,6 +23,7 @@ const reducer = {
   posts: postsReducer,
   notify: notifyReducer,
   message: messageReducer,
+  online: onlineReducer,
 };
 
 export const socket = io();

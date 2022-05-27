@@ -69,7 +69,13 @@ import {
   deleteConversation,
 } from './actions/messageAction';
 
-import { setAddMessage, setAddUser } from './slices/messageSlice';
+import {
+  setAddMessage,
+  setAddUser,
+  checkOnlineOffline,
+} from './slices/messageSlice';
+
+import { setOffOnline, setOnline } from './slices/onlineSlice';
 
 export {
   GLOBAL_TYPES,
@@ -122,4 +128,7 @@ export {
   setAddUser,
   getSuggestions,
   setUpdateProfilePost,
+  setOffOnline,
+  setOnline,
+  checkOnlineOffline,
 };

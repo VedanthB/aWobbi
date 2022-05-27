@@ -42,7 +42,7 @@ const RightSide = () => {
 
     if (newData) {
       setData(newData.messages);
-      setResult(newData.result);
+      setResult(newData.conversationsLength);
       setPage(newData.page);
     }
   }, [message.data, id]);
@@ -103,7 +103,9 @@ const RightSide = () => {
     };
 
     setLoadMedia(false);
+
     await dispatch(addMessage({ msg, auth, socket, showToast }));
+
     if (refDisplay.current) {
       refDisplay.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }

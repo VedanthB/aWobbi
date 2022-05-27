@@ -51,6 +51,13 @@ const messageSlice = createSlice({
         state.users = [payload, ...state.users];
       }
     },
+    checkOnlineOffline: (state, { payload }) => {
+      state.users = state.users.map((user) =>
+        payload.includes(user._id)
+          ? { ...user, online: true }
+          : { ...user, online: false }
+      );
+    },
   },
   extraReducers: {
     [addMessage.fulfilled]: (state, { payload }) => {},
@@ -82,5 +89,10 @@ const messageSlice = createSlice({
 });
 
 const { reducer, actions } = messageSlice;
-export const { setAddMessage, setGetConversations, setAddUser } = actions;
+export const {
+  setAddMessage,
+  setGetConversations,
+  setAddUser,
+  checkOnlineOffline,
+} = actions;
 export default reducer;

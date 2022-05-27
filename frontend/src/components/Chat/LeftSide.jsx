@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { useParams } from 'react-router-dom';
-import { getConversations } from '../../features';
+import { checkOnlineOffline, getConversations } from '../../features';
 import { useToast } from '../../hooks';
 import { getDataAPI } from '../../utils';
 import UserCard from './UserCard';
@@ -83,7 +83,7 @@ const LeftSide = () => {
   // Check User Online - Offline
   useEffect(() => {
     if (message.firstLoad) {
-      //   dispatch({ type: MESS_TYPES.CHECK_ONLINE_OFFLINE, payload: online });
+      dispatch(checkOnlineOffline(online));
     }
   }, [online, message.firstLoad, dispatch]);
 
@@ -133,7 +133,7 @@ const LeftSide = () => {
               >
                 <UserCard user={user} msg={true}>
                   {user.online ? (
-                    <i className="fas fa-circle text-success" />
+                    <i className="fas fa-circle text-green-600" />
                   ) : (
                     auth.user.following.find(
                       (item) => item._id === user._id

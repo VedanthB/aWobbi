@@ -8,12 +8,14 @@ import {
   setAddUser,
   setAuth,
   setCreateNotify,
+  setOffOnline,
+  setOnline,
   setRemoveNotify,
   setUpdatePost,
 } from './features';
 
 const SocketClient = () => {
-  const { auth } = useSelector((state) => state);
+  const { auth, online } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -92,8 +94,8 @@ const SocketClient = () => {
   // Message
   useEffect(() => {
     socket.on('addMessageToClient', (msg) => {
-      // dispatch({ type: MESS_TYPES.ADD_MESSAGE, payload: msg });
       dispatch(setAddMessage(msg));
+
       dispatch(
         setAddUser({
           ...msg.user,
@@ -101,18 +103,45 @@ const SocketClient = () => {
           media: msg.media,
         })
       );
-
-      // dispatch({
-      //   type: MESS_TYPES.ADD_USER,
-      //   payload: {
-      //     ...msg.user,
-      //     text: msg.text,
-      //     media: msg.media,
-      //   },
-      // });
     });
 
     return () => socket.off('addMessageToClient');
+  }, [socket, dispatch]);
+
+  // Check User Online / Offline
+  useEffect(() => {
+    socket.emit('checkUserOnline', auth.user);
+  }, [socket, auth.user]);
+
+  useEffect(() => {
+    socket.on('checkUserOnlineToMe', (data) => {
+      data.forEach((item) => {
+        if (!online.includes(item.id)) {
+          dispatch(setOnline(item.id));
+        }
+      });
+    });
+
+    return () => socket.off('checkUserOnlineToMe');
+  }, [socket, dispatch, online]);
+
+  useEffect(() => {
+    socket.on('checkUserOnlineToClient', (id) => {
+      if (!online.includes(id)) {
+        dispatch(setOnline(id));
+      }
+    });
+
+    return () => socket.off('checkUserOnlineToClient');
+  }, [socket, dispatch, online]);
+
+  // Check User Offline
+  useEffect(() => {
+    socket.on('CheckUserOffline', (id) => {
+      dispatch(setOffOnline(id));
+    });
+
+    return () => socket.off('CheckUserOffline');
   }, [socket, dispatch]);
 
   return <></>;

@@ -3,7 +3,6 @@
 let users = [];
 
 const SocketServer = (socket) => {
-  //   event name "joinuser", we have a obj or a string () => {} -> callback
   socket.on('joinUser', (id) => {
     users.push({ id, socketId: socket.id });
     console.log('join user', { users });
@@ -89,6 +88,26 @@ const SocketServer = (socket) => {
   socket.on('addMessage', (msg) => {
     const user = users.find((i) => i.id === msg.recipient);
     user && socket.to(`${user.socketId}`).emit('addMessageToClient', msg);
+  });
+
+  // Check User Online / Offline
+  socket.on('checkUserOnline', (data) => {
+    const following = users.filter((user) =>
+      data.following.find((item) => item._id === user.id)
+    );
+    socket.emit('checkUserOnlineToMe', following);
+
+    const clients = users.filter((user) =>
+      data.followers.find((item) => item._id === user.id)
+    );
+
+    if (clients.length > 0) {
+      clients.forEach((client) => {
+        socket
+          .to(`${client.socketId}`)
+          .emit('checkUserOnlineToClient', data._id);
+      });
+    }
   });
 };
 

@@ -37,8 +37,6 @@ export const getConversations = createAsyncThunk(
         auth.token
       );
 
-      console.log(res);
-
       let newArr = [];
 
       res.data.conversations.forEach((item) => {
@@ -55,7 +53,7 @@ export const getConversations = createAsyncThunk(
       });
 
       thunkAPI.dispatch(
-        setGetConversations({ newArr, result: res.data.result })
+        setGetConversations({ newArr, result: res.data.conversationsLength })
       );
     } catch (e) {
       showToast(e.res.data.msg, 'error');
@@ -75,10 +73,6 @@ export const getMessages = createAsyncThunk(
       );
       const newData = { ...res.data, messages: res.data.messages.reverse() };
 
-      //   dispatch({
-      //     type: MESS_TYPES.GET_MESSAGES,
-      //     payload: { ...newData, _id: id, page },
-      //   });
       return { ...newData, _id: id, page };
     } catch (e) {
       showToast(e.response.data.msg, 'error');
@@ -98,10 +92,6 @@ export const loadMoreMessages = createAsyncThunk(
       );
       const newData = { ...res.data, messages: res.data.messages.reverse() };
 
-      //   dispatch({
-      //     type: MESS_TYPES.UPDATE_MESSAGES,
-      //     payload: { ...newData, _id: id, page },
-      //   });
       return { ...newData, _id: id, page };
     } catch (e) {
       showToast(e.response.data.msg, 'error');
@@ -116,10 +106,6 @@ export const deleteMessages = createAsyncThunk(
   async ({ msg, data, auth, showToast }, thunkAPI) => {
     const newData = DeleteData(data, msg._id);
 
-    // dispatch({
-    //   type: MESS_TYPES.DELETE_MESSAGES,
-    //   payload: { newData, _id: msg.recipient },
-    // });
     try {
       await deleteDataAPI(`message/${msg._id}`, auth.token);
 
@@ -135,8 +121,6 @@ export const deleteMessages = createAsyncThunk(
 export const deleteConversation = createAsyncThunk(
   'message/deleteConversation',
   async ({ id, auth, showToast }, thunkAPI) => {
-    // dispatch({ type: MESS_TYPES.DELETE_CONVERSATION, payload: id });
-
     try {
       await deleteDataAPI(`conversation/${id}`, auth.token);
       return id;
