@@ -19,7 +19,7 @@ const Home = () => {
         )}
       </div>
 
-      <div className="flex-[0_0_33.333333%] max0w-[33.333333%]">
+      <div className="flex-[0_0_33.333333%] max-w-[33.333333%]">
         <RightSideBar />
       </div>
     </div>

@@ -13,7 +13,7 @@ const RightSideBar = () => {
   const { showToast } = useToast();
 
   return (
-    <div className="mt-3">
+    <div className="mt-3 px-6">
       <UserCard user={auth.user} />
       <div className="flex justify-between items-center my-2">
         <h5 className="text-danger">Suggestions for you</h5>
@@ -37,20 +37,15 @@ const RightSideBar = () => {
               <FollowButton user={user} />
             </UserCard>
           ))}
+          {profile.suggestionsUsers.length === 0 && (
+            <h4 className="text-center">No Suggestions </h4>
+          )}
         </div>
       )}
       <div style={{ opacity: 0.5 }} className="my-2">
-        {/* <a
-          href=""
-          target="_blank"
-          rel="noreferrer"
-          style={{ wordBreak: "break-all" }}
-        >
-          
-        </a> */}
         <small className="block text-center">welcome to the aWoobi 🔥❤️</small>
 
-        <small className=" text-center">&copy; 2021 </small>
+        <small className="block text-center"> &copy; 2022 </small>
       </div>
     </div>
   );
