@@ -31,7 +31,6 @@ const UserPosts = ({ auth, id, dispatch, profile }) => {
     const newData = { ...res.data, page: page + 1, _id: id };
 
     dispatch(setUpdateProfilePost({ ...newData }));
-    // dispatch({ type: PROFILE_TYPES.UPDATE_POST, payload: newData });
     setLoad(false);
   };
 

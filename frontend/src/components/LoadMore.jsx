@@ -7,11 +7,9 @@ const LoadMoreBtn = ({ result, page, load, handleLoadMore }) => {
       {result < 9 * (page - 1)
         ? ''
         : !load && (
-            <div className="flex justify-center items-center">
-              <Button type="normal" onClick={handleLoadMore}>
-                Load More
-              </Button>
-            </div>
+            <Button type="normal" onClick={handleLoadMore}>
+              Load More
+            </Button>
           )}
     </>
   );

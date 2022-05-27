@@ -14,6 +14,7 @@ import Icons from './Icons';
 import HomePosts from './Home/HomePosts';
 import LeftSide from './Chat/LeftSide';
 import RightSideBar from './Home/RightSideBar';
+import Modal from './Modal';
 
 export {
   NotFound,
@@ -32,4 +33,5 @@ export {
   HomePosts,
   LeftSide,
   RightSideBar,
+  Modal,
 };

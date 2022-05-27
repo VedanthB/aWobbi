@@ -29,12 +29,16 @@ const HomePosts = () => {
 
       {load && <span className="loader block mx-auto"></span>}
 
-      <LoadMoreBtn
-        postsLength={posts.postsLength}
-        page={posts.page}
-        load={load}
-        handleLoadMore={handleLoadMore}
-      />
+      <div className="flex justify-center">
+        <div className="w-32">
+          <LoadMoreBtn
+            postsLength={posts.postsLength}
+            page={posts.page}
+            load={load}
+            handleLoadMore={handleLoadMore}
+          />
+        </div>
+      </div>
     </div>
   );
 };
