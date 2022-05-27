@@ -15,7 +15,7 @@ const MobileNavLinks = () => {
   const { theme } = useTheme();
 
   return (
-    <ul className="flex z-50 bg-white gap-16 justify-around items-center w-full">
+    <ul className="flex z-50 bg-white dark:bg-slate-800 gap-16 justify-around items-center w-full">
       <li>
         <NavLink
           to="/"

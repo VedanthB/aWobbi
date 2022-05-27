@@ -18,7 +18,7 @@ const Header = () => {
           <NavLinks />
         </nav>
       </div>
-      <nav className="fixed z-50 md:hidden bg-white bottom-0 left-0 right-0 p-10 flex gap-8 justify-center items-center shadow">
+      <nav className="fixed z-50 md:hidden bg-white bottom-0 left-0 right-0 p-10 flex gap-8 dark:bg-slate-800 justify-center items-center shadow">
         <MobileNavLinks />
       </nav>
     </>
