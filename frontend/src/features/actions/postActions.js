@@ -30,8 +30,6 @@ export const createPost = createAsyncThunk(
         auth.token
       );
 
-      console.log(res);
-
       thunkAPI.dispatch(setAlertLoading({ loading: false }));
 
       //  Notify

@@ -82,8 +82,6 @@ const CreatePostModal = () => {
   };
 
   const handleStopStream = () => {
-    // tracks.stop();
-    console.log('i ran');
     setStream(false);
   };
 
@@ -102,7 +100,6 @@ const CreatePostModal = () => {
     setImages([]);
     if (tracks) tracks.stop();
     dispatch(setPostModal({ isModalOpen: false }));
-    console.log(content, images);
   };
 
   useEffect(() => {

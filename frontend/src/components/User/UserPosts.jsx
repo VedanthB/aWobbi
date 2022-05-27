@@ -10,8 +10,6 @@ const UserPosts = ({ auth, id, dispatch, profile }) => {
   const [page, setPage] = useState(0);
   const [load, setLoad] = useState(false);
 
-  console.log(posts);
-
   useEffect(() => {
     profile.posts.forEach((data) => {
       if (data._id === id) {

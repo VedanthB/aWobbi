@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 const Carousel = ({ images, id }) => {
   const [currIndex, setCurrIndex] = useState(0);
 
-  console.log(currIndex, images.length);
-
   return (
     <div id="default-carousel" className="relative" data-carousel="static">
       {/* <!-- Carousel wrapper --> */}

@@ -28,8 +28,6 @@ const reducer = {
 
 export const socket = io();
 
-console.log(socket);
-
 let socketIoMiddleware = createSocketIoMiddleware(socket, 'socket/');
 
 export const store = configureStore({
@@ -38,5 +36,3 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(socketIoMiddleware),
 });
-
-console.log(store.getState());

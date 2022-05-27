@@ -37,8 +37,6 @@ const Register = () => {
     }
   };
 
-  console.log(userData);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(registerUser({ ...userData, showToast, navigateTo }));

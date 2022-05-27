@@ -21,7 +21,6 @@ const io = new Server(httpServer);
 
 io.on('connection', (socket) => {
   SocketServer(socket);
-  // console.log(socket.id);
 });
 
 app.get('/', (req, res) => {

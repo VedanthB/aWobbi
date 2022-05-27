@@ -19,13 +19,11 @@ const notifySlice = createSlice({
   reducers: {
     setCreateNotify: (state, { payload }) => {
       state.data.push(payload);
-      console.log(payload);
     },
     setRemoveNotify: (state, { payload }) => {
       state.data = state.data.filter(
         (item) => item.id !== payload.id || item.url !== payload.url
       );
-      console.log(payload);
     },
   },
   extraReducers: {
