@@ -74,7 +74,6 @@ const RightSide = () => {
       return newMedia.push(file);
     });
 
-    // if (err) dispatch({ type: GLOBALTYPES.ALERT, payload: { error: err } });
     setMedia([...media, ...newMedia]);
   };
 
@@ -211,7 +210,7 @@ const RightSide = () => {
         {user.length !== 0 && (
           <UserCard user={user}>
             <div className="flex gap-3">
-              <lord-icon
+              {/* <lord-icon
                 src="https://cdn.lordicon.com/cnyeuzxc.json"
                 trigger="hover"
                 stroke="90"
@@ -227,7 +226,7 @@ const RightSide = () => {
                 colors="primary:#121331,secondary:#a855f7"
                 onClick={handleVideoCall}
                 style={{ width: '1.5rem', height: '1.5rem' }}
-              ></lord-icon>
+              ></lord-icon> */}
 
               <lord-icon
                 src="https://cdn.lordicon.com/gsqxdxog.json"
@@ -250,7 +249,7 @@ const RightSide = () => {
           className="w-full min-h-full flex flex-col justify-end chat_display"
           ref={refDisplay}
         >
-          <button style={{ marginTop: '-25px', opacity: 0 }} ref={pageEnd}>
+          <button style={{ opacity: 0 }} ref={pageEnd}>
             Load more
           </button>
 
