@@ -25,28 +25,34 @@ const MsgDisplay = ({ user, msg, theme, data }) => {
         <span className="underline">{user.userName}</span>
       </div>
       <div className="relative">
-        {user._id === auth.user._id && (
-          <i
-            className="fas fa-trash text-danger"
-            onClick={handleDeleteMessages}
-          />
-        )}
+        <div className="flex items-center">
+          {user._id === auth.user._id && (
+            <lord-icon
+              src="https://cdn.lordicon.com/gsqxdxog.json"
+              trigger="hover"
+              stroke="90"
+              colors="primary:#121331,secondary:#a855f7"
+              onClick={handleDeleteMessages}
+              style={{ width: '1.5rem', height: '1.5rem' }}
+            ></lord-icon>
+          )}
 
-        <div>
           {msg.text && (
-            <div className="px-2 py-4 mb-2 chat_text">{msg.text}</div>
+            <div className="px-[14px] py-[9px] ml-2 mb-2 chat_text">
+              {msg.text}
+            </div>
           )}
 
           {msg.media.map((item, index) => (
             <div key={index}>
               {item.url?.match(/video/i)
-                ? videoShow(item.url, theme)
-                : imageShow(item.url, theme)}
+                ? videoShow(item.url)
+                : imageShow(item.url)}
             </div>
           ))}
         </div>
 
-        {msg.call && (
+        {/* {msg.call && (
           <button
             className="btn d-flex align-items-center py-3"
             style={{ background: '#eee', borderRadius: '10px' }}
@@ -78,10 +84,10 @@ const MsgDisplay = ({ user, msg, theme, data }) => {
               </small>
             </div>
           </button>
-        )}
+        )} */}
       </div>
 
-      <div className="text-md text-gray-400">
+      <div className="text-sm text-gray-400">
         {new Date(msg.createdAt).toLocaleString()}
       </div>
     </>

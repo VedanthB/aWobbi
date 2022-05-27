@@ -201,6 +201,7 @@ const RightSide = () => {
 
   return (
     <>
+      {/* header */}
       <div
         className="w-full h-[60x] border-b border-solid border-gray-300 flex justify-between items-center bg-gray-100"
         style={{ cursor: 'pointer' }}
@@ -208,22 +209,40 @@ const RightSide = () => {
         {user.length !== 0 && (
           <UserCard user={user}>
             <div className="flex gap-3">
-              <i className="fas fa-phone-alt" onClick={handleAudioCall} />
+              <lord-icon
+                src="https://cdn.lordicon.com/cnyeuzxc.json"
+                trigger="hover"
+                stroke="90"
+                colors="primary:#121331,secondary:#a855f7"
+                onClick={handleAudioCall}
+                style={{ width: '1.5rem', height: '1.5rem' }}
+              ></lord-icon>
 
-              <i className="fas fa-video mx-3" onClick={handleVideoCall} />
+              <lord-icon
+                src="https://cdn.lordicon.com/axyzxviq.json"
+                trigger="hover"
+                stroke="90"
+                colors="primary:#121331,secondary:#a855f7"
+                onClick={handleVideoCall}
+                style={{ width: '1.5rem', height: '1.5rem' }}
+              ></lord-icon>
 
-              <i
-                className="fas fa-trash text-danger"
+              <lord-icon
+                src="https://cdn.lordicon.com/gsqxdxog.json"
+                trigger="hover"
+                stroke="90"
+                colors="primary:#121331,secondary:#a855f7"
                 onClick={handleDeleteConversation}
-              />
+                style={{ width: '1.5rem', height: '1.5rem' }}
+              ></lord-icon>
             </div>
           </UserCard>
         )}
       </div>
-
+      {/* chat container */}
       <div
-        className="w-full mt-3 h-[calc(100%_-_210px)] overflow-y-auto py-0 px-4"
-        style={{ height: media.length > 0 ? 'calc(100% - 120px)' : '' }}
+        className="w-full mt-3 h-[calc(100%_-_140px)] overflow-y-auto py-0 px-4 "
+        style={{ height: media.length > 0 ? 'calc(100% - 210px)' : '' }}
       >
         <div
           className="w-full min-h-full flex flex-col justify-end chat_display"
@@ -256,11 +275,11 @@ const RightSide = () => {
           )}
         </div>
       </div>
-
+      {/* media upload display */}
       <div
-        className="w-full h-[70px] overflow-hidden grid place-items-center gap-3 bg-gray-100 rounded py-0 px-4"
+        className="w-full h-[70px] overflow-hidden grid place-items-center gap-3 bg-white rounded py-0 px-4"
         style={{
-          //   display: media.length > 0 ? 'grid' : 'none',
+          display: media.length > 0 ? 'grid' : 'none',
           gridTemplateColumns: 'repeat(auto-fill, minmax(70px, 1fr))',
         }}
       >
@@ -274,7 +293,7 @@ const RightSide = () => {
               ? videoShow(URL.createObjectURL(item))
               : imageShow(URL.createObjectURL(item))}
             <span
-              className="absolute top-0 right-0 z-40 bg-white border border-solid border-red-500 py-2 px-4 text-red-500 rounded-[50%] cursor-pointer"
+              className="absolute top-0 right-0 z-40 bg-white border border-solid border-red-500 p-1 text-red-500 rounded-[50%] cursor-pointer"
               onClick={() => handleDeleteMedia(index)}
             >
               &times;
@@ -282,7 +301,7 @@ const RightSide = () => {
           </div>
         ))}
       </div>
-
+      {/* footer */}
       <form
         className="flex items-center justify-between border-top border-solid border-gray-100 py-0 px-4"
         onSubmit={handleSubmit}
@@ -291,7 +310,7 @@ const RightSide = () => {
           type="text"
           placeholder="Enter you message..."
           value={text}
-          className="w-full h-[49px] border-non outline-none"
+          className="w-full h-[49px] border-none outline-none"
           onChange={(e) => setText(e.target.value)}
         />
 
