@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { imageShow, uploadImage, videoShow } from '../../utils';
 import {
   addMessage,
@@ -36,6 +36,8 @@ const RightSide = () => {
   const [isLoadMore, setIsLoadMore] = useState(0);
 
   const { showToast } = useToast();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const newData = message.data.find((item) => item._id === id);
@@ -154,7 +156,7 @@ const RightSide = () => {
   const handleDeleteConversation = () => {
     if (window.confirm('Do you want to delete?')) {
       dispatch(deleteConversation({ auth, id, showToast }));
-      //   return history.push('/chat');
+      return navigate('/chat', { replace: true });
     }
   };
 
@@ -203,10 +205,7 @@ const RightSide = () => {
   return (
     <>
       {/* header */}
-      <div
-        className="w-full h-[60x] border-b border-solid border-gray-300 flex justify-between items-center bg-gray-100"
-        style={{ cursor: 'pointer' }}
-      >
+      <div className="w-full h-[60x] border-b border-solid cursor-pointer border-gray-300 dark:border-gray-600 flex justify-between items-center bg-gray-100  dark:bg-gray-700">
         {user.length !== 0 && (
           <UserCard user={user}>
             <div className="flex gap-3">
@@ -278,7 +277,7 @@ const RightSide = () => {
       </div>
       {/* media upload display */}
       <div
-        className="w-full h-[70px] overflow-hidden grid place-items-center gap-3 bg-white rounded py-0 px-4"
+        className="w-full h-[70px] overflow-hidden grid place-items-center gap-3 bg-white dark:bg-gray-900 rounded py-0 px-4"
         style={{
           display: media.length > 0 ? 'grid' : 'none',
           gridTemplateColumns: 'repeat(auto-fill, minmax(70px, 1fr))',
@@ -294,7 +293,7 @@ const RightSide = () => {
               ? videoShow(URL.createObjectURL(item))
               : imageShow(URL.createObjectURL(item))}
             <span
-              className="absolute top-0 right-0 z-40 bg-white border border-solid border-red-500 p-1 text-red-500 rounded-[50%] cursor-pointer"
+              className="absolute top-0 right-0 z-40 bg-white dark:bg-gray-800  border border-solid border-red-500 p-1 text-red-500 rounded-[50%] cursor-pointer"
               onClick={() => handleDeleteMedia(index)}
             >
               &times;
@@ -311,7 +310,7 @@ const RightSide = () => {
           type="text"
           placeholder="Enter you message..."
           value={text}
-          className="w-full h-[49px] border-none outline-none"
+          className="w-full h-[49px] border-none outline-none dark:bg-gray-700 dark:text-white"
           onChange={(e) => setText(e.target.value)}
         />
 

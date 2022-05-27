@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { checkOnlineOffline, getConversations } from '../../features';
 import { useToast } from '../../hooks';
 import { getDataAPI } from '../../utils';
@@ -22,6 +22,8 @@ const LeftSide = () => {
 
   const { showToast } = useToast();
 
+  const navigate = useNavigate();
+
   const handleSearch = async (e) => {
     e.preventDefault();
     if (!search) return setSearchUsers([]);
@@ -30,26 +32,21 @@ const LeftSide = () => {
       const res = await getDataAPI(`search?username=${search}`, auth.token);
       setSearchUsers(res.data.users);
     } catch (err) {
-      //   dispatch({
-      //     type: GLOBALTYPES.ALERT,
-      //     payload: { error: err.response.data.msg },
-      //   });
+      showToast(err.response.data.msg, 'error');
     }
   };
 
   const handleAddUser = (user) => {
     setSearch('');
     setSearchUsers([]);
-    // dispatch({
-    //   type: MESS_TYPES.ADD_USER,
-    //   payload: { ...user, text: '', media: [] },
-    // });
-    // dispatch({ type: MESS_TYPES.CHECK_ONLINE_OFFLINE, payload: online });
-    // return history.push(`/message/${user._id}`);
+
+    dispatch(checkOnlineOffline(online));
+
+    return navigate(`/chat/${user._id}`, { replace: true });
   };
 
   const isActive = (user) => {
-    if (id === user._id) return 'bg-gray-50';
+    if (id === user._id) return 'bg-gray-50 dark:bg-gray-500';
     return '';
   };
 
@@ -90,14 +87,14 @@ const LeftSide = () => {
   return (
     <>
       <form
-        className="w-100 h-[60px] border-b border-solid border-gray-300"
+        className="w-100 h-[60px] border-b border-solid border-gray-300  dark:border-gray-600   "
         onSubmit={handleSearch}
       >
         <input
           type="text"
           value={search}
           placeholder="Enter to Search..."
-          className="flex-1 h-full border-none outline-none bg-gray-100 py-0 px-4"
+          className="flex-1 h-full border-none outline-none bg-gray-100 py-0 px-4 dark:bg-gray-700 "
           onChange={(e) => setSearch(e.target.value)}
         />
 
@@ -112,7 +109,7 @@ const LeftSide = () => {
             {searchUsers.map((user) => (
               <div
                 key={user._id}
-                className={`flex justify-between items-center py-2 px-4 border border-solid border-gray-300 text-gray-600 cursor-pointer ${isActive(
+                className={`flex justify-between items-center py-2 px-4 border border-solid border-gray-300 text-gray-600  dark:border-gray-600    cursor-pointer ${isActive(
                   user
                 )}`}
                 onClick={() => handleAddUser(user)}
@@ -126,7 +123,7 @@ const LeftSide = () => {
             {message.users.map((user) => (
               <div
                 key={user._id}
-                className={`flex justify-between items-center py-2 px-4 border border-solid border-gray-300 text-gray-600 cursor-pointer ${isActive(
+                className={`flex justify-between items-center py-2 px-4 border border-solid border-gray-300 text-gray-600  dark:border-gray-600   cursor-pointer ${isActive(
                   user
                 )}`}
                 onClick={() => handleAddUser(user)}

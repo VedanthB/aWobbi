@@ -38,7 +38,7 @@ const App = () => {
   }, [dispatch, auth.token]);
 
   return (
-    <div className="h-full min-h-screen dark:bg-slate-900  transition-colors ease-in delay-300">
+    <div className="h-full min-h-screen bg-white dark:bg-slate-900  transition-colors ease-in delay-300">
       <ToastContainer
         theme={theme === 'light' ? 'light' : 'dark'}
         position="bottom-left"
