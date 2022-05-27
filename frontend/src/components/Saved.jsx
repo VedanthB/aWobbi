@@ -14,18 +14,14 @@ const Saved = ({ auth, dispatch }) => {
 
   useEffect(() => {
     setLoad(true);
+
     getDataAPI('getSavePosts', auth.token)
       .then((res) => {
         setSavePosts(res.data.savePosts);
-        setResult(res.data.result);
+        setResult(res.data.postsLength);
         setLoad(false);
       })
       .catch((err) => {
-        // dispatch({
-        //   type: GLOBALTYPES.ALERT,
-        //   payload: { error: err.response.data.msg },
-        // });
-
         showToast(err.response.data.msg, 'error');
       });
 
