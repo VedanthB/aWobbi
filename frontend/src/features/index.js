@@ -56,6 +56,7 @@ import {
   likeComment,
   unLikeComment,
   deleteComment,
+  getPost,
 } from './actions/postActions';
 
 import { setCreateNotify, setRemoveNotify } from './slices/notifySlice';
@@ -131,4 +132,5 @@ export {
   setOffOnline,
   setOnline,
   checkOnlineOffline,
+  getPost,
 };
