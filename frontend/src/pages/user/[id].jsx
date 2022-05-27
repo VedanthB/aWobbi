@@ -19,6 +19,7 @@ const Profile = () => {
     if (profile.ids.every((item) => item !== id)) {
       dispatch(getUser({ id, auth, showToast }));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, auth, dispatch, profile.ids]);
 
   console.log(profile.ids.every((item) => item !== id));

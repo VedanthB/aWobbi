@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { setUpdateProfilePost } from '../../features';
 import { getDataAPI } from '../../utils';
 import LoadMoreBtn from '../LoadMore';
 import PostThumb from '../PostThumb';
@@ -9,11 +10,13 @@ const UserPosts = ({ auth, id, dispatch, profile }) => {
   const [page, setPage] = useState(0);
   const [load, setLoad] = useState(false);
 
+  console.log(posts);
+
   useEffect(() => {
     profile.posts.forEach((data) => {
       if (data._id === id) {
         setPosts(data.posts);
-        setResult(data.result);
+        setResult(data.postsLength);
         setPage(data.page);
       }
     });
@@ -26,6 +29,8 @@ const UserPosts = ({ auth, id, dispatch, profile }) => {
       auth.token
     );
     const newData = { ...res.data, page: page + 1, _id: id };
+
+    dispatch(setUpdateProfilePost({ ...newData }));
     // dispatch({ type: PROFILE_TYPES.UPDATE_POST, payload: newData });
     setLoad(false);
   };

@@ -40,6 +40,14 @@ const profileSlice = createSlice({
     setSuggestionLoading: (state, { payload }) => {
       state.suggestionLoading = payload;
     },
+    setUpdateProfilePost: (state, { payload }) => {
+      const index = state.posts.findIndex((el) => el._id === payload._id);
+
+      state.posts[index] = payload;
+    },
+    setGetPosts: (state, { payload }) => {
+      state.posts.push(payload);
+    },
   },
   extraReducers: {
     [getUser.fulfilled]: (state, { payload }) => {
@@ -76,5 +84,7 @@ export const {
   setFollowUser,
   setUnFollowUser,
   setSuggestionLoading,
+  setUpdateProfilePost,
+  setGetPosts,
 } = actions;
 export default reducer;

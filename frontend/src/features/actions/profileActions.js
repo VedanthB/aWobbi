@@ -1,11 +1,3 @@
-// LOADING: "LOADING_PROFILE",
-// GET_USER: "GET_PROFILE_USER",
-// FOLLOW: "FOLLOW",
-// UNFOLLOW: "UNFOLLOW",
-// GET_ID: "GET_PROFILE_ID",
-// GET_POSTS: "GET_PROFILE_POSTS",
-// UPDATE_POST: "UPDATE_PROFILE_POST",
-
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { socket } from '../../app/store';
 import { DeleteData, getDataAPI, patchDataAPI, uploadImage } from '../../utils';
@@ -13,6 +5,7 @@ import { setAlertLoading } from '../slices/alertSlice';
 import { setAuth } from '../slices/authSlice';
 import {
   setFollowUser,
+  setGetPosts,
   setId,
   setLoadingProfile,
   setSuggestionLoading,
@@ -30,11 +23,17 @@ export const getUser = createAsyncThunk(
 
       const res = getDataAPI(`user/${id}`, auth.token);
 
+      const res1 = getDataAPI(`user_posts/${id}`, auth.token);
+
       const users = await res;
 
-      console.log(users);
+      const posts = await res1;
+
+      console.log(posts);
 
       thunkAPI.dispatch(setLoadingProfile({ loading: false }));
+
+      thunkAPI.dispatch(setGetPosts({ ...posts.data, _id: id, page: 2 }));
 
       return users.data;
     } catch (e) {
@@ -222,7 +221,6 @@ export const unFollowUser = createAsyncThunk(
 export const getSuggestions = createAsyncThunk(
   'profile/getSuggestions',
   async ({ token, showToast }, thunkAPI) => {
-    // dispatch({ type: SUGGES_TYPES.LOADING, payload: true });
     thunkAPI.dispatch(setSuggestionLoading(true));
     try {
       const res = await getDataAPI('suggestionsUser', token);

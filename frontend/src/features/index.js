@@ -17,6 +17,7 @@ import {
   setLoadingProfile,
   setFollowUser,
   setUnFollowUser,
+  setUpdateProfilePost,
 } from './slices/profileSlice';
 
 import { setAuth } from './slices/authSlice';
@@ -32,8 +33,6 @@ import {
 import { setPostModal, setEditPostModal } from './slices/postModalSlice';
 
 import { setPosts, setUpdatePost } from './slices/postSlice';
-
-import { setSocket } from './slices/socketSlice';
 
 import {
   createNotify,
@@ -104,7 +103,6 @@ export {
   updateComment,
   likeComment,
   unLikeComment,
-  setSocket,
   deleteComment,
   setUpdatePost,
   createNotify,
@@ -123,4 +121,5 @@ export {
   deleteConversation,
   setAddUser,
   getSuggestions,
+  setUpdateProfilePost,
 };
