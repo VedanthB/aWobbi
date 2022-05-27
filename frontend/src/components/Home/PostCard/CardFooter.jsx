@@ -4,6 +4,7 @@ import LikeButton from '../../LikeButton';
 import { BsBookmark } from 'react-icons/bs';
 import { likePost, savePost, unlikePost, unSavePost } from '../../../features';
 import { useToast } from '../../../hooks';
+import { useTheme } from '../../../context/ThemeProvider';
 
 const CardFooter = ({ post }) => {
   const [isLike, setIsLike] = useState(false);
@@ -18,6 +19,8 @@ const CardFooter = ({ post }) => {
   const [saveLoad, setSaveLoad] = useState(false);
 
   const { showToast } = useToast();
+
+  const { theme } = useTheme();
 
   // Likes
   useEffect(() => {
@@ -97,7 +100,7 @@ const CardFooter = ({ post }) => {
             src="https://cdn.lordicon.com/zzcjjxew.json"
             trigger="click"
             stroke="90"
-            colors="primary:#121331,secondary:#a855f7"
+            colors="primary:#a855f7,secondary:#a855f7"
             onClick={handleSavePost}
             style={{ width: '2.5rem', height: '2.5rem' }}
           ></lord-icon>
@@ -105,11 +108,11 @@ const CardFooter = ({ post }) => {
       </div>
 
       <div className="flex justify-between">
-        <h6 className="p-2 cursor-pointer mx-4 font-medium hover:underline">
+        <h6 className="p-2 cursor-pointer mx-4 font-medium hover:underline dark:text-white">
           {post.likes.length} likes
         </h6>
 
-        <h6 className="p-2 cursor-pointer mx-4 font-medium  hover:underline">
+        <h6 className="p-2 cursor-pointer mx-4 font-medium  hover:underline dark:text-white">
           {post.comments.length} comments
         </h6>
       </div>

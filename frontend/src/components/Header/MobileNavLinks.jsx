@@ -1,9 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { AiFillHome } from 'react-icons/ai';
-import { BsMessenger } from 'react-icons/bs';
+
 import { MdNotificationsActive } from 'react-icons/md';
 import MobileNavDropdown from './MobileNavDropdown';
+import { useTheme } from '../../context';
+import NotifyModal from './NotifyModal';
 
 let activeStyle = {
   color: '#6366F1',
@@ -11,14 +12,32 @@ let activeStyle = {
 };
 
 const MobileNavLinks = () => {
+  const { theme } = useTheme();
+
   return (
-    <ul className="flex gap-16 justify-around items-center w-full">
+    <ul className="flex z-50 bg-white gap-16 justify-around items-center w-full">
       <li>
         <NavLink
           to="/"
           style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
-          <AiFillHome className="w-6 h-6" />
+          {theme === 'light' ? (
+            <lord-icon
+              src="https://cdn.lordicon.com/gmzxduhd.json"
+              trigger="click"
+              stroke="70"
+              colors={'primary:#121331 ,secondary:#a855f7'}
+              style={{ width: '2.5rem', height: '2.5rem' }}
+            ></lord-icon>
+          ) : (
+            <lord-icon
+              src="https://cdn.lordicon.com/gmzxduhd.json"
+              trigger="click"
+              stroke="70"
+              colors={'primary:#ffffff ,secondary:#a855f7'}
+              style={{ width: '2.5rem', height: '2.5rem' }}
+            ></lord-icon>
+          )}
         </NavLink>
       </li>
       <li>
@@ -26,11 +45,27 @@ const MobileNavLinks = () => {
           to="/chat"
           style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
-          <BsMessenger className="w-6 h-6" />
+          {theme === 'light' ? (
+            <lord-icon
+              src="https://cdn.lordicon.com/rhvddzym.json"
+              trigger="click"
+              stroke="70"
+              colors={'primary:#121331 ,secondary:#a855f7'}
+              style={{ width: '2.5rem', height: '2.5rem' }}
+            ></lord-icon>
+          ) : (
+            <lord-icon
+              src="https://cdn.lordicon.com/rhvddzym.json"
+              trigger="click"
+              stroke="70"
+              colors={'primary:#ffffff ,secondary:#a855f7'}
+              style={{ width: '2.5rem', height: '2.5rem' }}
+            ></lord-icon>
+          )}
         </NavLink>
       </li>
       <li>
-        <MdNotificationsActive className="w-6 h-6" />
+        <NotifyModal />
       </li>
       <li>
         <MobileNavDropdown />

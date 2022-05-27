@@ -11,9 +11,9 @@ import { ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNotifies, getPosts, refreshToken } from './features';
 import { useToast } from './hooks';
-import SocketClient from './SocketClient';
 
-// socket
+import SocketClient from './SocketClient';
+import { useTheme } from './context';
 
 const App = () => {
   const { auth, postModal } = useSelector((state) => state);
@@ -21,6 +21,8 @@ const App = () => {
   const dispatch = useDispatch();
 
   const { showToast } = useToast();
+
+  const { theme } = useTheme();
 
   useEffect(() => {
     dispatch(refreshToken());
@@ -38,7 +40,7 @@ const App = () => {
   return (
     <div className="h-full min-h-screen dark:bg-slate-900  transition-colors ease-in delay-300">
       <ToastContainer
-        theme="light"
+        theme={theme === 'light' ? 'light' : 'dark'}
         position="bottom-left"
         autoClose={2000}
         hideProgressBar={false}

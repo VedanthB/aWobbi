@@ -41,7 +41,7 @@ const InputComment = ({ children, post, onReply, setOnReply }) => {
     <form className="flex items-center" onSubmit={handleSubmit}>
       {children}
       <input
-        className="bg-gray-100 flex-1 border-none outline-none overflow-auto w-full p-4"
+        className="bg-gray-100 dark:bg-gray-700 dark:text-white flex-1 border-none outline-none overflow-auto w-full p-4"
         type="text"
         placeholder="Add your comments..."
         value={content}

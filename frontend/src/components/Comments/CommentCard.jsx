@@ -80,10 +80,10 @@ const CommentCard = ({ children, comment, post, commentId }) => {
         className="flex text-gray-900 mb-2"
       >
         <Avatar src={comment.user.avatar} className="rounded-[50%] w-6 h-6" />
-        <h6 className="mx-1">{comment.user.userName}</h6>
+        <h6 className="mx-1 dark:text-white">{comment.user.userName}</h6>
       </Link>
 
-      <div className="bg-gray-200 p-2 rounded-sm flex justify-between items-center">
+      <div className="bg-gray-200 dark:bg-gray-700 p-2 dark:text-white rounded-sm flex justify-between items-center">
         <div className="flex-auto">
           {onEdit ? (
             <textarea
@@ -95,7 +95,10 @@ const CommentCard = ({ children, comment, post, commentId }) => {
           ) : (
             <div>
               {comment.tag && comment.tag._id !== comment.user._id && (
-                <Link to={`/profile/${comment.tag._id}`} className="mr-1">
+                <Link
+                  to={`/profile/${comment.tag._id}`}
+                  className="mr-1 dark:text-white"
+                >
                   @ {comment.tag.userName}
                 </Link>
               )}
@@ -122,24 +125,30 @@ const CommentCard = ({ children, comment, post, commentId }) => {
               {moment(comment.createdAt).fromNow()}
             </small>
 
-            <small className="font-bold mr-3">
+            <small className="font-bold mr-3 dark:text-white">
               {comment.likes.length} likes
             </small>
 
             {onEdit ? (
               <>
-                <small className="font-bold mr-3" onClick={handleUpdate}>
+                <small
+                  className="font-bold mr-3 dark:text-white"
+                  onClick={handleUpdate}
+                >
                   update
                 </small>
                 <small
-                  className="font-bold mr-3"
+                  className="font-bold mr-3 dark:text-white"
                   onClick={() => setOnEdit(false)}
                 >
                   cancel
                 </small>
               </>
             ) : (
-              <small className="font-bold mr-3" onClick={handleReply}>
+              <small
+                className="font-bold mr-3  dark:text-white"
+                onClick={handleReply}
+              >
                 {onReply ? 'cancel' : 'reply'}
               </small>
             )}
@@ -159,7 +168,10 @@ const CommentCard = ({ children, comment, post, commentId }) => {
 
       {onReply && (
         <InputComment post={post} onReply={onReply} setOnReply={setOnReply}>
-          <Link to={`/profile/${onReply.user._id}`} className="mr-1">
+          <Link
+            to={`/profile/${onReply.user._id}`}
+            className="mr-1 dark:text-white"
+          >
             @ {onReply.user.username}:
           </Link>
         </InputComment>

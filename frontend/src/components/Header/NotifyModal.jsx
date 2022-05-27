@@ -54,8 +54,8 @@ const NotifyModal = () => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 mt-2 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <div className="px-1 py-1  min-w-[300px] w-full">
+          <Menu.Items className="absolute z-50 bottom-10 md:top-10 right-[-6rem]  md:right-0 mt-2 origin-bottom-left">
+            <div className="px-1 py-1  min-w-[300px] w-full  divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="flex justify-between items-center px-3">
                 <h3>Notification</h3>
                 {notify.sound ? (
