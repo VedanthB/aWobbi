@@ -16,10 +16,10 @@ const RightSideBar = () => {
     <div className="mt-3 px-6">
       <UserCard user={auth.user} />
       <div className="flex justify-between items-center my-2">
-        <h5 className="text-danger">Suggestions for you</h5>
+        <h5 className="dark:text-white">Suggestions for you</h5>
         {!profile.suggestionLoading && (
           <i
-            className="fas fa-redo"
+            className="fas fa-redo dark:text-white"
             style={{ cursor: 'pointer' }}
             onClick={() =>
               dispatch(getSuggestions({ token: auth.token, showToast }))
@@ -38,14 +38,19 @@ const RightSideBar = () => {
             </UserCard>
           ))}
           {profile.suggestionsUsers.length === 0 && (
-            <h4 className="text-center">No Suggestions </h4>
+            <h4 className="text-center dark:text-white"> No Suggestions </h4>
           )}
         </div>
       )}
       <div style={{ opacity: 0.5 }} className="my-2">
-        <small className="block text-center">welcome to the aWoobi 🔥❤️</small>
+        <small className="block text-center dark:text-white">
+          welcome to the aWoobi 🔥❤️
+        </small>
 
-        <small className="block text-center"> &copy; 2022 </small>
+        <small className="block text-center dark:text-white">
+          {' '}
+          &copy; 2022{' '}
+        </small>
       </div>
     </div>
   );

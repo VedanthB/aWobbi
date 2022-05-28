@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Avatar from '../Avatar';
 import Button from '../Button';
 import FollowButton from '../FollowButton';
+import SearchUserCard from '../Header/SearchUserCard';
+import Modal from '../Modal';
 import EditProfileModal from './EditProfileModal';
 
 const UserInfo = ({ id, auth, profile }) => {
@@ -85,6 +87,40 @@ const UserInfo = ({ id, auth, profile }) => {
           </div>
 
           {onEdit && <EditProfileModal onEdit={onEdit} setOnEdit={setOnEdit} />}
+
+          {showFollowers && (
+            <Modal
+              title="Followers"
+              body={user.followers.map((user) => (
+                <SearchUserCard
+                  key={user._id}
+                  user={user}
+                  setShowFollowers={setShowFollowers}
+                >
+                  {auth.user._id !== user._id && <FollowButton user={user} />}
+                </SearchUserCard>
+              ))}
+              // users={user.followers}
+              isOpen={showFollowers}
+              setIsOpen={setShowFollowers}
+            />
+          )}
+          {showFollowing && (
+            <Modal
+              title="Following"
+              body={user.following.map((user) => (
+                <SearchUserCard
+                  key={user._id}
+                  user={user}
+                  setShowFollowers={setShowFollowing}
+                >
+                  {auth.user._id !== user._id && <FollowButton user={user} />}
+                </SearchUserCard>
+              ))}
+              isOpen={showFollowing}
+              setIsOpen={setShowFollowing}
+            />
+          )}
         </div>
       ))}
     </div>

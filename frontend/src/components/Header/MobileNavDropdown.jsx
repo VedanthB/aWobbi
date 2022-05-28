@@ -8,11 +8,13 @@ import { Menu, Transition } from '@headlessui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useToast } from '../../hooks';
 import { logoutUser } from '../../features';
+import { useTheme } from '../../context';
 
 const MobileNavDropdown = () => {
   const { auth } = useSelector((state) => state);
 
   const { showToast } = useToast();
+  const { theme, setTheme } = useTheme();
 
   const dispatch = useDispatch();
 
@@ -53,14 +55,16 @@ const MobileNavDropdown = () => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute bottom-10 right-10 mt-2 w-56 origin-bottom-left divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50 ">
+          <Menu.Items className="absolute bottom-10 right-10 mt-2 w-56 origin-bottom-left divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50  dark:bg-slate-600">
             <div className="px-1 py-1 ">
               <Menu.Item>
                 {({ active }) => (
                   <Link
                     to={`/user/${auth.user._id}`}
                     className={`${
-                      active ? 'bg-purple-400 text-white' : 'text-gray-900'
+                      active
+                        ? 'bg-purple-400 text-white'
+                        : 'text-gray-900 dark:text-gray-100'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     <img
@@ -75,12 +79,17 @@ const MobileNavDropdown = () => {
               <Menu.Item>
                 {({ active }) => (
                   <button
+                    onClick={() =>
+                      setTheme((curr) => (curr === 'light' ? 'dark' : 'light'))
+                    }
                     className={`${
-                      active ? 'bg-purple-400 text-white' : 'text-gray-900'
+                      active
+                        ? 'bg-purple-400 text-white'
+                        : 'text-gray-900 dark:text-gray-100'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     <BsFillMoonStarsFill className="h-4 w-4 rounded-full mr-3" />
-                    Dark Mode
+                    {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
                   </button>
                 )}
               </Menu.Item>
@@ -91,7 +100,9 @@ const MobileNavDropdown = () => {
                   <button
                     onClick={handleLogout}
                     className={`${
-                      active ? 'bg-purple-400 text-white' : 'text-gray-900'
+                      active
+                        ? 'bg-purple-400 text-white'
+                        : 'text-gray-900 dark:text-gray-100'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     <BiLogOutCircle className="h-4 w-4 rounded-full mr-3" />

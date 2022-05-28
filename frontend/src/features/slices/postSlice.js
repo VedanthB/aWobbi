@@ -5,6 +5,7 @@ import {
   createPost,
   deleteComment,
   deletePost,
+  getPost,
   getPosts,
   likeComment,
   likePost,
@@ -21,6 +22,7 @@ const initialState = {
   posts: [],
   postsLength: 0,
   page: 2,
+  detailPost: [],
 };
 
 const postSlice = createSlice({
@@ -44,7 +46,6 @@ const postSlice = createSlice({
 
   extraReducers: {
     [createPost.fulfilled]: (state, { payload }) => {
-      console.log(payload);
       state.posts = [payload, ...state.posts];
     },
     [createPost.rejected]: (state, { payload }) => {
@@ -136,6 +137,13 @@ const postSlice = createSlice({
       state.posts[index] = payload;
     },
     [deleteComment.rejected]: (state, { payload }) => {
+      state.loading = false;
+    },
+
+    [getPost.fulfilled]: (state, { payload }) => {
+      state.detailPost.push(payload);
+    },
+    [getPost.rejected]: (state, { payload }) => {
       state.loading = false;
     },
   },

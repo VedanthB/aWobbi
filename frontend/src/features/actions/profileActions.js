@@ -29,8 +29,6 @@ export const getUser = createAsyncThunk(
 
       const posts = await res1;
 
-      console.log(posts);
-
       thunkAPI.dispatch(setLoadingProfile({ loading: false }));
 
       thunkAPI.dispatch(setGetPosts({ ...posts.data, _id: id, page: 2 }));
@@ -40,8 +38,6 @@ export const getUser = createAsyncThunk(
       thunkAPI.dispatch(setLoadingProfile({ loading: false }));
 
       showToast(e.response.data.msg, 'error');
-
-      console.log(e.response.data.msg);
 
       return thunkAPI.rejectWithValue(e.response.data.msg);
     }
@@ -96,8 +92,6 @@ export const updateUserProfileInfo = createAsyncThunk(
       thunkAPI.dispatch(setAlertLoading({ loading: false }));
 
       showToast(e.response.data.msg, 'error');
-
-      console.log(e.response.data.msg);
 
       return thunkAPI.rejectWithValue(e.response.data.msg);
     }
@@ -154,8 +148,6 @@ export const followUser = createAsyncThunk(
     } catch (e) {
       showToast(e.response.data.msg, 'error');
 
-      console.log(e.response.data.msg);
-
       return thunkAPI.rejectWithValue(e.response.data.msg);
     }
   }
@@ -211,8 +203,6 @@ export const unFollowUser = createAsyncThunk(
     } catch (e) {
       showToast(e.response.data.msg, 'error');
 
-      console.log(e.response.data.msg);
-
       return thunkAPI.rejectWithValue(e.response.data.msg);
     }
   }
@@ -229,8 +219,6 @@ export const getSuggestions = createAsyncThunk(
       return res.data;
     } catch (e) {
       showToast(e.response.data.msg, 'error');
-
-      console.log(e.response.data.msg);
 
       return thunkAPI.rejectWithValue(e.response.data.msg);
     }

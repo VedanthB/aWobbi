@@ -3,15 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": "16.13.1"
+  },
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "cd client && npm run start",
+    "frontend": "cd frontend && npm run start",
     "server-install": "npm install",
-    "client-install": "cd client && npm install",
-    "install-all": "concurrently \"npm run server-install\" \"npm run client-install\" ",
-    "dev": "concurrently \"npm run server\" \"npm run client\" ",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "frontend-install": "cd frontend && npm install",
+    "install-all": "concurrently \"npm run server-install\" \"npm run frontend-install\" ",
+    "dev": "concurrently \"npm run server\" \"npm run frontend\" ",
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
   },
   "repository": {
     "type": "git",

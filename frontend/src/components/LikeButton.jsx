@@ -19,7 +19,7 @@ const LikeButton = ({ isLike, handleLike, handleUnLike }) => {
           src="https://cdn.lordicon.com/rjzlnunf.json"
           trigger="click"
           stroke="90"
-          colors="primary:#121331,secondary:#a855f7"
+          colors="primary:#a855f7,secondary:#a855f7"
           style={{ width: '2.5rem', height: '2.5rem' }}
           onClick={handleLike}
         ></lord-icon>

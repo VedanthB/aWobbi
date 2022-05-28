@@ -22,10 +22,8 @@ const Profile = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, auth, dispatch, profile.ids]);
 
-  console.log(profile.ids.every((item) => item !== id));
-
   return (
-    <div className="min-h-screen w-full bg-white dark:bg-slate-900  transition-colors ease-in delay-300 relative top-24">
+    <div className="min-h-screen w-full bg-white dark:bg-slate-900  transition-colors ease-in delay-300 relative ">
       <UserInfo id={id} auth={auth} profile={profile} />
 
       {auth.user?._id === id && (

@@ -80,7 +80,7 @@ const Carousel = ({ images, id }) => {
             type="button"
             className="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none"
             onClick={() =>
-              currIndex === images.length
+              currIndex === images.length - 1
                 ? setCurrIndex(0)
                 : setCurrIndex((i) => i + 1)
             }

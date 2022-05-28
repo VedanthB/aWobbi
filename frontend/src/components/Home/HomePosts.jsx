@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPosts } from '../../features';
 import { getDataAPI } from '../../utils';
+import LoadMoreBtn from '../LoadMore';
 import PostCard from '../PostCard';
 
 const HomePosts = () => {
@@ -28,12 +29,16 @@ const HomePosts = () => {
 
       {load && <span className="loader block mx-auto"></span>}
 
-      {/* <LoadMoreBtn
-        postsLength={posts.postsLength}
-        page={posts.page}
-        load={load}
-        handleLoadMore={handleLoadMore}
-      /> */}
+      <div className="flex justify-center">
+        <div className="w-32">
+          <LoadMoreBtn
+            postsLength={posts.postsLength}
+            page={posts.page}
+            load={load}
+            handleLoadMore={handleLoadMore}
+          />
+        </div>
+      </div>
     </div>
   );
 };

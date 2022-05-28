@@ -46,7 +46,9 @@ const UserCard = ({
   };
 
   return (
-    <div className={`flex p-2 items-center justify-between w-full ${border}`}>
+    <div
+      className={`flex p-2 items-center justify-between dark:text-white w-full ${border}`}
+    >
       <div>
         <Link
           to={`/chat/${user._id}`}
@@ -55,10 +57,12 @@ const UserCard = ({
         >
           <Avatar src={user.avatar} className="w-14 h-14 rounded-[50%]" />
 
-          <div className="ml-1" style={{ transform: 'translateY(-2px)' }}>
-            <span className="block">{user.userName}</span>
+          <div className="ml-4" style={{ transform: 'translateY(-2px)' }}>
+            <span className="block dark:text-white hover:underline">
+              {user.userName}
+            </span>
 
-            <small style={{ opacity: 0.7 }}>
+            <small className="dark:text-white" style={{ opacity: 0.7 }}>
               {msg ? showMsg(user) : user.fullName}
             </small>
           </div>

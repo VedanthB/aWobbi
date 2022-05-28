@@ -48,7 +48,11 @@ const Icons = ({ setContent, content }) => {
           <Menu.Items className="absolute bottom-10 right-10 mt-2 w-56 origin-bottom-left divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50 ">
             <div className="px-1 py-1 ">
               {reactions.map((icon) => (
-                <span key={icon} onClick={() => setContent(content + icon)}>
+                <span
+                  className="m-2"
+                  key={icon}
+                  onClick={() => setContent(content + icon)}
+                >
                   {icon}
                 </span>
               ))}

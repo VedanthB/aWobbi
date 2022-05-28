@@ -7,52 +7,58 @@ import NotifyModal from './NotifyModal';
 
 import lottie from 'lottie-web';
 import { defineLordIconElement } from 'lord-icon-element';
+import { useTheme } from '../../context';
 
 defineLordIconElement(lottie.loadAnimation);
 
 const NavLinks = () => {
+  const { theme } = useTheme();
   return (
     <ul className="flex gap-6 justify-center items-center">
       <li>
         <NavLink to="/">
-          {({ isActive }) => (
-            // <AiFillHome
-            //   className={
-            //     isActive
-            //       ? 'w-6 h-6 text-purple-500'
-            //       : 'w-6 h-6 dark:text-gray-100'
-            //   }
-            // />
-
-            <lord-icon
-              src="https://cdn.lordicon.com/gmzxduhd.json"
-              trigger="click"
-              stroke="70"
-              colors={'primary:#121331 ,secondary:#a855f7'}
-              style={{ width: '2.5rem', height: '2.5rem' }}
-            ></lord-icon>
-          )}
+          {({ isActive }) =>
+            theme === 'light' ? (
+              <lord-icon
+                src="https://cdn.lordicon.com/gmzxduhd.json"
+                trigger="click"
+                stroke="70"
+                colors={'primary:#121331 ,secondary:#a855f7'}
+                style={{ width: '2.5rem', height: '2.5rem' }}
+              ></lord-icon>
+            ) : (
+              <lord-icon
+                src="https://cdn.lordicon.com/gmzxduhd.json"
+                trigger="click"
+                stroke="70"
+                colors={'primary:#ffffff ,secondary:#a855f7'}
+                style={{ width: '2.5rem', height: '2.5rem' }}
+              ></lord-icon>
+            )
+          }
         </NavLink>
       </li>
       <li>
         <NavLink to="/chat">
-          {({ isActive }) => (
-            // <BsMessenger
-            //   className={
-            //     isActive
-            //       ? 'w-6 h-6 text-purple-500'
-            //       : 'w-6 h-6 dark:text-gray-100'
-            //   }
-            // />
-
-            <lord-icon
-              src="https://cdn.lordicon.com/rhvddzym.json"
-              trigger="click"
-              stroke="70"
-              colors={'primary:#121331,secondary:#a855f7'}
-              style={{ width: '3rem', height: '3rem' }}
-            ></lord-icon>
-          )}
+          {({ isActive }) =>
+            theme === 'light' ? (
+              <lord-icon
+                src="https://cdn.lordicon.com/rhvddzym.json"
+                trigger="click"
+                stroke="70"
+                colors={'primary:#121331 ,secondary:#a855f7'}
+                style={{ width: '2.5rem', height: '2.5rem' }}
+              ></lord-icon>
+            ) : (
+              <lord-icon
+                src="https://cdn.lordicon.com/rhvddzym.json"
+                trigger="click"
+                stroke="70"
+                colors={'primary:#ffffff ,secondary:#a855f7'}
+                style={{ width: '2.5rem', height: '2.5rem' }}
+              ></lord-icon>
+            )
+          }
         </NavLink>
       </li>
       <li>

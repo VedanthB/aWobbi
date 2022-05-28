@@ -6,8 +6,8 @@ const Home = () => {
   const { posts } = useSelector((state) => state);
 
   return (
-    <div className="flex flex-wrap min-h-screen  max-w-screen-lg mx-auto pt-8 relative top-24">
-      <div className="w-8/12 flex-[0_0_66.666667%]">
+    <div className="flex flex-col md:flex-row flex-wrap min-h-screen  max-w-screen-lg mx-auto pt-8 relative ">
+      <div className="w-full px-6 md:px-0 md:w-8/12 md:flex-[0_0_66.666667%]">
         <CreatePost />
 
         {posts.loading ? (
@@ -19,7 +19,7 @@ const Home = () => {
         )}
       </div>
 
-      <div className="flex-[0_0_33.333333%] max-w-[33.333333%]">
+      <div className="w-full  md:flex-[0_0_33.333333%] md:max-w-[33.333333%]">
         <RightSideBar />
       </div>
     </div>

@@ -27,11 +27,14 @@ const CardHeader = ({ post }) => {
 
         <div className="translate-y-[-3px] ml-3">
           <h6 className="m-0">
-            <Link to={`/profile/${post.user._id}`} className="text-gray-900">
+            <Link
+              to={`/profile/${post.user._id}`}
+              className="text-gray-900 dark:text-gray-300"
+            >
               {post.user.userName}
             </Link>
           </h6>
-          <small className="text-gray-400">
+          <small className="text-gray-400 dark:text-gray-100">
             {moment(post.createdAt).fromNow()}
           </small>
         </div>
@@ -39,7 +42,7 @@ const CardHeader = ({ post }) => {
 
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="inline-flex w-full justify-center items-center rounded-md px-4 py-2  text-sm font-medium text-black  focus:outline-purple-400 focus:outline focus:outline-offset-2">
+          <Menu.Button className="inline-flex w-full justify-center items-center rounded-md px-4 py-2  text-sm font-medium text-black dark:text-white focus:outline-purple-400 focus:outline focus:outline-offset-2">
             <BiDotsVerticalRounded className="text-3xl" />
           </Menu.Button>
         </div>
@@ -67,7 +70,9 @@ const CardHeader = ({ post }) => {
                       )
                     }
                     className={`${
-                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                      active
+                        ? 'bg-violet-500 text-white'
+                        : 'text-gray-900 dark:text-white'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     Edit Post
@@ -87,7 +92,9 @@ const CardHeader = ({ post }) => {
                       )
                     }
                     className={`${
-                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                      active
+                        ? 'bg-violet-500 text-white'
+                        : 'text-gray-900 dark:text-white'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     Delete Post

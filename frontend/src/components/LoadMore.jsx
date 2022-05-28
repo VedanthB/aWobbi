@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './Button';
 
 const LoadMoreBtn = ({ result, page, load, handleLoadMore }) => {
   return (
@@ -6,12 +7,9 @@ const LoadMoreBtn = ({ result, page, load, handleLoadMore }) => {
       {result < 9 * (page - 1)
         ? ''
         : !load && (
-            <button
-              className="bg-gray-800 text-white px2 py-4 mx-auto block"
-              onClick={handleLoadMore}
-            >
-              Load more
-            </button>
+            <Button type="normal" onClick={handleLoadMore}>
+              Load More
+            </Button>
           )}
     </>
   );

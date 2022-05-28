@@ -30,8 +30,6 @@ export const createPost = createAsyncThunk(
         auth.token
       );
 
-      console.log(res);
-
       thunkAPI.dispatch(setAlertLoading({ loading: false }));
 
       //  Notify
@@ -419,6 +417,23 @@ export const deleteComment = createAsyncThunk(
       showToast(error.response.data.msg, 'error');
 
       return thunkAPI.rejectWithValue(error.response.data.msg);
+    }
+  }
+);
+
+export const getPost = createAsyncThunk(
+  'posts/getPost',
+  async ({ detailPost, id, auth, showToast }, thunkAPI) => {
+    if (detailPost.every((post) => post._id !== id)) {
+      try {
+        const res = await getDataAPI(`post/${id}`, auth.token);
+
+        return res.data.post;
+      } catch (error) {
+        showToast(error.response.data.msg, 'error');
+
+        return thunkAPI.rejectWithValue(error.response.data.msg);
+      }
     }
   }
 );

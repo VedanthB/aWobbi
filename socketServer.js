@@ -19,8 +19,6 @@ const SocketServer = (socket) => {
 
     const clients = users.filter((user) => ids.includes(user.id));
 
-    console.log(newPost);
-
     if (clients.length > 0) {
       clients.forEach((client) => {
         socket.to(`${client.socketId}`).emit('likeToClient', newPost);
