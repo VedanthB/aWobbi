@@ -9,9 +9,9 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "cd frontend && npm run start",
+    "frontend": "cd frontend && npm run start",
     "server-install": "npm install",
-    "client-install": "cd frontend && npm install",
+    "frontend-install": "cd frontend && npm install",
     "install-all": "concurrently \"npm run server-install\" \"npm run frontend-install\" ",
     "dev": "concurrently \"npm run server\" \"npm run frontend\" ",
     "heroku-postbuild": "cd frontend && npm install && npm run build"
