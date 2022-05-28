@@ -23,9 +23,9 @@ io.on('connection', (socket) => {
   SocketServer(socket);
 });
 
-app.get('/', (req, res) => {
-  res.json({ msg: 'Hello' });
-});
+// app.get('/api', (req, res) => {
+//   res.json({ msg: 'Hello' });
+// });
 
 const URI = process.env.MONGODB_URL;
 
