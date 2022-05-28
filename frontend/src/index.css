@@ -20,3 +20,16 @@ code {
 
 /* -------- Loader ---------- */
 @import url('./components/Alert/Loader.css');
+
+.you_message .chat_text {
+  background: #0048aa;
+  color: white;
+  border: 1px solid #0048aa;
+  border-radius: 14px 14px 0 14px;
+}
+.other_message .chat_text {
+  background: white;
+  color: #111;
+  border: 1px solid #ddd;
+  border-radius: 14px 14px 14px 0;
+}

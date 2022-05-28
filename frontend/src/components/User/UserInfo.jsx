@@ -21,12 +21,6 @@ const UserInfo = ({ id, auth, profile }) => {
     }
   }, [id, auth, profile.users, auth.user]);
 
-  console.log(
-    userData,
-    profile,
-    profile.users.filter((user) => user._id === id)
-  );
-
   return (
     <div className="w-full max-w-4xl px-5 py-3 mx-auto pt-8">
       {userData.map((user) => (

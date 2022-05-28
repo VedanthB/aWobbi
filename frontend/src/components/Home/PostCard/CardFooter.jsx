@@ -84,12 +84,23 @@ const CardFooter = ({ post }) => {
         />
 
         {saved ? (
-          <BsBookmark
-            className="text-purple-500 text-3xl ml-8"
+          <lord-icon
+            src="https://cdn.lordicon.com/zzcjjxew.json"
+            trigger="click"
+            stroke="90"
+            colors="primary:#e83a30,secondary:#a855f7"
             onClick={handleUnSavePost}
-          />
+            style={{ width: '2.5rem', height: '2.5rem' }}
+          ></lord-icon>
         ) : (
-          <BsBookmark className="text-3xl  ml-8" onClick={handleSavePost} />
+          <lord-icon
+            src="https://cdn.lordicon.com/zzcjjxew.json"
+            trigger="click"
+            stroke="90"
+            colors="primary:#121331,secondary:#a855f7"
+            onClick={handleSavePost}
+            style={{ width: '2.5rem', height: '2.5rem' }}
+          ></lord-icon>
         )}
       </div>
 

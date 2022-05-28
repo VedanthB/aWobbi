@@ -9,7 +9,7 @@ import { Home, Login, Register } from './pages';
 import { ToastContainer } from 'react-toastify';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getNotifies, getPosts, refreshToken, setSocket } from './features';
+import { getNotifies, getPosts, refreshToken } from './features';
 import { useToast } from './hooks';
 import SocketClient from './SocketClient';
 

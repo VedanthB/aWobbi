@@ -274,7 +274,7 @@ const postCtrl = {
           _id: { $in: req.user.saved },
         }),
         req.query
-      ).paginating();
+      ).pagination();
 
       const savePosts = await features.query.sort('-createdAt');
 

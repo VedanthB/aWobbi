@@ -9,17 +9,21 @@ import alertReducer from '../features/slices/alertSlice';
 import profileReducer from '../features/slices/profileSlice';
 import postModalReducer from '../features/slices/postModalSlice';
 import postsReducer from '../features/slices/postSlice';
-import socketReducer from '../features/slices/socketSlice';
+
 import notifyReducer from '../features/slices/notifySlice';
+import messageReducer from '../features/slices/messageSlice';
+
+import onlineReducer from '../features/slices/onlineSlice';
 
 const reducer = {
   auth: authReducer,
-  socket: socketReducer,
   alert: alertReducer,
   profile: profileReducer,
   postModal: postModalReducer,
   posts: postsReducer,
   notify: notifyReducer,
+  message: messageReducer,
+  online: onlineReducer,
 };
 
 export const socket = io();

@@ -42,7 +42,7 @@ const NotifyModal = () => {
     <>
       <Menu as="div" className="relative inline-block text-left">
         <Menu.Button className="w-6 h-6">
-          <MdNotificationsActive className="w-6 h-6 dark:text-gray-100" />
+          <MdNotificationsActive className="w-7 h-7 dark:text-gray-100" />
         </Menu.Button>
 
         <Transition

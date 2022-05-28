@@ -5,9 +5,25 @@ const LikeButton = ({ isLike, handleLike, handleUnLike }) => {
   return (
     <>
       {isLike ? (
-        <BsHeart className="text-3xl text-red-500" onClick={handleUnLike} />
+        <lord-icon
+          src="https://cdn.lordicon.com/rjzlnunf.json"
+          trigger="click"
+          stroke="90"
+          colors="primary:#e83a30,secondary:#f4a09c"
+          style={{ width: '2.5rem', height: '2.5rem' }}
+          onClick={handleUnLike}
+        ></lord-icon>
       ) : (
-        <BsHeart className="text-3xl" onClick={handleLike} />
+        // <BsHeart className="text-3xl text-red-500" onClick={handleUnLike} />
+        <lord-icon
+          src="https://cdn.lordicon.com/rjzlnunf.json"
+          trigger="click"
+          stroke="90"
+          colors="primary:#121331,secondary:#a855f7"
+          style={{ width: '2.5rem', height: '2.5rem' }}
+          onClick={handleLike}
+        ></lord-icon>
+        // <BsHeart className="text-3xl" onClick={handleLike} />
       )}
     </>
   );

@@ -79,7 +79,7 @@ const CommentCard = ({ children, comment, post, commentId }) => {
         to={`/user/${comment.user._id}`}
         className="flex text-gray-900 mb-2"
       >
-        <Avatar src={comment.user.avatar} className="border-[50%] w-6 h-6" />
+        <Avatar src={comment.user.avatar} className="rounded-[50%] w-6 h-6" />
         <h6 className="mx-1">{comment.user.userName}</h6>
       </Link>
 

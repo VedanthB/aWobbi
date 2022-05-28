@@ -17,6 +17,7 @@ import {
   setLoadingProfile,
   setFollowUser,
   setUnFollowUser,
+  setUpdateProfilePost,
 } from './slices/profileSlice';
 
 import { setAuth } from './slices/authSlice';
@@ -26,13 +27,12 @@ import {
   updateUserProfileInfo,
   followUser,
   unFollowUser,
+  getSuggestions,
 } from './actions/profileActions';
 
 import { setPostModal, setEditPostModal } from './slices/postModalSlice';
 
 import { setPosts, setUpdatePost } from './slices/postSlice';
-
-import { setSocket } from './slices/socketSlice';
 
 import {
   createNotify,
@@ -59,6 +59,23 @@ import {
 } from './actions/postActions';
 
 import { setCreateNotify, setRemoveNotify } from './slices/notifySlice';
+
+import {
+  addMessage,
+  getConversations,
+  getMessages,
+  loadMoreMessages,
+  deleteMessages,
+  deleteConversation,
+} from './actions/messageAction';
+
+import {
+  setAddMessage,
+  setAddUser,
+  checkOnlineOffline,
+} from './slices/messageSlice';
+
+import { setOffOnline, setOnline } from './slices/onlineSlice';
 
 export {
   GLOBAL_TYPES,
@@ -92,7 +109,6 @@ export {
   updateComment,
   likeComment,
   unLikeComment,
-  setSocket,
   deleteComment,
   setUpdatePost,
   createNotify,
@@ -102,4 +118,17 @@ export {
   setRemoveNotify,
   isReadNotify,
   deleteAllNotifies,
+  addMessage,
+  getConversations,
+  getMessages,
+  loadMoreMessages,
+  deleteMessages,
+  setAddMessage,
+  deleteConversation,
+  setAddUser,
+  getSuggestions,
+  setUpdateProfilePost,
+  setOffOnline,
+  setOnline,
+  checkOnlineOffline,
 };
