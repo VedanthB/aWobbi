@@ -14,6 +14,8 @@ aWobbi is a social media application  built with React/Babel (Client), Redux Too
 - CRUD operations for the post, like the post, save the post, comments.
 - Realtime chat and notification using socket io
 - Authentication using JWT and Cookies
+- Infinite Scroll for messages 
+- Load more posts for home page
 - Light/dark mode toggle
 - Mobile Responsive
 - Upload pictures from local machine to Cloudinary
