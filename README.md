@@ -43,3 +43,7 @@ aWobbi is a social media application  built with React/Babel (Client), Redux Too
 
 **Server:** Node, Express, socket.io
 
+## Deployment
+
+- deployed on heroku 
+
