@@ -1,12 +1,7 @@
 
-![Logo](https://res.cloudinary.com/supertramp69420/image/upload/v1653449504/aWoobi_3_esz9ni.png)
-
-
 # aWobbi
 
 aWobbi is a social media application  built with React/Babel (Client), Redux Toolkit for state management, Tailwind CSS for styling, Node(API) and MongoDb for DB. Auto formatted with Prettier, linted with ESLint.
-
-
 
 
 ## Features
@@ -25,6 +20,21 @@ aWobbi is a social media application  built with React/Babel (Client), Redux Too
 - Reply to comments
 
 
+## API Documentation
+
+[API Documentation](https://documenter.getpostman.com/view/14270668/Uz5Knacy)
+
+## Tech Stack
+
+**Client:** React, Redux, TailwindCSS, socket.io
+
+**Server:** Node, Express, socket.io
+
+## Deployment
+
+- deployed on heroku 
+
+
 ## Screenshots
 
 ![App Screenshot](https://res.cloudinary.com/supertramp69420/image/upload/v1654512775/Screenshot_2022-06-06_at_3.34.15_PM_nssqab.png)
@@ -38,14 +48,4 @@ aWobbi is a social media application  built with React/Babel (Client), Redux Too
 ![App Screenshot](https://res.cloudinary.com/supertramp69420/image/upload/v1654512775/Screenshot_2022-06-06_at_3.35.40_PM_hzex4s.png)
 
 
-
-## Tech Stack
-
-**Client:** React, Redux, TailwindCSS, socket.io
-
-**Server:** Node, Express, socket.io
-
-## Deployment
-
-- deployed on heroku 
 
