@@ -57,7 +57,7 @@ const UserCard = ({
         <Avatar src={user.avatar} className="w-14 h-14 rounded-[50%]" />
 
         <div className="ml-4" style={{ transform: 'translateY(-2px)' }}>
-          <span className="block dark:text-white hover:underline">
+          <span className="block dark:text-white hover:underline w-28 text-ellipsis overflow-hidden">
             {user.userName}
           </span>
 
