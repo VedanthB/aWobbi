@@ -5,7 +5,6 @@ import { createPost, setPostModal, updatePost } from '../features';
 import Icons from './Icons';
 import { imageShow, videoShow } from '../utils';
 import { useToast } from '../hooks';
-import { AiFillCamera } from 'react-icons/ai';
 import { BsImages } from 'react-icons/bs';
 
 const CreatePostModal = () => {
@@ -139,7 +138,7 @@ const CreatePostModal = () => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all z-50">
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all z-50 dark:bg-slate-700 dark:text-white">
                 <Dialog.Title
                   as="h3"
                   className="text-lg flex justify-between items-center font-medium leading-6 text-gray-900"
@@ -158,11 +157,11 @@ const CreatePostModal = () => {
                 <div className="mt-2">
                   <form
                     onSubmit={handleSubmit}
-                    className="w-full max-w-[450px] bg-white my-8 mx-auto rounded-sm"
+                    className="w-full max-w-[450px] bg-white my-8 mx-auto rounded-sm dark:bg-slate-700"
                   >
                     <div>
                       <textarea
-                        className="w-full max-h-[150px] border-none outline-none resize-none"
+                        className="w-full max-h-[150px] border-none outline-none resize-none dark:bg-slate-600 p-1 rounded"
                         name="content"
                         value={content}
                         placeholder={`${auth.user.userName}, what are you thinking?`}

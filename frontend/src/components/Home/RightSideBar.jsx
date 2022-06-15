@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSuggestions } from '../../features';
 import { useToast } from '../../hooks';
@@ -11,6 +11,10 @@ const RightSideBar = () => {
   const dispatch = useDispatch();
 
   const { showToast } = useToast();
+
+  useEffect(() => {
+    dispatch(getSuggestions({ token: auth.token, showToast }));
+  }, []);
 
   return (
     <div className="mt-3 px-6">
@@ -34,7 +38,9 @@ const RightSideBar = () => {
         <div className="suggestions">
           {profile.suggestionsUsers.map((user) => (
             <UserCard key={user._id} user={user}>
-              <FollowButton user={user} />
+              <div className="w-24">
+                <FollowButton user={user} />
+              </div>
             </UserCard>
           ))}
           {profile.suggestionsUsers.length === 0 && (

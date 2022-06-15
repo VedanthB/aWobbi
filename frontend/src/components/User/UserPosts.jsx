@@ -38,12 +38,18 @@ const UserPosts = ({ auth, id, dispatch, profile }) => {
 
       {load && <span className="loader block mx-auto"></span>}
 
-      <LoadMoreBtn
-        result={result}
-        page={page}
-        load={load}
-        handleLoadMore={handleLoadMore}
-      />
+      {posts.length > 0 && (
+        <div className="w-full flex items-center-justify-center">
+          <div className="w-24">
+            <LoadMoreBtn
+              result={result}
+              page={page}
+              load={load}
+              handleLoadMore={handleLoadMore}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
