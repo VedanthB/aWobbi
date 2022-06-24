@@ -6,7 +6,7 @@ const CardBody = ({ post }) => {
 
   return (
     <div>
-      <div className="py-0 px-6 mt-[-10px] mb-[10px]">
+      <div className="py-0 px-6 mt-[-10px] mb-[10px] dark:text-white ">
         <span>
           {post.content.length < 60
             ? post.content

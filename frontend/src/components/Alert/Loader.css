@@ -1,4 +1,3 @@
-/*Huge thanks to @tobiasahlin at http://tobiasahlin.com/spinkit/ */
 .spinner {
   display: flex;
   justify-content: center;
@@ -56,8 +55,6 @@
     transform: scale(1);
   }
 }
-
-/* ------- post loader */
 
 .loader {
   animation: rotate 1s infinite;

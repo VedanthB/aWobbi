@@ -60,7 +60,7 @@ const Carousel = ({ images, id }) => {
           >
             <span className="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
               <svg
-                className="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800"
+                className="w-5 h-5 text-black dark:text-white sm:w-6 sm:h-6 "
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -87,7 +87,7 @@ const Carousel = ({ images, id }) => {
           >
             <span className="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
               <svg
-                className="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800"
+                className="w-5 h-5 text-black dark:text-white sm:w-6 sm:h-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

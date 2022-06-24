@@ -103,9 +103,9 @@ const LeftSide = () => {
         </button>
       </form>
 
-      <div className="w-full h[calc(100%_-_60px)] overflow-y-auto">
+      <div className="w-full h-[calc(100vh_-_220px)] overflow-y-scroll">
         {searchUsers.length !== 0 ? (
-          <>
+          <div className="w-full h-52  overflow-y-auto">
             {searchUsers.map((user) => (
               <div
                 key={user._id}
@@ -117,7 +117,7 @@ const LeftSide = () => {
                 <UserCard user={user} />
               </div>
             ))}
-          </>
+          </div>
         ) : (
           <>
             {message.users.map((user) => (

@@ -1,5 +1,4 @@
 import React from 'react';
-import { BsHeart } from 'react-icons/bs';
 
 const LikeButton = ({ isLike, handleLike, handleUnLike }) => {
   return (
@@ -14,7 +13,6 @@ const LikeButton = ({ isLike, handleLike, handleUnLike }) => {
           onClick={handleUnLike}
         ></lord-icon>
       ) : (
-        // <BsHeart className="text-3xl text-red-500" onClick={handleUnLike} />
         <lord-icon
           src="https://cdn.lordicon.com/rjzlnunf.json"
           trigger="click"
@@ -23,7 +21,6 @@ const LikeButton = ({ isLike, handleLike, handleUnLike }) => {
           style={{ width: '2.5rem', height: '2.5rem' }}
           onClick={handleLike}
         ></lord-icon>
-        // <BsHeart className="text-3xl" onClick={handleLike} />
       )}
     </>
   );
