@@ -13,6 +13,7 @@ const UserCard = ({
   setShowFollowers,
   setShowFollowing,
   msg,
+  to,
 }) => {
   const handleCloseAll = () => {
     if (handleClose) handleClose();
@@ -50,9 +51,9 @@ const UserCard = ({
       className={`flex p-2 items-center justify-between dark:text-white w-full ${border}`}
     >
       <Link
-        to={`/chat/${user._id}`}
+        to={to ? `/user/${user._id}` : `/chat/${user._id}`}
         onClick={handleCloseAll}
-        className="flex items-center"
+        className="flex items-center w-full"
       >
         <Avatar src={user.avatar} className="w-14 h-14 rounded-[50%]" />
 

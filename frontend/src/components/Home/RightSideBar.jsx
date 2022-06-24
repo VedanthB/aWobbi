@@ -18,7 +18,7 @@ const RightSideBar = () => {
 
   return (
     <div className="mt-3 px-6">
-      <UserCard user={auth.user} />
+      <UserCard user={auth.user} to={true} />
       <div className="flex justify-between items-center my-2">
         <h5 className="dark:text-white">Suggestions for you</h5>
         {!profile.suggestionLoading && (
@@ -37,7 +37,7 @@ const RightSideBar = () => {
       ) : (
         <div className="suggestions">
           {profile.suggestionsUsers.map((user) => (
-            <UserCard key={user._id} user={user}>
+            <UserCard key={user._id} user={user} to={true}>
               <div className="w-24">
                 <FollowButton user={user} />
               </div>
