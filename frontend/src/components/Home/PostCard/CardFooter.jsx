@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import LikeButton from '../../LikeButton';
-import { BsBookmark } from 'react-icons/bs';
+
 import { likePost, savePost, unlikePost, unSavePost } from '../../../features';
 import { useToast } from '../../../hooks';
 import { useTheme } from '../../../context/ThemeProvider';
@@ -88,21 +88,21 @@ const CardFooter = ({ post }) => {
 
         {saved ? (
           <lord-icon
-            src="https://cdn.lordicon.com/zzcjjxew.json"
+            src="https://cdn.lordicon.com/wurbjznp.json"
             trigger="click"
             stroke="90"
-            colors="primary:#e83a30,secondary:#a855f7"
+            colors="primary:#a855f7"
             onClick={handleUnSavePost}
-            style={{ width: '2.5rem', height: '2.5rem' }}
+            style={{ width: '2rem', height: '2rem' }}
           ></lord-icon>
         ) : (
           <lord-icon
-            src="https://cdn.lordicon.com/zzcjjxew.json"
-            trigger="click"
+            src="https://cdn.lordicon.com/wurbjznp.json"
+            trigger="hover"
             stroke="90"
-            colors="primary:#a855f7,secondary:#a855f7"
+            colors="primary:#848484"
             onClick={handleSavePost}
-            style={{ width: '2.5rem', height: '2.5rem' }}
+            style={{ width: '2rem', height: '2rem' }}
           ></lord-icon>
         )}
       </div>

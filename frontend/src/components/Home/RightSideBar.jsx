@@ -3,14 +3,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getSuggestions } from '../../features';
 import { useToast } from '../../hooks';
 
+import lottie from 'lottie-web';
+import { defineLordIconElement } from 'lord-icon-element';
+
 import UserCard from '../Chat/UserCard';
 import FollowButton from '../FollowButton';
+import { useTheme } from '../../context';
+
+defineLordIconElement(lottie.loadAnimation);
 
 const RightSideBar = () => {
   const { auth, profile } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const { showToast } = useToast();
+
+  const { theme } = useTheme();
 
   useEffect(() => {
     dispatch(getSuggestions({ token: auth.token, showToast }));
@@ -21,15 +29,30 @@ const RightSideBar = () => {
       <UserCard user={auth.user} to={true} />
       <div className="flex justify-between items-center my-2">
         <h5 className="dark:text-white">Suggestions for you</h5>
-        {!profile.suggestionLoading && (
-          <i
-            className="fas fa-redo dark:text-white"
-            style={{ cursor: 'pointer' }}
-            onClick={() =>
-              dispatch(getSuggestions({ token: auth.token, showToast }))
-            }
-          />
-        )}
+        {!profile.suggestionLoading &&
+          (theme === 'light' ? (
+            <lord-icon
+              src="https://cdn.lordicon.com/sihdhmit.json"
+              trigger="morph"
+              stroke="70"
+              colors={'primary:#545454'}
+              style={{ width: '1.5rem', height: '1.5rem', cursor: 'pointer' }}
+              onClick={() =>
+                dispatch(getSuggestions({ token: auth.token, showToast }))
+              }
+            ></lord-icon>
+          ) : (
+            <lord-icon
+              src="https://cdn.lordicon.com/sihdhmit.json"
+              trigger="morph"
+              stroke="70"
+              colors={'primary:#a855f7 '}
+              style={{ width: '1.5rem', height: '1.5rem', cursor: 'pointer' }}
+              onClick={() =>
+                dispatch(getSuggestions({ token: auth.token, showToast }))
+              }
+            ></lord-icon>
+          ))}
       </div>
 
       {profile.suggestionLoading ? (

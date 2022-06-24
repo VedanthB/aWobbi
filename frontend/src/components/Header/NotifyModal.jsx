@@ -1,18 +1,22 @@
 import React, { Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Menu, Transition } from '@headlessui/react';
-import { MdNotificationsActive } from 'react-icons/md';
 
 import { Link } from 'react-router-dom';
-
+import lottie from 'lottie-web';
+import { defineLordIconElement } from 'lord-icon-element';
 import moment from 'moment';
 import Avatar from '../Avatar';
 import { deleteAllNotifies, isReadNotify } from '../../features';
 import { useToast } from '../../hooks';
+import { useTheme } from '../../context';
+
+defineLordIconElement(lottie.loadAnimation);
 
 const NotifyModal = () => {
   const { auth, notify } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const { theme } = useTheme();
 
   const showToast = useToast();
 
@@ -37,8 +41,24 @@ const NotifyModal = () => {
   return (
     <>
       <Menu as="div" className="relative inline-block text-left">
-        <Menu.Button className="w-6 h-6">
-          <MdNotificationsActive className="w-7 h-7 dark:text-gray-100" />
+        <Menu.Button>
+          {theme === 'light' ? (
+            <lord-icon
+              src="https://cdn.lordicon.com/ndydpcaq.json"
+              trigger="morph"
+              stroke="70"
+              colors={'primary:#545454'}
+              style={{ width: '2.5rem', height: '2.5rem' }}
+            ></lord-icon>
+          ) : (
+            <lord-icon
+              src="https://cdn.lordicon.com/ndydpcaq.json"
+              trigger="morph"
+              stroke="70"
+              colors={'primary:#a855f7 '}
+              style={{ width: '2.5rem', height: '2.5rem' }}
+            ></lord-icon>
+          )}
         </Menu.Button>
 
         <Transition

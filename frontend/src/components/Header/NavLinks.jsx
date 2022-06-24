@@ -1,7 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { AiFillHome } from 'react-icons/ai';
-import { BsMessenger } from 'react-icons/bs';
 import NavLinkDropdown from './NavLinkDropdown';
 import NotifyModal from './NotifyModal';
 
@@ -20,18 +18,18 @@ const NavLinks = () => {
           {({ isActive }) =>
             theme === 'light' ? (
               <lord-icon
-                src="https://cdn.lordicon.com/gmzxduhd.json"
-                trigger="click"
+                src="https://cdn.lordicon.com/igpbsrza.json"
+                trigger="morph"
                 stroke="70"
-                colors={'primary:#121331 ,secondary:#a855f7'}
+                colors={'primary:#545454'}
                 style={{ width: '2.5rem', height: '2.5rem' }}
               ></lord-icon>
             ) : (
               <lord-icon
-                src="https://cdn.lordicon.com/gmzxduhd.json"
-                trigger="click"
+                src="https://cdn.lordicon.com/igpbsrza.json"
+                trigger="morph"
                 stroke="70"
-                colors={'primary:#ffffff ,secondary:#a855f7'}
+                colors={'primary:#a855f7 '}
                 style={{ width: '2.5rem', height: '2.5rem' }}
               ></lord-icon>
             )
@@ -43,18 +41,18 @@ const NavLinks = () => {
           {({ isActive }) =>
             theme === 'light' ? (
               <lord-icon
-                src="https://cdn.lordicon.com/rhvddzym.json"
-                trigger="click"
+                src="https://cdn.lordicon.com/uvextprq.json"
+                trigger="morph"
                 stroke="70"
-                colors={'primary:#121331 ,secondary:#a855f7'}
+                colors={'primary:#545454'}
                 style={{ width: '2.5rem', height: '2.5rem' }}
               ></lord-icon>
             ) : (
               <lord-icon
-                src="https://cdn.lordicon.com/rhvddzym.json"
-                trigger="click"
+                src="https://cdn.lordicon.com/uvextprq.json"
+                trigger="morph"
                 stroke="70"
-                colors={'primary:#ffffff ,secondary:#a855f7'}
+                colors={'primary:#a855f7 '}
                 style={{ width: '2.5rem', height: '2.5rem' }}
               ></lord-icon>
             )
