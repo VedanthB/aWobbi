@@ -82,7 +82,7 @@ const EditProfileModal = ({ onEdit, setOnEdit }) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full min-h-[80vh] overflow-y-scroll max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:text-white dark:bg-gray-70">
+                <Dialog.Panel className="w-full min-h-[80vh] overflow-y-scroll max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:text-white dark:bg-gray-700">
                   <Dialog.Title
                     as="h3"
                     className="text-lg flex justify-between items-center font-medium leading-6 text-gray-900"
@@ -188,7 +188,7 @@ const EditProfileModal = ({ onEdit, setOnEdit }) => {
                     <div className="mb-4">
                       <label
                         htmlFor="gender"
-                        className="block mb-2 text-sm font-medium text-gray-900 "
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-100"
                       >
                         Select an option
                       </label>
@@ -197,7 +197,7 @@ const EditProfileModal = ({ onEdit, setOnEdit }) => {
                         value={gender}
                         onChange={handleInput}
                         id="gender"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 focus:outline-purple-400 focus:outline focus:outline-offset-2 text-sm rounded-lg block w-full p-2.5"
+                        className="bg-gray-50 dark:bg-gray-500 dark:text-gray-50 border border-gray-300 text-gray-900 focus:outline-purple-400 focus:outline focus:outline-offset-2 text-sm rounded-lg block w-full p-2.5"
                       >
                         <option value="male">Male</option>
                         <option value="female">Female</option>

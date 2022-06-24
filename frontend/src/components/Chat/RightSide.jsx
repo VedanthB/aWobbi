@@ -165,7 +165,7 @@ const RightSide = () => {
       {/* header */}
       <div className="w-full h-[60x] border-b border-solid cursor-pointer border-gray-300 dark:border-gray-600 flex justify-between items-center bg-gray-100  dark:bg-gray-700">
         {user.length !== 0 && (
-          <UserCard user={user}>
+          <UserCard user={user} to={true}>
             <div className="flex gap-3">
               <lord-icon
                 src="https://cdn.lordicon.com/gsqxdxog.json"
@@ -250,7 +250,7 @@ const RightSide = () => {
           type="text"
           placeholder="Enter you message..."
           value={text}
-          className="w-full h-[49px] border-none outline-none dark:bg-gray-700 dark:text-white"
+          className="w-full h-[49px] border-none outline-none dark:bg-gray-600 dark:text-white px-4 rounded-3xl"
           onChange={(e) => setText(e.target.value)}
         />
 

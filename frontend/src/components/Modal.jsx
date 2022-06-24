@@ -22,7 +22,7 @@ const Modal = ({ isOpen, setIsOpen, body, title }) => {
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4 text-center">
+          <div className="flex min-h-full items-center justify-center p-4 text-center relative top-24 ">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -35,7 +35,7 @@ const Modal = ({ isOpen, setIsOpen, body, title }) => {
               <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all max-h-[500px] overflow-y-scroll dark:text-white dark:bg-gray-700">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900 flex justify-between items-center"
+                  className="text-lg font-medium leading-6 text-gray-900 flex justify-between items-center dark:text-white"
                 >
                   {title}
                   <button
