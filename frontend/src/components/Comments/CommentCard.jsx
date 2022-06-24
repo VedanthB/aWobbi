@@ -12,8 +12,6 @@ import InputComment from '../Home/InputComment';
 import { likeComment, unLikeComment, updateComment } from '../../features';
 import { useToast } from '../../hooks';
 
-// import InputComment from '../InputComment';
-
 const CommentCard = ({ children, comment, post, commentId }) => {
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
