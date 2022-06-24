@@ -27,7 +27,7 @@ const HomePosts = () => {
         <PostCard key={post._id} post={post} />
       ))}
 
-      {load && <span className="loader block mx-auto"></span>}
+      {load && <span className="loader block mx-auto my-4"></span>}
 
       <div className="flex justify-center mb-10">
         <div className="w-32">
