@@ -203,7 +203,7 @@ const CreatePostModal = () => {
                               </>
                             )}
                             <span
-                              className="absolute top-[-1px] right-[-2px] z-10  text-red-500 p-1 bg-white border-2 border-red-500 border-solid rounded-[50%] text-sm cursor-pointer font-bold"
+                              className="absolute top-[-1px] right-[-2px] z-10  text-red-500 p-1 bg-transparent  rounded-[50%] text-sm cursor-pointer font-bold"
                               onClick={() => deleteImages(index)}
                             >
                               &times;
@@ -223,7 +223,7 @@ const CreatePostModal = () => {
                           />
 
                           <span
-                            className="absolute top-[-10px] right-[5px] text-3xl font-extrabold cursor-pointer text-red-500 "
+                            className="absolute top-[-1px] right-[8px] text-3xl font-extrabold cursor-pointer text-red-500 "
                             onClick={handleStopStream}
                           >
                             &times;
