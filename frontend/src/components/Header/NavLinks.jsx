@@ -12,7 +12,7 @@ defineLordIconElement(lottie.loadAnimation);
 const NavLinks = () => {
   const { theme } = useTheme();
   return (
-    <ul className="flex gap-6 justify-center items-center">
+    <ul className="flex gap-6 justify-center items-center px-6">
       <li>
         <NavLink to="/">
           {({ isActive }) =>

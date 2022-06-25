@@ -28,7 +28,7 @@ const CardHeader = ({ post }) => {
         <div className="translate-y-[-3px] ml-3">
           <h6 className="m-0">
             <Link
-              to={`/profile/${post.user._id}`}
+              to={`/user/${post.user._id}`}
               className="text-gray-900 dark:text-gray-300"
             >
               {post.user.userName}

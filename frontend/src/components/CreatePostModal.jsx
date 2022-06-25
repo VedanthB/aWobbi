@@ -138,7 +138,7 @@ const CreatePostModal = () => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all z-50 dark:bg-slate-700 dark:text-white">
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all z-[99] dark:bg-slate-700 dark:text-white">
                 <Dialog.Title
                   as="h3"
                   className="text-lg flex justify-between items-center font-medium leading-6 text-gray-900 dark:text-white"
