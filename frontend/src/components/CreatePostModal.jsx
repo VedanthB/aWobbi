@@ -127,8 +127,8 @@ const CreatePostModal = () => {
           <div className="fixed inset-0 bg-black bg-opacity-25" />
         </Transition.Child>
 
-        <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center  justify-center p-4 text-center relative top-24">
+        <div className="fixed inset-0 overflow-y-auto z-50">
+          <div className="flex min-h-full items-center justify-center p-4 text-center relative top-24 z-50">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -138,7 +138,7 @@ const CreatePostModal = () => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all z-[99] dark:bg-slate-700 dark:text-white">
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all z-50 dark:bg-slate-700 dark:text-white">
                 <Dialog.Title
                   as="h3"
                   className="text-lg flex justify-between items-center font-medium leading-6 text-gray-900 dark:text-white"
@@ -157,11 +157,11 @@ const CreatePostModal = () => {
                 <div className="mt-2">
                   <form
                     onSubmit={handleSubmit}
-                    className="w-full max-w-[450px] bg-white my-8 mx-auto rounded-sm dark:bg-slate-700"
+                    className="w-full max-w-[450px] bg-white my-8 mx-auto rounded-sm dark:bg-slate-700 z-50"
                   >
                     <div>
                       <textarea
-                        className="w-full max-h-[150px] border-none outline-none resize-none dark:bg-slate-600 p-1 rounded"
+                        className="w-full max-h-[150px] border-none outline-none resize-none dark:bg-slate-600 p-1 rounded z-50"
                         name="content"
                         value={content}
                         placeholder={`${auth.user.userName}, what are you thinking?`}
@@ -179,13 +179,13 @@ const CreatePostModal = () => {
                           gridTemplateColumns:
                             'repeat(auto-fill, minmax(100px, 1fr))',
                         }}
-                        className="max-h-[270px] w-full overflow-x-hidden overscroll-y-auto grid place-items-center py-4 px-auto"
+                        className="max-h-[270px] w-full overflow-x-hidden overscroll-y-auto grid place-items-center py-4 px-auto z-50"
                       >
                         {images.map((img, index) => (
                           <div
                             key={index}
                             id="file_img"
-                            className="relative w-full h-full"
+                            className="relative w-full h-full "
                           >
                             {img.camera ? (
                               imageShow(img.camera)
